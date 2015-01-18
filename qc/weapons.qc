@@ -1222,6 +1222,11 @@ ImpulseCommands
 */
 void() ImpulseCommands =
 {
+
+// TM Bot - Check bot impulse commands
+	CheckSecondaryImpulseCommands();
+
+
 	if (self.impulse >= 1 && self.impulse <= 8)
 		W_ChangeWeapon ();
 

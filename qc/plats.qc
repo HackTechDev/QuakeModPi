@@ -72,7 +72,8 @@ void() plat_go_up =
 
 void() plat_center_touch =
 {
-	if (other.classname != "player")
+// TM Bot - added recognition of "bot" classname
+	if ((other.classname != "player") && (other.classname != "bot"))
 		return;
 
 	if (other.health <= 0)
@@ -87,7 +88,8 @@ void() plat_center_touch =
 
 void() plat_outside_touch =
 {
-	if (other.classname != "player")
+// TM Bot - added recognition of "bot" classname
+	if ((other.classname != "player") && (other.classname != "bot"))
 		return;
 
 	if (other.health <= 0)

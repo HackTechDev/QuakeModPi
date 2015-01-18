@@ -1,12 +1,17 @@
 Source file: progs.src
 outputfile: ../progs.dat
 compiling defs.qc
+compiling bot.h
 compiling subs.qc
 compiling fight.qc
 compiling ai.qc
 compiling combat.qc
 compiling items.qc
 compiling ccam.qc
+compiling impulse2.qc
+compiling botai.qc
+compiling botai2.qc
+compiling bot.qc
 compiling weapons.qc
 compiling world.qc
 compiling client.qc
@@ -17,6 +22,7 @@ compiling buttons.qc
 compiling triggers.qc
 compiling plats.qc
 compiling misc.qc
+compiling bot_ext.qc
 compiling ogre.qc
 compiling demon.qc
 compiling shambler.qc
@@ -34,26 +40,34 @@ compiling enforcer.qc
 compiling oldone.qc
 Recognised progs as NetQuake server gamecode
 Progs should run on any Quake executor
- 88472 strofs (of 1000000)
- 20661 numstatements (of 524288)
-  2093 numfunctions (of 16384)
-  4271 numglobaldefs (of 32768)
-   212 numfielddefs (189 unique) (of 2048)
-  4263 numpr_globals (of 65536)
+botai.qc:447: warning: delta  no references
+botai.qc:448: warning: axis  no references
+botai.qc:449: warning: direct  no references
+botai.qc:449: warning: ang_rint  no references
+botai.qc:449: warning: ang_floor  no references
+botai.qc:449: warning: ang_ceil  no references
+triggers.qc:233: warning: junk  no references
+bot_ext.qc:17: warning: junk  no references
+ 94716 strofs (of 1000000)
+ 22877 numstatements (of 524288)
+  2275 numfunctions (of 16384)
+  4611 numglobaldefs (of 32768)
+   214 numfielddefs (191 unique) (of 2048)
+  4582 numpr_globals (of 65536)
 Writing ../progs.dat
-382212 TOTAL SIZE
+416748 TOTAL SIZE
 Writing ../progs.lno
 225 unique precache_sounds
  95 unique precache_models
 104 unique precache_files
 Compile Complete
 
-optres_shortenifnots 115
-optres_overlaptemps 7337
+optres_shortenifnots 120
+optres_overlaptemps 8391
 optres_constantarithmatic 17
-optres_nonvec_parms 3942
-optres_assignments 412
-optres_unreferenced 13
-optres_dupconstdefs 101
-numtemps 117
-0 warnings
+optres_nonvec_parms 4279
+optres_assignments 502
+optres_unreferenced 20
+optres_dupconstdefs 108
+numtemps 119
+8 warnings
