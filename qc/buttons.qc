@@ -85,8 +85,6 @@ When a button is touched, it moves some distance in the direction of it's angle,
 */
 void() func_button =
 {
-local float		gtemp, ftemp;
-
 	if (self.sounds == 0)
 	{
 		precache_sound ("buttons/airbut1.wav");
@@ -107,7 +105,7 @@ local float		gtemp, ftemp;
 		precache_sound ("buttons/switch04.wav");
 		self.noise = "buttons/switch04.wav";
 	}
-	
+
 	SetMovedir ();
 
 	self.movetype = MOVETYPE_PUSH;
@@ -138,4 +136,3 @@ local float		gtemp, ftemp;
 	self.pos1 = self.origin;
 	self.pos2 = self.pos1 + self.movedir*(fabs(self.movedir*self.size) - self.lip);
 };
-

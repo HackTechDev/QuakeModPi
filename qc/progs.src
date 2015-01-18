@@ -1,18 +1,6 @@
-//
-// Source files used to compile progs.dat
-//
-// The file serves as the "project manager" file for the
-// QuakeC compiler, letting it know what files to compile,
-// in what order, along with what to name the output 
-// compiled file, and where to put it.
-
-// compiled progs.dat placed in parent dir
 ../progs.dat
 
-// global definitions
 defs.qc
-
-// general
 subs.qc
 fight.qc
 ai.qc
@@ -29,7 +17,6 @@ triggers.qc
 plats.qc
 misc.qc
 
-// shareware monsters
 ogre.qc
 demon.qc
 shambler.qc
@@ -40,10 +27,9 @@ dog.qc
 zombie.qc
 boss.qc
 
-// registered monsters
 tarbaby.qc		// registered
 hknight.qc		// registered
-fish.qc		// registered
+fish.qc			// registered
 shalrath.qc		// registered
 enforcer.qc		// registered
 oldone.qc		// registered

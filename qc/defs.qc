@@ -1,4 +1,3 @@
-
 /*
 ==============================================================================
 
@@ -46,9 +45,9 @@ float		parm1, parm2, parm3, parm4, parm5, parm6, parm7, parm8, parm9, parm10, pa
 
 //
 // global variables set by built in functions
-//	
+//
 vector		v_forward, v_up, v_right;	// set by makevectors()
-	
+
 // set by traceline / tracebox
 float		trace_allsolid;
 float		trace_startsolid;
@@ -398,7 +397,6 @@ float	movedist;
 float	gameover;		// set when a rule exits
 
 string	string_null;	// null string, nothing should be held here
-float	empty_float;
 
 entity	newmis;			// launch_spike sets this after spawning it
 
@@ -414,7 +412,6 @@ float		skill;
 //
 // world fields (FIXME: make globals)
 //
-.string		wad;
 .string 	map;
 .float		worldtype;	// 0=medieval 1=metal 2=base
 
@@ -425,7 +422,6 @@ float		skill;
 //
 // quakeed fields
 //
-.float		light_lev;		// not used by game, but parsed by light util
 .float		style;
 
 
@@ -498,7 +494,7 @@ float	AS_MISSILE		= 4;
 //
 // doors, etc
 //
-.vector		dest, dest1, dest2;
+.vector		dest1, dest2;
 .float		wait;			// time from firing to restarting
 .float		delay;			// time from activation to firing
 .entity		trigger_field;	// door's trigger entity
@@ -516,12 +512,12 @@ float	AS_MISSILE		= 4;
 //
 .float		aflag;
 .float		dmg;			// damage done by door when hit
-	
+
 //
 // misc
 //
 .float		cnt; 			// misc flag
-	
+
 //
 // subs
 //
@@ -542,18 +538,9 @@ float	AS_MISSILE		= 4;
 .vector		pos1, pos2;		// top and bottom positions
 .float		height;
 
-//
-// sounds
-//
-.float		waitmin, waitmax;
-.float		distance;
-.float		volume;
-
-
-
-
+.float	waitmin;
 //===========================================================================
-	
+
 
 //
 // builtin functions
@@ -580,7 +567,7 @@ void(entity e) remove				= #15;
 // An entity will also be ignored for testing if forent == test,
 // forent->owner == test, or test->owner == forent
 // a forent of world is ignored
-void(vector v1, vector v2, float nomonsters, entity forent) traceline = #16;	
+void(vector v1, vector v2, float nomonsters, entity forent) traceline = #16;
 
 entity() checkclient				= #17;	// returns a client to look for
 entity(entity start, .string fld, string match) find = #18;
@@ -599,7 +586,7 @@ void() traceoff						= #30;
 void(entity e) eprint				= #31;		// prints an entire edict
 float(float yaw, float dist) walkmove	= #32;	// returns TRUE or FALSE
 // #33 was removed
-float(float yaw, float dist) droptofloor= #34;	// TRUE if landed on floor
+float() droptofloor= #34;	// TRUE if landed on floor
 void(float style, string value) lightstyle = #35;
 float(float v) rint					= #36;		// round to nearest int
 float(float v) floor				= #37;		// largest integer <= v
@@ -689,5 +676,3 @@ void(entity targ, entity inflictor, entity attacker, float damage) T_Damage;
 float (entity e, float healamount, float ignore) T_Heal; // health function
 
 float(entity targ, entity inflictor) CanDamage;
-
-
