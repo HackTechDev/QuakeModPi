@@ -46,7 +46,7 @@ botai.qc:449: warning: direct  no references
 botai.qc:449: warning: ang_rint  no references
 botai.qc:449: warning: ang_floor  no references
 botai.qc:449: warning: ang_ceil  no references
-triggers.qc:233: warning: junk  no references
+triggers.qc:239: warning: junk  no references
 bot_ext.qc:17: warning: junk  no references
  94716 strofs (of 1000000)
  22877 numstatements (of 524288)

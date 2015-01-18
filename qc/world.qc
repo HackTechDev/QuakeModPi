@@ -288,9 +288,10 @@ void() worldspawn =
 
 	precache_model ("progs/v_light.mdl");
 
-// TM Bot - precaches for the bot
+// Mod begin : TMBot
+// precaches for the bot
 	Bot_Precache ();
-	
+// Mod end	
 
 //
 // Setup light animation tables. 'a' is total darkness, 'z' is maxbright.

@@ -34,9 +34,11 @@ void() multi_trigger =
 
 	if (self.classname == "trigger_secret")
 	{
-// TM Bot - added recognition of "bot" classname
+// Mod begin : TMBot
+// added recognition of "bot" classname
 		if (self.enemy.classname != "player" && self.enemy.classname != "bot")
 			return;
+// Mod end
 		if (self.enemy.classname == "bot") // otherwise owner might not know
 			centerprint (self.enemy.bot, "bot found a secret!\n");
 		found_secrets = found_secrets + 1;
@@ -81,9 +83,11 @@ void() multi_use =
 
 void() multi_touch =
 {
-// TM Bot - added recognition of "bot" classname
+// Mod begin : TMBot
+// added recognition of "bot" classname
 	if (other.classname != "player" && other.classname != "bot")
 		return;
+// Mod end
 
 // if the trigger has an angles field, check player's facing direction
 	if (self.movedir != '0 0 0')
@@ -223,12 +227,14 @@ void() trigger_secret =
 
 void() counter_use =
 {
-// TM Bot - uses the bot_ext.qc version of counter_use for bots
+// Mod begin : TMBot
+// uses the bot_ext.qc version of counter_use for bots
 	if (activator.classname == "bot")
 	{
 		bot_counter_use ();
 		return;
 	}
+// Mod end
 
 	local string junk;
 
@@ -331,7 +337,8 @@ void() tdeath_touch =
 
 // frag anyone who teleports in on top of an invincible player
 
-// TM Bot - added recognition for classname "bot"
+// Mod begin : TM Bot
+// added recognition for classname "bot"
 	if (other.classname == "player" || other.classname == "bot")
 	{
 		if (other.invincible_finished > time)
@@ -341,8 +348,8 @@ void() tdeath_touch =
 			T_Damage (self.owner, self, self, 50000);
 			return;
 		}
-
 	}
+// Mod end
 
 	if (other.health)
 	{
@@ -385,10 +392,12 @@ local vector	org;
 
 	if (self.spawnflags & PLAYER_ONLY)
 	{
-// TM Bot - added recognition for classname "bot"
+// Mod begin : TMBot
+// added recognition for classname "bot"
 		if (other.classname != "player" && other.classname != "bot")
 			return;
 	}
+// Mod end
 
 // only teleport living creatures
 	if (other.health <= 0 || other.solid != SOLID_SLIDEBOX)
@@ -420,7 +429,8 @@ local vector	org;
 
 	setorigin (other, t.origin);
 	other.angles = t.mangle;
-// TM Bot - added recognition of "bot" classname
+// Mod begin : TMBot
+// added recognition of "bot" classname
 	if (other.classname == "player" || other.classname == "bot")
 	{
 		other.fixangle = 1;		// turn this way immediately
@@ -429,6 +439,8 @@ local vector	org;
 			other.flags = other.flags - FL_ONGROUND;
 		other.velocity = v_forward * 300;
 	}
+// Mod end
+
 	other.flags = other.flags - other.flags & FL_ONGROUND;
 };
 
@@ -514,12 +526,14 @@ ONLY REGISTERED TRIGGERS
 
 void() trigger_onlyregistered_touch =
 {
-// TM Bot - uses bot_ext.qc version for bots
+// Mod begin : TMBot
+// uses bot_ext.qc version for bots
 	if (other.classname == "bot")
 	{
 		bot_trigger_onlyregistered_touch ();
 		return;
 	}
+// Mod end
 
 	if (other.classname != "player")
 		return;

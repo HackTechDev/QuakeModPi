@@ -544,9 +544,11 @@ void() PlayerDie =
 	if (self.velocity_z < 10)
 		self.velocity_z = self.velocity_z + random()*300;
 
-// TM Bot - added removal of bot if still alive
+// Mod begin : TMBot
+// added removal of bot if still alive
 	if (self.bot)
 		BotToggle();
+// Mod end
 	
 	if (self.health < -40)
 	{

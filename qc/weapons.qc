@@ -1223,9 +1223,10 @@ ImpulseCommands
 void() ImpulseCommands =
 {
 
-// TM Bot - Check bot impulse commands
+// Mod begin : TMBot
+// Check bot impulse commands
 	CheckSecondaryImpulseCommands();
-
+// Mod end
 
 	if (self.impulse >= 1 && self.impulse <= 8)
 		W_ChangeWeapon ();

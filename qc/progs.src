@@ -8,9 +8,9 @@ ai.qc
 combat.qc
 items.qc
 ccam.qc
-impulse2.qc
-botai.qc
-botai2.qc
+impulse2.qc // Mod TMBot
+botai.qc // Mod TMBot
+botai2.qc // Mod TMBot
 bot.qc
 weapons.qc
 world.qc
@@ -23,7 +23,7 @@ triggers.qc
 plats.qc
 misc.qc
 
-bot_ext.qc	// TM Bot extensions
+bot_ext.qc // Mod TMBot
 
 ogre.qc
 demon.qc

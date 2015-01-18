@@ -195,12 +195,14 @@ Prints messages and opens key doors
 */
 void() door_touch =
 {
-// TM Bot - call the bot_ext.qc function bot_door_touch
+// Mod begin : TMBot
+//call the bot_ext.qc function bot_door_touch
 	if (other.classname == "bot")
 	{
 		bot_door_touch();
 		return;
 	}
+// Mod end
 
 	if (other.classname != "player")
 		return;
@@ -694,13 +696,15 @@ Prints messages
 */
 void() secret_touch =
 {
-// TM Bot - bot does not trigger secret, but notifies owner
+// Mod begin : TMBot 
+// bot does not trigger secret, but notifies owner
 	if (other.classname == "bot")
 	{
 		sprint (other.owner, "Incoming message from bot:\n");
 		centerprint (other.owner, "Secret found in bot's vicinity.\n");
 		return;
 	}
+// Mod end
 	
 	if (other.classname != "player")
 		return;

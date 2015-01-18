@@ -239,7 +239,7 @@ void() SUB_UseTargets =
 			sound (activator, CHAN_VOICE, "misc/talk.wav", 1, ATTN_NORM);
 	}
 
-// TM Bot - begin new code 
+// Mod begin : TMBot 
 	if (activator.classname == "bot" && self.message != "")
 	{
 		sprint (activator.bot, "Incoming message from bot:\n");
@@ -247,7 +247,7 @@ void() SUB_UseTargets =
 		if (!self.noise)
 			sound (activator.bot, CHAN_VOICE, "misc/talk.wav", 1, ATTN_NORM);
 	}
-// TM Bot - end new code
+// Mod end
 
 //
 // kill the killtagets

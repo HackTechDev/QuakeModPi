@@ -72,9 +72,11 @@ void() plat_go_up =
 
 void() plat_center_touch =
 {
-// TM Bot - added recognition of "bot" classname
+// Mod begin : TMBot 
+// added recognition of "bot" classname
 	if ((other.classname != "player") && (other.classname != "bot"))
 		return;
+// Mod end
 
 	if (other.health <= 0)
 		return;
@@ -88,9 +90,11 @@ void() plat_center_touch =
 
 void() plat_outside_touch =
 {
-// TM Bot - added recognition of "bot" classname
+// Mod begin : TMBot 
+// added recognition of "bot" classname
 	if ((other.classname != "player") && (other.classname != "bot"))
 		return;
+// Mod end
 
 	if (other.health <= 0)
 		return;

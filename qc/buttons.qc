@@ -53,8 +53,11 @@ void() button_use =
 
 void() button_touch =
 {
-		if (other.classname != "player" && other.classname != "bot")
-		return;
+
+    // Mod begin : TMBot
+	if (other.classname != "player" && other.classname != "bot")
+	    return;
+    // Mod end
 	self.enemy = other;
 	button_fire ();
 };
