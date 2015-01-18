@@ -1,3 +1,4 @@
+// Mod begin : Chasecam
 void () CCam;
 
   void () CCamChasePlayer =
@@ -58,4 +59,4 @@ void () CCam;
         W_SetCurrentAmmo ();
      }
   };
-
+// Mod end

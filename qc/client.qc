@@ -502,9 +502,10 @@ void() PutClientInServer =
 
 	W_SetCurrentAmmo ();
 
+    // Mod begin : Chasecam
 	if ( self.aflag )
         	CCamChasePlayer ();
-
+    // Mod end
 
 	self.attack_finished = time;
 	self.th_pain = player_pain;
@@ -907,9 +908,10 @@ void() PlayerPreThink =
 	if (self.view_ofs == '0 0 0')
 		return;		// intermission or finale
 
+    // Mod begin : Chasecam
 	if ( self.aflag )
         	CCamChasePlayer ();
-
+    // Mod end
 
 	makevectors (self.v_angle);		// is this still used
 

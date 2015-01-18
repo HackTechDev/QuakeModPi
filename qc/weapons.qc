@@ -1239,9 +1239,10 @@ void() ImpulseCommands =
 		ServerflagsCommand ();
 	if (self.impulse == 12)
 		CycleWeaponReverseCommand ();
+    // Mod begin : Chasecam
 	if (self.impulse == 15)
         	CCam ();
-
+    // Mod end
 
 	if (self.impulse == 255)
 		QuadCheat ();
