@@ -1,0 +1,81 @@
+<html><head><title>&nbsp;</title><!-- base --></head><body leftmargin="0" topmargin="0" rightmargin="0" marginheight="0" marginwidth="0"><script language="javascript">
+var td_flashinstalled = 0;
+var td_browserFlashversion = 0;
+MSDetect = "false";
+if (navigator.plugins && navigator.plugins.length){
+	td_x = navigator.plugins["Shockwave Flash"];
+	if (td_x){
+		td_flashinstalled = 2;
+		if (td_x.description){
+			td_y = td_x.description;
+			td_browserFlashversion = td_y.charAt(td_y.indexOf('.')-1);}} else {
+		td_flashinstalled = 1; }
+	if (navigator.plugins["Shockwave Flash 2.0"]){
+		td_flashinstalled = 2;
+		td_browserFlashversion = 2; }}
+else if (navigator.mimeTypes && navigator.mimeTypes.length){
+	td_x = navigator.mimeTypes['application/x-shockwave-flash'];
+	if (td_x && td_x.enabledPlugin)
+		td_flashinstalled = 2;
+	else
+		td_flashinstalled = 1;
+}
+else{
+	MSDetect = "true";}
+</script>
+<script language="VBScript">
+on error resume next
+If MSDetect = "true" Then
+	For td_i = 2 to 9
+		If Not(IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash." & td_i))) Then
+		Else
+			td_flashinstalled = 2
+			td_browserFlashversion = td_i
+		End If
+	Next
+End If
+If td_flashinstalled = 0 Then
+	td_flashinstalled = 1
+End If
+</script>
+<script language="javascript">var td_width = "728";
+var td_height = "90";
+var td_flashFile = "http://hstde.tradedoubler.com/file/23612/campaigns/lycos/050708/flash_728x90_02.swf";
+var td_flashVersion = "6,0,0,0";
+var td_flashWindowMode = "window";
+var td_backupImage = "http://hstde.tradedoubler.com/file/23612/campaigns/lycos/050708/flash_728x90_02_alt.gif";
+var td_linkUrl = "http%3A%2F%2Fclkde.tradedoubler.com%2Fclick%3Fp%3D26639%26a%3D1104875%26g%3D11686714%26pool%3D76639%26cpool%3D76639";
+var td_backupLinkUrl = "http://clkde.tradedoubler.com/click?p=26639&a=1104875&g=11686714&pool=76639&cpool=76639";
+var td_strFlash = "";
+var td_strBackup = "";
+// flash code
+td_strFlash += '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"';
+td_strFlash += ' codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version='+td_flashVersion+',0,0,0"';
+td_strFlash += ' width="'+td_width+'" height="'+td_height+'" wmode="'+td_flashWindowMode+'" ID="td_flash" NAME="td_flash">\n';
+if (td_flashVersion == "7,0,0,0" || td_flashVersion == "6,0,0,0") {
+	td_strFlash += '<param name="movie" value="'+td_flashFile+'">\n';
+	td_strFlash += '<param name="FlashVars" value="clickTAG='+td_linkUrl+'">\n';
+} else {
+	td_strFlash += '<param name="movie" value="'+td_flashFile+'?clickTAG='+td_linkUrl+'">\n';
+}
+td_strFlash += '<param name="wmode" value="'+td_flashWindowMode+'">\n';
+td_strFlash += '<param name="quality" value="best">\n';
+td_strFlash += '<param name="menu" value="false">\n';
+if (td_flashVersion == "7,0,0,0" || td_flashVersion == "6,0,0,0") {
+	td_strFlash += '<embed src="'+td_flashFile+'" flashVars="clickTAG='+td_linkUrl+'" menu="false" quality="best" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" swLiveConnect="true"';
+} else {
+	td_strFlash += '<embed src="'+td_flashFile+'?clickTAG='+td_linkUrl+'" menu="false" quality="best" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" swLiveConnect="true"';
+}
+td_strFlash += ' width="'+td_width+'" height="'+td_height+'" wmode="'+td_flashWindowMode+'" ID="td_flash" NAME="td_flash"></embed></object>';
+// backup code
+td_strBackup += '<a href="'+td_backupLinkUrl+'" target="_blank"><img src="'+td_backupImage+'" width="'+td_width+'" height="'+td_height+'" alt="" border="0"></a>';
+if (td_flashinstalled > 1 && td_browserFlashversion*1 >= (td_flashVersion.charAt(td_flashVersion.indexOf(',')-1)*1)) {
+document.write(td_strFlash); } else {
+document.write(td_strBackup); }
+</script><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0,0,0,0" wmode="window" id="td_flash" name="td_flash" height="90" width="728">
+<param name="movie" value="http://hstde.tradedoubler.com/file/23612/campaigns/lycos/050708/flash_728x90_02.swf">
+<param name="FlashVars" value="clickTAG=http%3A%2F%2Fclkde.tradedoubler.com%2Fclick%3Fp%3D26639%26a%3D1104875%26g%3D11686714%26pool%3D76639%26cpool%3D76639">
+<param name="wmode" value="window">
+<param name="quality" value="best">
+<param name="menu" value="false">
+<embed src="1104875_data/flash_728x90_02.swf" flashvars="clickTAG=http%3A%2F%2Fclkde.tradedoubler.com%2Fclick%3Fp%3D26639%26a%3D1104875%26g%3D11686714%26pool%3D76639%26cpool%3D76639" menu="false" quality="best" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" swliveconnect="true" wmode="window" id="td_flash" name="td_flash" height="90" width="728"></object></body></html>

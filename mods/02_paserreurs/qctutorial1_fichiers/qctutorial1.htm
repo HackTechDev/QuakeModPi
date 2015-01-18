@@ -1,0 +1,307 @@
+<html><head><script language="javascript">
+
+myreg=new RegExp("lycos\.de","i");
+if ( !myreg.test("'"+top.location+"'") ) {
+	nwreg=new RegExp ("http://([^/]+)?(/([a-z0-9A-Z\-\_]+)?[^']+)","i");
+	rn=nwreg.exec("'"+self.location+"'");
+	if (parent.frames.length==2) { top.location="http://" + rn[1] + rn[2]; }
+	else { top.location="http://" + rn[1] + "/" + rn[3]; }
+}
+
+if(window == window.top) {
+        var address=window.location;
+        var s='<html><head><title>'+'</title></head>'+
+        '<frameset cols="*,140" frameborder="0" border="0" framespacing="0" onload="return true;" onunload="return true;">'+
+        '<frame src="'+address+'?" name="memberPage" marginwidth="0" marginheight="0" scrolling="auto" noresize>'+
+		'<frame src="http://ads.tripod.lycos.de/ad/google/frame.php?_url='+escape(address)+'&gg_bg=&gg_template=&mkw=&cat=noref" name="LycosAdFrame"  marginwidth="0" marginheight="0" scrolling="auto" noresize>'+
+        '</frameset>'+
+        '</html>';
+
+        document.write(s);      
+}
+</script><style type="text/css">
+.adstyle1 {font-family:verdana,helvetica,arial;font-size:10px;color:white;font-weight:bold;text-decoration:none;}
+.adstyle2 {font-family:verdana,helvetica,arial;font-size:12px;color:white;font-weight:bold;text-decoration:none;}
+.adstyle3 {font-family:verdana,helvetica,arial;font-size:12px;color:black;font-weight:normal;text-decoration:none;}
+</style></head>
+
+<body bgcolor="black" text="white">
+<h1>progs106.zip: 0 error(s), 0 warning(s)<br><font size="-2">by noctrun</font></h1>
+
+Here is the resulting sample code:<br>
+<a href="http://mitglied.lycos.de/noctrun/files/nqqc_v1.06_%280e0w%29.zip">Quake v1.06 [0 error(s), 0 warning(s), fteqcc 2191]</a><br>
+<a href="http://mitglied.lycos.de/noctrun/files/qwqc_v2.33_%280e0w%29.zip">QuakeWorld v2.33 [0 error(s), 0 warning(s), fteqcc 2191]</a><br>
+<a href="http://mitglied.lycos.de/noctrun/files/hipnoticqc_%280e0w%29.zip">Hipnotic MP [0 error(s), 0 warning(s), fteqcc 2191]</a><br>
+<a href="http://mitglied.lycos.de/noctrun/files/rogueqc_%280e0w%29.zip">Rogue MP [0 error(s), 0 warning(s), fteqcc 2191]</a><br>
+<br>
+Well if you compiled the released QuakeC source code with one of the
+newer QuakeC compilers (frikqcc, fteqcc, etc) you've noticed that
+the provided source code produces 15 warnings when it's compiled. This
+tutorial is meant to show you how to fix those warnings.<br>
+<br>
+Let's take a look at the <b>error.log</b> file that <b>frikqcc 2.6</b> created while compiling the QuakeC source id Software released:
+<hr><pre><b>warning: subs.qc:25:SetMovedir: not all control paths return a value
+warning: fight.qc:299:enemy_yaw redeclared
+warning: ai.qc:368:FindTarget must return a value
+warning: ai.qc:588:CheckAnyAttack must return a value
+warning: items.qc:47:droptofloor: Too few parameters. See definition defs.qc(602)
+warning: weapons.qc:92:org redeclared
+warning: client.qc:134:FindIntermission: not all control paths return a value
+warning: monsters.qc:75:droptofloor: Too few parameters. See definition defs.qc(602)
+warning: misc.qc:179:No operation performed
+warning: misc.qc:249:droptofloor: Too few parameters. See definition defs.qc(602)
+warning: misc.qc:281:droptofloor: Too few parameters. See definition defs.qc(602)
+warning: misc.qc:536:makestatic: Too few parameters. See definition defs.qc(650)
+warning: ogre.qc:249:ai_charge: Too few parameters. See definition fight.qc(157)
+warning: wizard.qc:180:WizardAttackFinished: not all control paths return a value
+warning: enforcer.qc:76:vec redeclared</b></pre><hr>
+<h1>subs.qc:25:SetMovedir: not all control paths return a value</h1>
+Let's see what what's wrong with the <b>SetMovedir</b> function, open <b>subs.qc</b> and go to line 25 to find the end of the function.
+Hm, looks like <b>SetMovedir</b> doesn't return any vectors though it was declared as it would.
+The warning here is simple to fix: <b>SetMovedir</b>'s type is wrong, it should be void(). Change
+the function definition form <b>'vector() SetMovedir ='</b> to <b>'void() SetMovedir ='</b>.
+1 down, 14 to go.<br>
+<h1>fight.qc:299:enemy_yaw redeclared</h1>
+The next warning is in line 299 of <b>fight.qc</b> so open that file and go there. Hm, a normal
+definition of a local variable, that's right, however it's unnecessary: <b>'float enemy_yaw;'</b> was
+defined as a global variable in line 31 of <b>fight.qc</b>. To fix this warning all you have to do
+is to remove the <b>'local float enemy_yaw;'</b> line form the <b>ShamCheckAttack</b> function.
+2 down, 13 to go.<br>
+<h1>ai.qc:368:FindTarget must return a value</h1>
+Well, id forgot to return a value here. <b>FindTarget</b> should return <b>TRUE</b> when the monster has a enemy in sight and
+for this return that is the case. So the empty return is suppost to return <b>TRUE</b>.
+3 down, 12 to go.<br>
+<h1>ai.qc:588:CheckAnyAttack must return a value </h1>
+Annother empty return, to fix this warning add a <b>FALSE</b> before the semicolon. Why a
+<b>FALSE</b> you ask? Well, basically when no enemy is visible to the monster it shouldn't attack.
+And besides, that's what the other *CheckAttack functions return in that case. (See <b>wizard.qc</b>, line 97 and 98).
+4 down, 11 to go.<br>
+<h1>droptofloor: Too few parameters. See definition defs.qc(602)</h1>
+<b>droptofloor</b> is never called with any parameters, so you have two choices here. First you could
+open up all the files with this warning and change the given line to <b>droptofloor(0, 0);</b>. Or you
+could simply open <b>defs.qc</b> go to line 602 and change the declaration form <b>float(float yaw, float dist) droptofloor= #34;</b> to <b>float() droptofloor= #34;</b>.
+8 down, 7 to go.<br>
+<h1>weapons.qc:92:org redeclared</h1>
+As you can see the <b>vector org</b>
+is declared as a local variable twice, once as the first parameter of
+the function and once alongside the other local variables.
+Since it would be a bad idea to remove the parameter declaration all
+you have to do to get rid of the warning is to remove the <b>local vector org;</b> line form the function. 9 down, 6 to go.<br>
+<h1>client.qc:134:FindIntermission: not all control paths return a value</h1>
+The function does not return a entity when it doesn't find a intermission spot, to fix this warning
+add a new line at the end of the function with <b>'return world;'</b>. 10 down, 5 to go.<br>
+<h1>misc.qc:179:No operation performed</h1>
+There is a typo in line 179 of misc.qc: as you know, if you read any introduction to QuakeC, <b>==</b>
+is for comparisons only, remove one of the two <b>=</b>s form the line to get rid of this warning (the line should read <b>'self.speed = 1000;'</b>). 11 down, 4 to go.<br>
+<h1>misc.qc:536:makestatic: Too few parameters. See definition defs.qc(650)</h1>
+The missing parameter here is <b>self</b>, <b>func_illusionary</b> is a spawnfunction and <b>makestatic</b> should refer to the spawned entity (<b>self</b>).
+The fixed line should read <b>'makestatic (self);'</b>. 12 down, 3 to go.
+<h1>ogre.qc:249:ai_charge: Too few parameters. See definition fight.qc(157)</h1>
+Annother missing parameter, this time a simple <b>'0'</b> since <b>ai_charge</b> is going to pass this parameter straight to the <b>movetogoal</b> builtin and the Ogre is not suppost to move during this frame.
+The fixed line should read <b>'void() ogre_smash12 =[$smash12, ogre_smash13] {ai_charge(0);};'</b>. 13 down, 2 to go.<br>
+<h1>wizard.qc:180:WizardAttackFinished: not all control paths return a value</h1>
+This warning is the same as the one with the <b>SetMovedir</b> function, <b>WizardAttackFinished</b> doesn't return any floats though it was declared as it would.
+It's type is wrong, it should be void(). Change the function definition form <b>'float() WizardAttackFinished ='</b> to <b>'void() WizardAttackFinished ='</b>.
+14 down, 1 to go.<br>
+<h1>enforcer.qc:76:vec redeclared</h1>
+Again, you can see that the <b>vector vec</b> is declared as a local variable twice, once as the second parameter of the function and once as a normal local variable.
+Remove the <b>local vector vec;</b> line form the function. 15 down, none to go. The QuakeC sourcecode should compile with <b>0 error(s), 0 warning(s)</b> with <b>frikqcc 2.6</b> now.<br>
+<br>
+However if you use <b>fteqcc</b> you'll get about 61 more warnings about variables with no references:
+
+<hr><pre><b>knight.qc:32: warning: Duplicate macro defined (attackb1)
+oldone.qc:29: warning: Duplicate macro defined (shake12)
+defs.qc:401: warning: empty_float no references
+defs.qc:417: warning: wad no references
+defs.qc:428: warning: light_lev no references
+defs.qc:501: warning: dest no references
+defs.qc:548: warning: waitmax no references
+defs.qc:549: warning: distance no references
+defs.qc:550: warning: volume no references
+fight.qc:298: warning: chance no references
+fight.qc:299: warning: enemy_yaw no references
+ai.qc:37: warning: current_yaw no references
+ai.qc:476: warning: mtemp no references
+ai.qc:679: warning: delta no references
+ai.qc:680: warning: axis no references
+ai.qc:681: warning: direct no references
+ai.qc:681: warning: ang_rint no references
+ai.qc:681: warning: ang_floor no references
+ai.qc:681: warning: ang_ceil no references
+items.qc:152: warning: amount no references
+items.qc:871: warning: stemp no references
+items.qc:872: warning: best no references
+items.qc:1007: warning: stemp no references
+items.qc:1008: warning: best no references
+items.qc:1080: warning: stemp no references
+items.qc:1081: warning: best no references
+weapons.qc:91: warning: mpuff no references
+weapons.qc:376: warning: mpuff no references
+weapons.qc:551: warning: mpuff no references
+weapons.qc:630: warning: old no references
+weapons.qc:646: warning: old no references
+weapons.qc:674: warning: hit_z no references
+weapons.qc:677: warning: rand no references
+weapons.qc:717: warning: rand no references
+world.qc:362: warning: e no references
+client.qc:292: warning: pos no references
+client.qc:694: warning: old_self no references
+client.qc:729: warning: start no references
+client.qc:729: warning: end no references
+client.qc:901: warning: mspeed no references
+client.qc:901: warning: aspeed no references
+client.qc:902: warning: r no references
+client.qc:1113: warning: mspeed no references
+client.qc:1113: warning: aspeed no references
+client.qc:1114: warning: r no references
+monsters.qc:51: warning: ent no references
+monsters.qc:51: warning: otemp no references
+monsters.qc:51: warning: stemp no references
+monsters.qc:71: warning: stemp no references
+monsters.qc:72: warning: etemp no references
+buttons.qc:88: warning: gtemp no references
+buttons.qc:88: warning: ftemp no references
+triggers.qc:2: warning: stemp no references
+triggers.qc:2: warning: otemp no references
+triggers.qc:2: warning: old no references
+triggers.qc:224: warning: junk no references
+plats.qc:150: warning: t no references
+misc.qc:447: warning: vtmp1 no references
+misc.qc:447: warning: modi no references
+ogre.qc:92: warning: mpuff no references
+demon.qc:280: warning: vec no references
+dog.qc:306: warning: vec no references
+zombie.qc:164: warning: mpuff no references</b></pre><hr>
+<h1>Duplicate macro defined</h1>
+this basically says that the a frame macro was given a name twice and is therefor ignored. In those two cases (shake12 in <b>oldone.qc</b>
+and <b>attackb1</b>) they are even in the same line right next to each other. To fix the warnings go to the given line and
+and remove one of the two entries of the frame macro.<br>
+<h1>no references</h1>
+Well, this warning only tells you that there are variables defined that are not used at all, it's
+save to remove all definitions of the unused variables. Even in <b>defs.qc</b>, I know you might be
+told not to touch anything in that file, but you're save as long as you stay away form anything above line 220.<br>
+
+
+<!-- SZM VERSION="1.3" -->
+<script language="JavaScript" type="text/javascript"> 
+<!-- 
+var IVW="http://lycos.ivwbox.de/cgi-bin/ivw/CP/2B04APBA0000;"; 
+document.write("<img src=\""+IVW+"?r="+escape(document.referrer)+"\" width=\"1\" height=\"1\" />"); 
+// -->
+</script><img src="qctutorial1_data/2B04APBA0000.gif" height="1" width="1"> 
+<noscript> 
+<img src="http://lycos.ivwbox.de/cgi-bin/ivw/CP/2B04APBA0000;" width="1" height="1" /> </noscript> 
+<!-- /SZM --> 
+<!-- SZMFRABO VERSION="1.1" --> 
+<script language="JavaScript" type="text/javascript"> 
+var szmvars="lycos//CP//2B04APBA0000"; 
+</script> 
+<script src="qctutorial1_data/survey.js" language="JavaScript" type="text/javascript"> </script> 
+<!-- /SZMFRABO -->
+
+<script language="javascript" src="qctutorial1_data/test_frame_size.js"></script>
+
+<script language="javascript">
+if (!AD_clientWindowSize()) {
+        document.write("<NOSC"+"RIPT>");
+}
+</script>
+
+
+
+
+<script type="text/javascript">
+        function setCookie(name, value, expires, path, domain, secure) {
+           var curCookie = name + "=" + escape(value) +
+             ((expires) ? "; expires=" + expires.toGMTString() : "") +
+             ((path) ? "; path=" + path : "") +
+             ((domain) ? "; domain=" + domain : "") +
+             ((secure) ? "; secure" : "");
+           document.cookie = curCookie;
+        }
+
+        var ad_url = "http://ads.tripod.lycos.de/ad/google/frame.php?_url="+escape(self.location)+"&gg_bg=&gg_template=&mkw=&cat=noref";
+        var ref=window.document.referrer;
+
+		if(parent.LycosAdFrame) {
+                if(parent.memberPage && parent.memberPage.document.title ) {
+                        parent.document.title=parent.memberPage.document.title;
+                }
+
+                if(parent.LycosAdFrame && parent.LycosAdFrame.location && (ref != "" && (ref+"?" != window.location) && (ref.substr(ref.length-1,1) != "/")) ) {
+                        parent.LycosAdFrame.location.replace(ad_url);
+                }
+                setCookie("adFrameForcePHP",0,0," ");
+                parent.document.body.cols = "*,140";
+        }
+        else if(top.LycosAdFrame && top.LycosAdFrame.location) {
+                if ((ref != "" && (ref+"?" != top.window.location) && (ref.substr(ref.length-1,1) != "?"))) {
+                        top.LycosAdFrame.location.replace(ad_url);
+                }
+                setCookie("adFrameForcePHP",0,0," ");
+                top.document.body.cols = "*,140";
+        }
+        else {
+                if (!window.opener) {
+                        setCookie("adFrameForcePHP",1,0," ");
+                }
+                else {
+                        setCookie("adFrameForcePHP",0,0," ");
+                }
+        }
+		
+	if (window.top.location.href.indexOf("http://mitglied.lycos.de")!=-1) {
+		ad_frame = 1 ;
+		window.top.document.body.cols="*,140" ;
+	}
+
+function resizeGoogleAdFrame() {
+	window.top.document.body.cols = "*,140";
+}
+
+
+	if (ad_frame == 1 && AD_clientWindowSize()) {
+		setInterval("resizeGoogleAdFrame()", 30);
+	}
+
+</script>
+
+<script language="javascript" src="qctutorial1_data/popunder_lycos_update.htm"></script>
+
+<script type="text/javascript" src="qctutorial1_data/ad.txt"></script>
+
+<div id="ADCLOSE" style="position: absolute; width: 300px; height: 14px; top: 0px; z-index: 1000; overflow: hidden; left: 561px; visibility: hidden;">
+<table border="0" cellpadding="0" cellspacing="0" height="14" width="300"><tbody><tr><td rowspan="2" class="adstyle1" align="right" height="14" valign="top" width="48"><img src="qctutorial1_data/pub_replay_lycos.gif" border="0" height="14" width="48"></td><td class="adstyle1" align="center" bgcolor="#0099cc" height="13" nowrap="nowrap" valign="top"><a href="javascript:void(0)" onclick="AD_start()" class="adstyle1">Werbung anzeigen</a></td><td class="adstyle1" align="right" bgcolor="#0099cc" height="13" valign="top" width="20"><a href="javascript:void(0)" onclick="AD_start()" class="adstyle1"><img src="qctutorial1_data/pub_replay_fleche.gif" border="0" height="13" width="20"></a></td></tr><tr><td colspan="2" bgcolor="#000000"><img src="qctutorial1_data/pub_vide.gif" border="0" height="1" width="1"></td></tr></tbody></table>
+</div>
+<div id="ADHEAD" style="position: absolute; top: 0px; left: 0px; z-index: 1001; visibility: hidden;"><table bgcolor="#0099cc" border="0" cellpadding="0" cellspacing="0" height="23" width="861"><tbody><tr><td class="adstyle1" align="left" height="22" width="82"><a href="http://www.lycos.de/" target="ad_url" class="adstyle1"><img src="qctutorial1_data/pub_lycos.gif" border="0" height="22" width="82"></a></td><td class="adstyle1" align="left" height="22" width="74"><a href="http://www.tripod.lycos.de/" target="ad_url" class="adstyle1"><img src="qctutorial1_data/pub_tripod.gif" border="0" height="22" width="74"></a></td><td class="adstyle1" align="center" height="22" nowrap="nowrap" width="21"><img src="qctutorial1_data/pub_onglet.gif" border="0" height="22" width="21"></td><td class="adstyle1" align="center" height="22" nowrap="nowrap"><a href="http://webcenter.lycos.de/" target="ad_url" class="adstyle1">Hier gibt es werbefreien Webspace</a></td><td class="adstyle1" align="center" height="22" nowrap="nowrap" width="21"><img src="qctutorial1_data/pub_onglet.gif" border="0" height="22" width="21"></td><td class="adstyle1" align="center" height="22" nowrap="nowrap"><a href="http://www.lycos.de/cgi-bin/nph-bounce?barclaycard_tripod%7Chttp://www.lycos.de/startseite/geld_boerse/private_finanzen/barclay/microsite/index.html?whichpage=tripod" target="ad_url" class="adstyle1">Neu: Lycos Barclaycard als Visakarte. Nur EUR 1,- monatlich</a></td><td class="adstyle1" align="center" height="22" nowrap="nowrap" width="21"><img src="qctutorial1_data/pub_onglet.gif" border="0" height="22" width="21"></td><td class="adstyle1" align="center" height="22" nowrap="nowrap">&nbsp;</td><td class="adstyle1" align="right" height="22"><img src="qctutorial1_data/pub_fleche.gif" border="0" height="22"></td></tr><tr><td colspan="9" bgcolor="#000000"><img src="qctutorial1_data/pub_vide.gif" border="0" height="1" width="1"></td></tr></tbody></table></div>
+<div id="ADIMG" style="position: absolute; top: 23px; width: 750px; z-index: 1003; left: 111px; visibility: hidden;"><table border="0" cellpadding="0" cellspacing="0" width="750"><tbody><tr><td align="center" valign="middle" width="750">
+<div id="AD" style="width: 750px; overflow: hidden; text-align: right;">
+<iframe name="adcreative" id="adcreative" src="qctutorial1_data/grpbuild_a_sitecountrydeaffiliatedetripodsvchostingadpos1ee1.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" frameborder="0" height="600" scrolling="no" width="750"></iframe>
+</div></td></tr></tbody></table></div>
+
+<!-- START RedSheriff Measurement V5.01 -->
+<!-- COPYRIGHT 2002 RedSheriff Limited -->
+<script language="JavaScript" type="text/javascript"><!--
+  var _rsCI='lycos-de';
+  var _rsCG='noref';
+  var _rsDT=1;
+  var _rsSI=escape(window.location);
+  var _rsLP=location.protocol.indexOf('https')>-1?'https:':'http:';
+  var _rsRP=escape(document.referrer);
+  var _rsND=_rsLP+'//secure-uk.imrworldwide.com/';
+
+  if (parseInt(navigator.appVersion)>=4) {
+    var _rsRD=(new Date()).getTime();
+    var _rsSE=0;
+    var _rsSV='';
+    var _rsSM=0;
+    _rsCL='<scr'+'ipt language="JavaScript" type="text/javascript" src="'+_rsND+'v5.js"><\/scr'+'ipt>';
+  } else {
+    _rsCL='<img src="'+_rsND+'cgi-bin/m?ci='+_rsCI+'&cg='+_rsCG+'&si='+_rsSI+'&rp='+_rsRP+'">';
+  }
+  document.write(_rsCL);
+//--></script><script language="JavaScript" type="text/javascript" src="qctutorial1_data/v5.js"></script><img src="qctutorial1_data/m.gif" border="0" height="1" width="1">
+<noscript>
+<img src="//secure-uk.imrworldwide.com/cgi-bin/m?ci=lycos-de&amp;cg=noref" alt="">
+</noscript>
+<!-- END RedSheriff Measurement V5 --></body></html>

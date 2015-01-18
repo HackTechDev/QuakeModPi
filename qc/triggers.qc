@@ -34,8 +34,11 @@ void() multi_trigger =
 
 	if (self.classname == "trigger_secret")
 	{
-		if (self.enemy.classname != "player")
+// TM Bot - added recognition of "bot" classname
+		if (self.enemy.classname != "player" && self.enemy.classname != "bot")
 			return;
+		if (self.enemy.classname == "bot") // otherwise owner might not know
+			centerprint (self.enemy.bot, "bot found a secret!\n");
 		found_secrets = found_secrets + 1;
 		WriteByte (MSG_ALL, SVC_FOUNDSECRET);
 	}
@@ -78,7 +81,8 @@ void() multi_use =
 
 void() multi_touch =
 {
-	if (other.classname != "player")
+// TM Bot - added recognition of "bot" classname
+	if (other.classname != "player" && other.classname != "bot")
 		return;
 
 // if the trigger has an angles field, check player's facing direction
@@ -219,6 +223,15 @@ void() trigger_secret =
 
 void() counter_use =
 {
+// TM Bot - uses the bot_ext.qc version of counter_use for bots
+	if (activator.classname == "bot")
+	{
+		bot_counter_use ();
+		return;
+	}
+
+	local string junk;
+
 	self.count = self.count - 1;
 	if (self.count < 0)
 		return;
@@ -317,7 +330,9 @@ void() tdeath_touch =
 		return;
 
 // frag anyone who teleports in on top of an invincible player
-	if (other.classname == "player")
+
+// TM Bot - added recognition for classname "bot"
+	if (other.classname == "player" || other.classname == "bot")
 	{
 		if (other.invincible_finished > time)
 			self.classname = "teledeath2";
@@ -370,7 +385,8 @@ local vector	org;
 
 	if (self.spawnflags & PLAYER_ONLY)
 	{
-		if (other.classname != "player")
+// TM Bot - added recognition for classname "bot"
+		if (other.classname != "player" && other.classname != "bot")
 			return;
 	}
 
@@ -404,7 +420,8 @@ local vector	org;
 
 	setorigin (other, t.origin);
 	other.angles = t.mangle;
-	if (other.classname == "player")
+// TM Bot - added recognition of "bot" classname
+	if (other.classname == "player" || other.classname == "bot")
 	{
 		other.fixangle = 1;		// turn this way immediately
 		other.teleport_time = time + 0.7;
@@ -470,7 +487,7 @@ trigger_setskill
 
 void() trigger_skill_touch =
 {
-	if (other.classname != "player")
+	if (other.classname != "player" && other.classname != "bot")
 		return;
 
 	cvar_set ("skill", self.message);
@@ -497,6 +514,13 @@ ONLY REGISTERED TRIGGERS
 
 void() trigger_onlyregistered_touch =
 {
+// TM Bot - uses bot_ext.qc version for bots
+	if (other.classname == "bot")
+	{
+		bot_trigger_onlyregistered_touch ();
+		return;
+	}
+
 	if (other.classname != "player")
 		return;
 	if (self.attack_finished > time)

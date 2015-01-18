@@ -210,6 +210,12 @@ void		end_sys_globals;		// flag for structure dumping
 void		end_sys_fields;			// flag for structure dumping
 //================================================
 
+
+// TM Bot - begin new entity fields
+.entity		bot;				// pointer to the bot
+.float		tm_flags;			// bit flags for TM Bot
+// TM Bot - end new entity fields
+
 /*
 ==============================================================================
 

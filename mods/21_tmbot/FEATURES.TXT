@@ -1,0 +1,34 @@
+TM Bot v 1.1
+
+Features:
+
+	1. Manual or automatic control of the bot.
+	2. Bot can draw enemy fire.
+	3. Seeks out monsters and attacks them.
+	4. Can activate trigger fields on the floor (like
+	   the lights on E1M1 when going down the spiral ramp).
+	5. Can trigger some platforms.
+	6. Can open doors.
+	7. Can go through teleport portals.
+	8. Tries to return to player when player gets too
+	   far away.
+	9. DM/Co-op mode toggle.
+
+Bugs:
+
+	1. Bot will sometimes shoot you in the back.
+	2. Bot cannot push buttons on the wall.
+	3. Bot cannot jump.
+	4. Bot cannot walk over broken ground.
+	5. Bot sometimes gets lost.
+	6. Certain functions (i.e. teleport, move, etc.)
+	   interrupt the dying process giving you a ghost bot
+	   that is insubstantial and unkillable.
+	7. Level changes may not be handled correctly by my code
+	   (Bot may not be deactivated, just lost).
+
+If you find a new bug that is not listed here, please send the bug
+report to mpolucha@earthlink.net. If yours is the first report for the
+bug, we'll give you credit for reporting it. Also, if you have a
+solution for a known or newly discovered bug, please feel free to
+submit that as well.

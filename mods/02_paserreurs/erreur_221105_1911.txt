@@ -1,0 +1,87 @@
+
+--------------- frikqcc v2.6 ----------------
+defs.qc
+frikbot/bot.qc
+frikbot/bot_way.qc
+frikbot/bot_way.qc(378): warning: WaypointForNum: not all control paths return a value
+frikbot/bot_ai.qc
+frikbot/bot_misc.qc
+frikbot/bot_phys.qc
+frikbot/bot_move.qc
+jetpack.qh
+jetpack.qc
+subs.qc
+subs.qc(25): warning: SetMovedir: not all control paths return a value
+fight.qc
+fight.qc(299): warning: enemy_yaw redeclared
+ai.qc
+ai.qc(368): warning: FindTarget must return a value
+ai.qc(588): warning: CheckAnyAttack must return a value
+combat.qc
+items.qc
+items.qc(47): warning: droptofloor: Too few parameters. See definition defs.qc(628)
+ccam.qc
+hook.qc
+jump.qc
+wizmark.qc
+light.qc
+light.qc(115): warning: W_FireLight: Too few parameters. See definition light.qc(85)
+shocking.qc
+shocking.qc(49): warning: Assignment to constant
+burning.qc
+burning.qc(120): warning: burning_shot: Too few parameters. See definition burning.qc(82)
+colors.qc
+colors.qc(97): warning: W_FireColors: Too few parameters. See definition colors.qc(66)
+armor.qc
+armor.qc(16): warning: self redeclared
+pforce.qc
+magicm.qc
+magicm.qc(223): warning: W_FireMagicm: Too few parameters. See definition magicm.qc(192)
+radar.qc
+flare.qc
+globe.qc
+idglobe.qc
+weapons.qc
+weapons.qc(172): warning: org redeclared
+weapons.qc(1488): warning: holo redeclared on different scope (see original definition weapons.qc(1467))
+weapons.qc(1561): warning: Assignment to constant
+weapons.qc(1571): warning: Assignment to constant
+frames.qc
+world.qc
+client.qc
+client.qc(193): warning: FindIntermission: not all control paths return a value
+player.qc
+monsters.qc
+monsters.qc(75): warning: droptofloor: Too few parameters. See definition defs.qc(628)
+doors.qc
+buttons.qc
+triggers.qc
+plats.qc
+misc.qc
+misc.qc(179): warning: No operation performed
+misc.qc(249): warning: droptofloor: Too few parameters. See definition defs.qc(628)
+misc.qc(281): warning: droptofloor: Too few parameters. See definition defs.qc(628)
+misc.qc(536): warning: makestatic: Too few parameters. See definition defs.qc(676)
+ogre.qc
+ogre.qc(249): warning: ai_charge: Too few parameters. See definition fight.qc(157)
+demon.qc
+shambler.qc
+knight.qc
+soldier.qc
+wizard.qc
+wizard.qc(180): warning: WizardAttackFinished: not all control paths return a value
+dog.qc
+zombie.qc
+boss.qc
+tarbaby.qc
+hknight.qc
+fish.qc
+shalrath.qc
+enforcer.qc
+enforcer.qc(76): warning: vec redeclared
+oldone.qc
+compass.qc
+lazsight.qc
+ 
+../progs.dat - 0 error(s), 25 warning(s)
+press a key

@@ -1,12 +1,17 @@
 ../progs.dat
 
 defs.qc
+bot.h
 subs.qc
 fight.qc
 ai.qc
 combat.qc
 items.qc
 ccam.qc
+impulse2.qc
+botai.qc
+botai2.qc
+bot.qc
 weapons.qc
 world.qc
 client.qc
@@ -17,6 +22,8 @@ buttons.qc
 triggers.qc
 plats.qc
 misc.qc
+
+bot_ext.qc	// TM Bot extensions
 
 ogre.qc
 demon.qc
