@@ -6,6 +6,7 @@ compiling fight.qc
 compiling ai.qc
 compiling combat.qc
 compiling items.qc
+compiling ccam.qc
 compiling weapons.qc
 compiling world.qc
 compiling client.qc
@@ -33,14 +34,14 @@ compiling enforcer.qc
 compiling oldone.qc
 Recognised progs as NetQuake server gamecode
 Progs should run on any Quake executor
- 88228 strofs (of 1000000)
- 20510 numstatements (of 524288)
-  2091 numfunctions (of 16384)
-  4256 numglobaldefs (of 32768)
-   208 numfielddefs (186 unique) (of 2048)
-  4248 numpr_globals (of 65536)
+ 88472 strofs (of 1000000)
+ 20661 numstatements (of 524288)
+  2093 numfunctions (of 16384)
+  4271 numglobaldefs (of 32768)
+   212 numfielddefs (189 unique) (of 2048)
+  4263 numpr_globals (of 65536)
 Writing ../progs.dat
-380476 TOTAL SIZE
+382212 TOTAL SIZE
 Writing ../progs.lno
 225 unique precache_sounds
  95 unique precache_models
@@ -48,11 +49,11 @@ Writing ../progs.lno
 Compile Complete
 
 optres_shortenifnots 115
-optres_overlaptemps 7236
+optres_overlaptemps 7337
 optres_constantarithmatic 17
-optres_nonvec_parms 3900
-optres_assignments 408
-optres_unreferenced 14
+optres_nonvec_parms 3942
+optres_assignments 412
+optres_unreferenced 13
 optres_dupconstdefs 101
 numtemps 117
 0 warnings
