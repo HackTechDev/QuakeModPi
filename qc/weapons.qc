@@ -22,6 +22,12 @@ void() W_Precache =
 	precache_sound ("weapons/grenade.wav");	// grenade launcher
 	precache_sound ("weapons/bounce.wav");		// grenade bounce
 	precache_sound ("weapons/shotgn2.wav");	// super shotgun
+    // Mod begin : Hook
+    precache_sound ("shambler/smack.wav");
+    precache_sound ("hook/chain1.wav");
+    precache_sound ("hook/chain2.wav");
+    precache_sound ("hook/retract.wav");
+    // Mod end
 };
 
 float() crandom =

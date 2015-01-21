@@ -1141,8 +1141,11 @@ void() PlayerPostThink =
 	if (self.deadflag)
 		return;
 
-// do weapon stuff
+    // Mod begin : Hook
+    CheckGrapHook ();
+    // Mod end
 
+// do weapon stuff
 	W_WeaponFrame ();
 
 // check to see if player landed and play landing sound

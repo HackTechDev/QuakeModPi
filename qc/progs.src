@@ -23,6 +23,8 @@ armor.qc
 pforce.qc
 magicm.qc
 
+hook.qc // Mod Hook
+
 weapons.qc
 world.qc
 client.qc

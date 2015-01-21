@@ -282,16 +282,21 @@ void() worldspawn =
 	precache_model ("progs/spike.mdl");
 	precache_model ("progs/s_spike.mdl");
 
+    // Mod begin : Hook
+    precache_model ("progs/hook.mdl");
+    precache_model ("progs/chain.mdl");
+    // Mod end
+
 	precache_model ("progs/backpack.mdl");
 
 	precache_model ("progs/zom_gib.mdl");
 
 	precache_model ("progs/v_light.mdl");
 
-// Mod begin : TMBot
-// precaches for the bot
+    // Mod begin : TMBot
+    // precaches for the bot
 	Bot_Precache ();
-// Mod end	
+    // Mod end	
 
 //
 // Setup light animation tables. 'a' is total darkness, 'z' is maxbright.
