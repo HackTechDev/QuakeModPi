@@ -1223,10 +1223,31 @@ ImpulseCommands
 void() ImpulseCommands =
 {
 
-// Mod begin : TMBot
-// Check bot impulse commands
+    // Mod begin : TMBot
+    // Check bot impulse commands
 	CheckSecondaryImpulseCommands();
-// Mod end
+    // Mod end
+
+    // Mod begin : Qwiz
+    if (self.impulse == 110)
+        JumpC();
+    if (self.impulse == 111)
+        WizmarkC();
+    if (self.impulse == 112)
+        LightC();
+    if (self.impulse == 113)
+        ShockingC();
+    if (self.impulse == 114)
+        BurningC();
+    if (self.impulse == 115)
+        ColorsC();
+    if (self.impulse == 116)
+        ArmorC();
+    if (self.impulse == 117)
+        PforceC();
+    if (self.impulse == 118)
+        MagicmC();
+    // Mod end
 
 	if (self.impulse >= 1 && self.impulse <= 8)
 		W_ChangeWeapon ();

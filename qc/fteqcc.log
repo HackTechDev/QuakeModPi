@@ -12,6 +12,34 @@ compiling impulse2.qc
 compiling botai.qc
 compiling botai2.qc
 compiling bot.qc
+compiling jump.qc
+compiling wizmark.qc
+compiling light.qc
+in function LightC (line 104),
+light.qc:115: warning: W_FireLight: Too few parameters
+light.qc:84:    W_FireLight  is defined here
+compiling shocking.qc
+in function PlayerTouch (line 18),
+shocking.qc:22: warning: Result of comparison is constant
+in function ShockingC (line 47),
+shocking.qc:49: warning: Assignment to constant Kick_em
+shocking.qc:12:    Kick_em  is defined here
+compiling burning.qc
+in function BurningC (line 109),
+burning.qc:120: warning: burning_shot: Too few parameters
+burning.qc:81:    burning_shot  is defined here
+compiling colors.qc
+in function ColorsC (line 86),
+colors.qc:97: warning: W_FireColors: Too few parameters
+colors.qc:65:    W_FireColors  is defined here
+compiling armor.qc
+in function castarmor (line 15),
+armor.qc:16: warning: Local "self" defined with name of a global
+compiling pforce.qc
+compiling magicm.qc
+in function MagicmC (line 211),
+magicm.qc:223: warning: W_FireMagicm: Too few parameters
+magicm.qc:191:    W_FireMagicm  is defined here
 compiling weapons.qc
 compiling world.qc
 compiling client.qc
@@ -40,34 +68,41 @@ compiling enforcer.qc
 compiling oldone.qc
 Recognised progs as NetQuake server gamecode
 Progs should run on any Quake executor
+at global scope,
 botai.qc:447: warning: delta  no references
 botai.qc:448: warning: axis  no references
 botai.qc:449: warning: direct  no references
 botai.qc:449: warning: ang_rint  no references
 botai.qc:449: warning: ang_floor  no references
 botai.qc:449: warning: ang_ceil  no references
+light.qc:8: warning: rand  no references
+light.qc:87: warning: old  no references
+burning.qc:18: warning: rand  no references
+colors.qc:68: warning: old  no references
+magicm.qc:154: warning: rand  no references
+magicm.qc:194: warning: old  no references
 triggers.qc:239: warning: junk  no references
 bot_ext.qc:17: warning: junk  no references
- 96096 strofs (of 1000000)
- 23172 numstatements (of 524288)
-  2275 numfunctions (of 16384)
-  4650 numglobaldefs (of 32768)
+ 97996 strofs (of 1000000)
+ 24250 numstatements (of 524288)
+  2306 numfunctions (of 16384)
+  4798 numglobaldefs (of 32768)
    214 numfielddefs (191 unique) (of 2048)
-  4621 numpr_globals (of 65536)
+  4778 numpr_globals (of 65536)
 Writing ../progs.dat
-420956 TOTAL SIZE
+434408 TOTAL SIZE
 Writing ../progs.lno
 225 unique precache_sounds
  95 unique precache_models
 104 unique precache_files
 Compile Complete
 
-optres_shortenifnots 120
-optres_overlaptemps 8488
+optres_shortenifnots 121
+optres_overlaptemps 9123
 optres_constantarithmatic 17
-optres_nonvec_parms 4355
-optres_assignments 502
-optres_unreferenced 20
-optres_dupconstdefs 108
-numtemps 119
-8 warnings
+optres_nonvec_parms 4588
+optres_assignments 540
+optres_unreferenced 26
+optres_dupconstdefs 111
+numtemps 137
+21 warnings

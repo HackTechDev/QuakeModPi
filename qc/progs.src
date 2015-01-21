@@ -12,6 +12,17 @@ impulse2.qc // Mod TMBot
 botai.qc // Mod TMBot
 botai2.qc // Mod TMBot
 bot.qc
+
+jump.qc
+wizmark.qc
+light.qc
+shocking.qc
+burning.qc
+colors.qc
+armor.qc
+pforce.qc
+magicm.qc
+
 weapons.qc
 world.qc
 client.qc

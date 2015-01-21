@@ -1,0 +1,144 @@
+=============================================================================
+                                QUAKE WIZARDS
+                                   by Qyv
+=============================================================================
+
+Version:  1.2
+        This new version is because I totally revamped the impulse code ala
+        Morph. It just seems much better and easier to use than Holo's.  Also
+        notice how spells have similar checks and startups and the bottom to
+        make editing easier.
+
+What is this patch?:
+        This qcc addon allows your player to cast D&D spells and such.  It's
+        purpose is to make creating/adding/modifying spells as easy and
+        painless as possible.  I dont expect anyone to use my spells all the
+        time, 1st level spells are weak, but higher levels will be more
+        powerful and flashy.  (polymorph self, teleport,
+        "magic morning stars"...)  For this reason I purposefully made these
+        spells pretty useless, based on D&D specs.  (although there are still
+        alot of bugs I dont want.)
+
+Format: This is not ready to be used in a game yet.  I encourage other QCC
+        writers to add their own spell creations or modify what I have here.
+        Impulses will be defined by magic level 0x0
+                (level 2 = impulse 120-129 & impulse 220-229)
+                (level 9 = impulse 190-199 & impulse 90-99)
+                This is because of the 0-250 impulse limitation...
+        Spells also use 10 cells per magic level.
+        Creating new spells is easy.  Each spell is it's own file, and the
+        only changes to WEAPONS.QC are in the CACHE and IMPULSE sections.
+        New spell files are inserted into PROGS.SRC.
+        Please send comments/suggestions to rnakahar@hawaii.edu
+
+=============================================================================
+
+This is the impulse list straight from weapons.qc, if you don't know what it
+means you probably shouldnt be messing with this just yet.
+
+if (self.impulse == 110)
+	JumpC();
+if (self.impulse == 111)
+	WizmarkC();
+if (self.impulse == 112)
+	LightC();
+if (self.impulse == 113)
+	ShockingC();
+if (self.impulse == 114)
+	BurningC();
+if (self.impulse == 115)
+	ColorsC();
+if (self.impulse == 116)
+	ArmorC();
+if (self.impulse == 117)
+	PforceC();
+if (self.impulse == 118)
+	MagicmC();
+
+
+Here's a list of 1st level spells I think are realistic for Quake.  It shows
+which ones I have already started on... (MARKED WITH A -, THOSE CAN BE TESTED)
+
+        Affect normal fires
+                use on torches for good light magic?
+        Alarm
+                To be something like motion sensor patch which I havent tried
+                just yet
+  -     Armor
+                Needs if/then stuff and time limit but works
+        Audible Glamer
+                random noise (axe hitting wall, jump sounds) to be instantly
+                generated at point opposite player (like shotgun puffs)
+  -     Burning Hands
+                almost exactly like Hell Knight shots but I CAN ONLY GET ONE
+                TO FIRE!  =(
+        Cantrip
+                some small useless magic
+  -     Color Spray
+                looks pitiful now but eventually spray pixels out in front
+                of caster
+        Dancing Lights
+                based on bobbing laser shooters ala Minion
+        Feather Fall
+                I know this is possible
+        Hold Portal
+                heard of a patch that controls doors by button, similar but
+                only holds door closed and limited time
+  -     Jump
+                Needs time limit
+  -     Light
+                doesnt stick to players(monsters) properly        
+  -     Magic Missle
+                the only real working spell (most not my code heh)
+  -     Phantasmal Force
+                needs white illusion instead of brown?  works good  (again,
+                most not my code)
+  -     Shocking Grasp
+                cant get "shove" to work, will have electric damage added
+        Sleep
+                similar to "feign death" idea but on others
+        Spider Climb
+                possible?
+        Tenser's Floating Disk
+                (have other players float around with you heh)
+        Ventriloquism
+                similar to audible glamer spell
+        Wall of Fog
+                possible?
+  -     Wizard Mark
+                works yet pretty useless
+
+=============================================================================
+
+Future versions will hopefully include:
+        Impulse keys to easily scroll thru spells within a magic level
+        Impulse key to throw nails as darts  =)
+        Impulse key to list spells
+        Impulse key to dispel your magic (illusions, summons, etc...)
+        Allow wizards vs soldiers
+        # of items = spells power (need all weapons for level 8)
+        Variable levels of power (magic level 3 get 2 magic missles and
+        more damage
+        Magic flash/glow for all spells        
+        Priest spells (heal/cure magic)
+        Use magic components for higher level spells
+                Quad=           Fire
+                Invisible ring= Air
+                Slime Suit=     Water
+                ????=           Earth
+        A main QC file to hold new caches and new code to be used in several
+        different spells
+
+
+Credits:        Ideas and code taken from
+                        Vweapons
+                        Flares
+                        Holo
+                        Fiend
+                        Morph
+
+About Qyv:      rnakahar@hawaii.edu
+        I got an F in Introductory to Programming this past year, so my code
+        is extremely sloppy.  This was the result of 3 days learning QCC thru
+        much guesswork and ripping other patches.
+        I'm probably also forgetting something in this text, sorry...
