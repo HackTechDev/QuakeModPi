@@ -1,0 +1,262 @@
+
+
+Begin Tutorial
+
+    Step 1 
+
+    Using your favorite editor, open the file called client.qc. Search for the function called PlayerPreThink. Look for the following IF block: 
+
+de :
+
+   if (self.deadflag >=DEAD_DEAD)
+   {
+      PlayerDeathThink ();
+      return;
+   }
+
+en :
+
+   if (self.deadflag >=DEAD_DEAD)
+   {
+      self.movetype = MOVETYPE_TOSS;
+      PlayerDeathThink ();
+      return;
+   }
+
+
+    Step 2 
+
+   Juste aprés, ajouter :
+
+   if (self.flags & FL_FLY)
+   {
+      self.movetype = MOVETYPE_FLY;
+
+      if ( !(self.flags & FL_ONGROUND) )
+      {
+         self.flags = self.flags + FL_ONGROUND;
+      }
+   }
+   else
+   {
+      self.movetype = MOVETYPE_WALK;
+   }
+
+    As you can see, if the player is in flying mode, his/her movetype is changed to MOVETYPE_FLY. If the player is not, it is switched to MOVETYPE_WALK. The interesting point here is the second IF block that is nested inside this IF block. The FL_ONGROUNG flag is added to self.flags if it is not present. When you play a game using E1M8 level (the low gravity map), you will notice that when you are in the air, you have much difficulty in controlling your movement. This is because the FL_ONGROUND flag is removed when you are in the air. Adding the FL_ONGROUNG flag will return the control back to you. 
+
+
+    Step 3 
+
+    After adding the above IF block, below that add this new IF block: 
+
+   // must define variables before using them
+   local float vel1, yaw_diff, up_z;
+   local vector dir, dir2;
+
+   makevectors (self.v_angle);
+
+   if ( (self.flags & FL_FLY) && (self.velocity_x || self.velocity_y) )
+   {
+      vel1 = vlen (self.velocity); // its current speed
+      dir = self.velocity;
+      dir2 = vectoangles (dir);
+
+      // This corrects an ID mistake.  They had the pitch angle in
+      // reverse.
+      dir2_x = dir2_x * -1;
+
+      yaw_diff = dir2_y - self.v_angle_y;
+
+      if (yaw_diff > 180)
+         yaw_diff = yaw_diff - 360;
+
+      if (fabs (self.v_angle_x) > 24)
+      {
+         up_z = TRUE;  // movement in z direction (up/down)
+
+         if (fabs (fabs (yaw_diff) - 180) < 2)
+         {
+            dir = v_forward * -1;
+         }
+         else if (fabs (yaw_diff) < 2)
+         {
+            dir = v_forward;
+         }
+         else
+         {
+            up_z = FALSE;
+         }
+      }
+
+
+      self.velocity = normalize (dir) * vel1;
+
+      if (up_z)
+      {
+         if (vlen (self.velocity) > 10)
+         {
+            vel1 = cvar ("sv_maxspeed");
+            self.velocity = normalize (dir) * vel1;
+         }
+      }
+   }
+
+
+
+
+    Step 4 
+
+    Search for the function called PlayerPostThink. Look for the following IF block: 
+
+   if (self.deadflag)
+      return;
+
+    Recall that a player's movetype should be MOVETYPE_TOSS when he/she has died. The modifications to the IF block below are highlighted in BLUE. 
+
+   if (self.deadflag)
+   {
+      self.movetype = MOVETYPE_TOSS;
+      return;
+   }
+
+
+    Step 5 
+
+    After you make the above modifications, you will add a new IF block just below that IF block. Below that IF block, add the following: 
+
+   // must define variables before using them
+   local float g;
+   g = cvar ("sv_gravity") * frametime;
+
+   if (self.flags & FL_FLY)
+   {
+      if (self.velocity_z > 0)
+      {
+         self.velocity_z = self.velocity_z - g;
+      }
+
+      if (self.velocity_z < 0)
+      {
+         self.velocity_z = self.velocity_z + g;
+      }
+
+      if (fabs (self.velocity_z) < g)
+      {
+         self.velocity_z = 0;
+      }
+   }
+
+    Recall that in fly mode, the player's movetype is set to MOVETYPE_FLY. Gravity is "removed" for that player when his/her movetype is set to MOVETYPE_FLY. The above code "adds" gravity back in. So if the player jumps up, he/she will slow down. 
+
+
+    Step 6 
+
+    Using your favorite editor, open the file called weapons.qc. Search for the function called ImpulseCommands. Somewhere in that function but BEFORE the last line, add the following IF block: 
+
+   if (self.impulse == 13)
+   {
+      if (self.flags & FL_FLY)
+      {
+         bprint ("Fly mode off\n");
+         self.flags = self.flags - FL_FLY;
+      }
+      else
+      {
+         bprint ("Fly mode on\n");
+         self.flags = self.flags + FL_FLY;
+      }
+   }
+
+    The player can now toggle fly mode. The default is OFF. 
+
+
+    Step 7 
+
+    I already went over one side-effect of switching to MOVETYPE_FLY while in flying mode. The other side-effect is that the values for watertype and waterlevel are no longer updated. This means that the player can not drown if he/she switched to flying mode while not in water. He/she will not blow any bubbles when hurt underwater and since watertype is not updated also, he/she will not get hurt in lava or slime. To fix this problem, a new function is needed that updates these two variables while in fly mode. 
+
+    So open up client.qc again. At the top of the file, you will create a new function. Add the following function to client.qc: 
+
+   float (entity me) fly_waterlevel =
+   {
+      local float pc;
+
+      if (me == world)
+         return 0;
+
+      pc = pointcontents (me.origin + me.view_ofs);
+
+      if (pc == CONTENT_WATER || pc == CONTENT_SLIME || pc == CONTENT_LAVA)
+      {
+         me.watertype = pc;
+         me.waterlevel = 3;
+         return 3; // liquid is at eye/head level, above mouth/nose
+      }
+
+      // check at waist level
+      pc = pointcontents (me.origin + '0 0 6');
+      
+      if (pc == CONTENT_WATER || pc == CONTENT_SLIME || pc == CONTENT_LAVA)
+      {
+         me.watertype = pc;
+         me.waterlevel = 2;
+         return 2; 
+      }
+
+      // check at leg level
+      pc = pointcontents (me.origin - '0 0 20');
+      
+      if (pc == CONTENT_WATER || pc == CONTENT_SLIME || pc == CONTENT_LAVA)
+      {
+         me.watertype = pc;
+         me.waterlevel = 1;
+         return 1;  // liquid covers legs
+      }
+
+
+      // check at feet
+      pc = pointcontents (me.origin - '0 0 24');
+      
+      if (pc == CONTENT_WATER || pc == CONTENT_SLIME || pc == CONTENT_LAVA)
+      {
+         me.watertype = pc;
+         me.waterlevel = 1;
+         return 1;  // liquid covers legs
+      }
+      
+      me.watertype = 0;
+      me.waterlevel = 0;
+      return 0; 
+   };
+
+
+    The function pointcontents tells you what type of liquid the player is in. It is used a lot in bot coding. Unlike players, Quake does not update watertype and waterlevel for bots. This is because the movetype for bots is usually MOVETYPE_STEP. A function was needed to do this. The above function is taken from the botmove.qc file contained in a bot skeleton program. You can download this bot skeleton program from CDROM.COM. It is in the /quake/quakec/bots directory and the file to look for is btsk23.zip. 
+
+    Since you have created a new function, you will then need to use it. This is accomplished by calling this function somewhere. In client.qc, this function is called in the WaterMove function. So look for this function. At the beginning of this function, add the following:
+
+   if (self.flags & FL_FLY)
+      self.waterlevel = fly_waterlevel (self);
+
+    Using your favorite editor, open the file called player.qc. Search for the PainSound function. At the beginning of this function, add the following: 
+
+   if (self.flags & FL_FLY)
+      self.waterlevel = fly_waterlevel (self);
+
+    Search for the DeathBubblesSpawn function. At the beginning of this function, add the following: 
+
+   if (self.flags & FL_FLY)
+      self.owner.waterlevel = fly_waterlevel (self.owner);
+
+    Search for the DeathSound function. At the beginning of this function, add the following: 
+
+   if (self.flags & FL_FLY)
+      self.waterlevel = fly_waterlevel (self);
+
+    When a player gets hit, the player suffers from momentum caused by weapon hits. That is, if a player gets hurt by splash damage, that player will shoot up into the air. While in fly mode, the player no longer suffers from momentum hits. If you want this ability while in fly mode, then open the file called combat.qc. Search for the function T_Damage. Look for the line that says "// figure momentum add". Below that line, add the following: 
+
+   if (targ.flags & FL_FLY)
+      targ.movetype = MOVETYPE_WALK;
+
+
+    The above two lines will return the player's ability to suffer from momentum. 
+
+    You are now finished with the tutorial. Compile and have fun. 

@@ -1,0 +1,295 @@
+Preface
+
+    Yes, this is yet another tutorial by legion. The X-Men TC, which will be out real soon, features characters that can fly such as ArchAngel. The code presented here is not their code but now you can make your own server patches which allow all players to fly too. As with my other tutorials, I try to teach a little bit of QuakeC instead of just simply presenting you with the code. This is my first attempt in making a flying simulation modification. I started working on it Wednesday, October 22nd 1997 and it was ready since Thursday, the 23rd. 
+
+Introduction
+
+    This is a how-to guide on giving players the ability to fly in the air. Some of you may recognize the code provided in this guide. I originally posted the bulk of this code in the Quake Coding Mailing list. It is a mailing list that allows you to discuss QuakeC/*.dlls modifications for Quake and Quake II. You can subscribe to this mailing list by sending an e-mail to Majordomo@geek.net. In the body of the message, insert the words "subscribe quakec" without the quotes. You will receive an automated response. Follow the instructions provided to subscribe to this mailing list. 
+
+    I posted the code to see if any of the coding gurus in the mailing list can find anything wrong with it. Since that posting, there were at least 50 e-mails sent including two people discussing their own variation of the fly code. Although most of the discussion involved Quake2, I had received no responses to my flying code so I will assume that there is nothing wrong with it. This guide is best viewed using Internet Explorer v3.0 or later. It does not look too good in Netscape v2.0x. 
+
+    There is actually more than one way to get the player to fly in the air. Others might want a more "restrictive" flying simulation in which the only direction you will fly to is the direction you are facing. Still others can "trick" Quake into thinking you are in water so the player can "swim" in the air. This is accomplished by setting waterlevel to a value of three every frame for the player. Obviously, you will have the added bonus of drowning in the air so you will have to add code to prevent that. You will also have to add code to prevent the player from drifting downwards. The player will not be able to move as fast anymore, either since it is "swimming" and not flying. The method shown in this tutorial allows you to learn several new concepts that may be applicable to other patches. In addition, the player has a lot more control on the direction he/she can fly to without losing speed. Normally, when a player is on the ground, he/she will slow down once he/she lets go of the cursor keys. With this method, the player will also slow down while flying as if he/she was on the ground. That is, the player will not instantly stop once the cursor keys are let go. A player can not instantly stop while walking so the player should not be able to do this while flying, either. The player will also be able to fly forward in the direction he/she is facing, fly backwards, strafe left, strafe right, fly straight up in small increments ("jump" up) without flying straight to the ceiling, etc. 
+
+    The modification discussed in this tutorial will change the style of game play substantially. That is, the fighting becomes more three dimensional. In small quarters, the change might not be noticable at all but in large rooms, it is significant. 
+
+Begin Tutorial
+
+    Step 1 
+
+    Using your favorite editor, open the file called client.qc. Search for the function called PlayerPreThink. Look for the following IF block: 
+
+   if (self.deadflag >=DEAD_DEAD)
+   {
+      PlayerDeathThink ();
+      return;
+   }
+
+    In this guide, you will be changing your movetype. That is, a player's movetype is normally MOVETYPE_WALK. You will be changing that to MOVETYPE_FLY when the player selects flying mode. It will switch back to MOVETYPE_WALK when the player turns off flying mode. However, when a player dies, his movetype is changed to MOVETYPE_TOSS. But the modifications you will be making will cause the movetype to return to MOVETYPE_WALK since upon death, the player is no longer in flying mode. This will cause Quake to crash when the player attempts to respawn. To correct this problem, you will need to modify the above IF block. The modifications to the IF block below are highlighted in BLUE. 
+
+   if (self.deadflag >=DEAD_DEAD)
+   {
+      self.movetype = MOVETYPE_TOSS;
+      PlayerDeathThink ();
+      return;
+   }
+
+
+    Step 2 
+
+    After you make the above modifications, you will add a new IF block just below that IF block. Below that IF block, add the following: 
+
+   if (self.flags & FL_FLY)
+   {
+      self.movetype = MOVETYPE_FLY;
+
+      if ( !(self.flags & FL_ONGROUND) )
+      {
+         self.flags = self.flags + FL_ONGROUND;
+      }
+   }
+   else
+   {
+      self.movetype = MOVETYPE_WALK;
+   }
+
+    As you can see, if the player is in flying mode, his/her movetype is changed to MOVETYPE_FLY. If the player is not, it is switched to MOVETYPE_WALK. The interesting point here is the second IF block that is nested inside this IF block. The FL_ONGROUNG flag is added to self.flags if it is not present. When you play a game using E1M8 level (the low gravity map), you will notice that when you are in the air, you have much difficulty in controlling your movement. This is because the FL_ONGROUND flag is removed when you are in the air. Adding the FL_ONGROUNG flag will return the control back to you. 
+
+
+    Step 3 
+
+    After adding the above IF block, below that add this new IF block: 
+
+   // must define variables before using them
+   local float vel1, yaw_diff, up_z;
+   local vector dir, dir2;
+
+   makevectors (self.v_angle);
+
+   if ( (self.flags & FL_FLY) && (self.velocity_x || self.velocity_y) )
+   {
+      vel1 = vlen (self.velocity); // its current speed
+      dir = self.velocity;
+      dir2 = vectoangles (dir);
+
+      // This corrects an ID mistake.  They had the pitch angle in
+      // reverse.
+      dir2_x = dir2_x * -1;
+
+      yaw_diff = dir2_y - self.v_angle_y;
+
+      if (yaw_diff > 180)
+         yaw_diff = yaw_diff - 360;
+
+      if (fabs (self.v_angle_x) > 24)
+      {
+         up_z = TRUE;  // movement in z direction (up/down)
+
+         if (fabs (fabs (yaw_diff) - 180) < 2)
+         {
+            dir = v_forward * -1;
+         }
+         else if (fabs (yaw_diff) < 2)
+         {
+            dir = v_forward;
+         }
+         else
+         {
+            up_z = FALSE;
+         }
+      }
+
+
+      self.velocity = normalize (dir) * vel1;
+
+      if (up_z)
+      {
+         if (vlen (self.velocity) > 10)
+         {
+            vel1 = cvar ("sv_maxspeed");
+            self.velocity = normalize (dir) * vel1;
+         }
+      }
+   }
+
+
+    All functions and variables must be defined first before using it. Here, we will be defining five new variables to use within PlayerPreThink. The keyword local tells the compiler that these variables are "local" variables and are only accessible within the PlayerPreThink function. This means that if another function uses the variable vel1, then that variable is actually DIFFERENT from the variable vel1 used in this function. Both variables have the same label, the same name but these two variables are actually two different variables. 
+
+    Two of the variables are defined as VECTORS. A "vector" in Quake is actually a variable that holds three values. An example of a vector is the location of an entity. We call this location an origin and it is in what some would call "rectangular" coordinates of x, y ,z. So the location of an entity might be '338 -329 1048'. So somewhere in the map is the starting point. From this starting point, the entity is 338 units in the x direction, 329 units in the negative y direction and 1048 units in the positive z direction. If you have the origin of another entity, you can subtract the two origins to find a direction. The result of this subtraction is another vector. This vector holds the direction from one entity to the next. The length of this vector is often called the distance or speed. 
+
+    Vectors, however, can be used in a different way. Rather than be used as a true vector, we can use these vectors to hold any three values. In this case, we want to store the pitch, the bearing (sometimes called 'yaw'), and the roll of an entity in one variable. For players, these three values are stored in the vector self.v_angle and self.angles. Self.angles stores the values for the player's model while self.v_angle stores the values for player's view (i.e. the pitch, bearing, and roll of the player's crosshairs). In most cases, the value of the roll is usually zero and, thus, it is often ignored. 
+
+    The vector dir2 contains the yaw that is associated with the player's current velocity. If the player is moving in the same direction he/she is pointing his/her cross hairs, the difference between the yaw of the player's current velocity and the yaw of the player's view should be zero. In the IF block above, I checked for a value less than 2. This is because there can be round-off errors which can accumulate. Sometimes we call such error accumulation error propagation. You have to take into account this error propagation. Otherwise, it will greatly affect the results in a bad way. 
+
+    The function vectoangles calculates the pitch, the bearing, and roll of a given vector. To give you an idea what these three things are, the pitch is how much you move your head up or down. That is, you move your chin up or down. The bearing is how much you turn your neck left or right. And the roll is how much you turn your head side ways. That is, you turn your neck so that one of your ears is now "pointing" towards the ground while the other ear now points up. Since this function calculates three components, these components are conveniently stored as a vector. 
+
+    If the player is moving backwards but he/she is pointing his/her crosshairs in the forward direction, then the difference in yaw should be 180 degrees. Of course, you still have to take into account error propagation. Using the difference in yaw values, you can determine if the player wants to go backwards or move forwards. Although not needed in this modification, you can also use the difference in yaw to determine if the player is strafing left or right. A difference of +90 degrees means the player is strafing left while a difference of -90 degrees means the player is strafing right. 
+
+    When the player's movetype is set to MOVETYPE_FLY, gravity is "removed" for that player. That is, if the player jumps up, he/she will move upwards continuously until he/she hits something. There is no gravity to slow the player down. However, the controls (eg. up arror, down arror, etc.) does not allow you to move up or down. It just moves you forward, backwards, strafe left, or strafe right. At some point, you would want to not only move forward (or backward) but also move up or down simultaneously. That is, you want the direction you are facing affect your movement. If you are looking up, you might want to move up by using the up arror key or move down while looking up by using the down arror key. This is where the player's pitch comes into play. 
+
+    The function makevectors calculates three vectors using a given pitch, yaw, and roll. Remember, the pitch, yaw, and roll are stored in a single vector. So the parameter that makevector uses is a vector. Now this function takes this one vector and calculates three new vectors. These vectors are called V_FORWARD, V_UP, and V_RIGHT. These vectors are true vectors. That is, these vectors have a direction and magnitude. The magnitude of each vector is one. We often call such vectors unit vectors. 
+
+    If the player is looking up or down by more than 24 degrees, the player's movement will be controlled by the vector v_forward which is the direction the player is looking at. This will allow the player to simultaneously move up/down while moving forward/backward. At the same time, if the player is strafing left and right while looking up or down, he/she does not have to worry about strafing downwards into lava (since he/she is looking at his/her target and not paying attention to the surroundings) or upwards into the ceiling to get smacked by splash damage caused by rocket explosions. 
+
+    Another major reason that I use the pitch of the player is that I want the ability to fly straight ahead or backwards or left or right without worrying about drifting slightly upward or downward just because my cross hairs are not pointing straight ahead. I might, for instance, be engaged in battle and I want to strafe to a Quad or a better weapon. If I am firing at a target slightly below me, obviously, my crosshairs will not be pointing towards the direction I want. As a result, I might miss picking up a vital weapon or power-up. With this method, I do not have to worry about that. 
+
+    One of the side-effects of changing the movetype to MOVETYPE_FLY is that at certain times, the player is no longer able to increase his/her speed when trying to move up or down. The controls begin to behave as if the FL_ONGROUND flag has been removed. The FL_ONGROUND flag has not been removed but the controls behave like it has been. To correct his problem, the variable up_z is used to determine whether or not the player needs a little boost. The magnitude of this boost is determined by the server. 
+
+    Unfortunately, this correction has its own side-effect. Normally, if you are flying straight ahead and not moving up or down, you can slow down as if you were really walking on the ground. But if you are moving up or down, you will not slow down at all. So if you want to stop, you will need to point your crosshairs straight ahead so your pitch will no longer be greater than 24 degrees up (or down). 
+
+
+    Step 4 
+
+    Search for the function called PlayerPostThink. Look for the following IF block: 
+
+   if (self.deadflag)
+      return;
+
+    Recall that a player's movetype should be MOVETYPE_TOSS when he/she has died. The modifications to the IF block below are highlighted in BLUE. 
+
+   if (self.deadflag)
+   {
+      self.movetype = MOVETYPE_TOSS;
+      return;
+   }
+
+
+    Step 5 
+
+    After you make the above modifications, you will add a new IF block just below that IF block. Below that IF block, add the following: 
+
+   // must define variables before using them
+   local float g;
+   g = cvar ("sv_gravity") * frametime;
+
+   if (self.flags & FL_FLY)
+   {
+      if (self.velocity_z > 0)
+      {
+         self.velocity_z = self.velocity_z - g;
+      }
+
+      if (self.velocity_z < 0)
+      {
+         self.velocity_z = self.velocity_z + g;
+      }
+
+      if (fabs (self.velocity_z) < g)
+      {
+         self.velocity_z = 0;
+      }
+   }
+
+    Recall that in fly mode, the player's movetype is set to MOVETYPE_FLY. Gravity is "removed" for that player when his/her movetype is set to MOVETYPE_FLY. The above code "adds" gravity back in. So if the player jumps up, he/she will slow down. 
+
+
+    Step 6 
+
+    Using your favorite editor, open the file called weapons.qc. Search for the function called ImpulseCommands. Somewhere in that function but BEFORE the last line, add the following IF block: 
+
+   if (self.impulse == 13)
+   {
+      if (self.flags & FL_FLY)
+      {
+         bprint ("Fly mode off\n");
+         self.flags = self.flags - FL_FLY;
+      }
+      else
+      {
+         bprint ("Fly mode on\n");
+         self.flags = self.flags + FL_FLY;
+      }
+   }
+
+    The player can now toggle fly mode. The default is OFF. 
+
+
+    Step 7 
+
+    I already went over one side-effect of switching to MOVETYPE_FLY while in flying mode. The other side-effect is that the values for watertype and waterlevel are no longer updated. This means that the player can not drown if he/she switched to flying mode while not in water. He/she will not blow any bubbles when hurt underwater and since watertype is not updated also, he/she will not get hurt in lava or slime. To fix this problem, a new function is needed that updates these two variables while in fly mode. 
+
+    So open up client.qc again. At the top of the file, you will create a new function. Add the following function to client.qc: 
+
+   float (entity me) fly_waterlevel =
+   {
+      local float pc;
+
+      if (me == world)
+         return 0;
+
+      pc = pointcontents (me.origin + me.view_ofs);
+
+      if (pc == CONTENT_WATER || pc == CONTENT_SLIME || pc == CONTENT_LAVA)
+      {
+         me.watertype = pc;
+         me.waterlevel = 3;
+         return 3; // liquid is at eye/head level, above mouth/nose
+      }
+
+      // check at waist level
+      pc = pointcontents (me.origin + '0 0 6');
+      
+      if (pc == CONTENT_WATER || pc == CONTENT_SLIME || pc == CONTENT_LAVA)
+      {
+         me.watertype = pc;
+         me.waterlevel = 2;
+         return 2; 
+      }
+
+      // check at leg level
+      pc = pointcontents (me.origin - '0 0 20');
+      
+      if (pc == CONTENT_WATER || pc == CONTENT_SLIME || pc == CONTENT_LAVA)
+      {
+         me.watertype = pc;
+         me.waterlevel = 1;
+         return 1;  // liquid covers legs
+      }
+
+
+      // check at feet
+      pc = pointcontents (me.origin - '0 0 24');
+      
+      if (pc == CONTENT_WATER || pc == CONTENT_SLIME || pc == CONTENT_LAVA)
+      {
+         me.watertype = pc;
+         me.waterlevel = 1;
+         return 1;  // liquid covers legs
+      }
+      
+      me.watertype = 0;
+      me.waterlevel = 0;
+      return 0; 
+   };
+
+
+    The function pointcontents tells you what type of liquid the player is in. It is used a lot in bot coding. Unlike players, Quake does not update watertype and waterlevel for bots. This is because the movetype for bots is usually MOVETYPE_STEP. A function was needed to do this. The above function is taken from the botmove.qc file contained in a bot skeleton program. You can download this bot skeleton program from CDROM.COM. It is in the /quake/quakec/bots directory and the file to look for is btsk23.zip. 
+
+    Since you have created a new function, you will then need to use it. This is accomplished by calling this function somewhere. In client.qc, this function is called in the WaterMove function. So look for this function. At the beginning of this function, add the following:
+
+   if (self.flags & FL_FLY)
+      self.waterlevel = fly_waterlevel (self);
+
+    Using your favorite editor, open the file called player.qc. Search for the PainSound function. At the beginning of this function, add the following: 
+
+   if (self.flags & FL_FLY)
+      self.waterlevel = fly_waterlevel (self);
+
+    Search for the DeathBubblesSpawn function. At the beginning of this function, add the following: 
+
+   if (self.flags & FL_FLY)
+      self.owner.waterlevel = fly_waterlevel (self.owner);
+
+    Search for the DeathSound function. At the beginning of this function, add the following: 
+
+   if (self.flags & FL_FLY)
+      self.waterlevel = fly_waterlevel (self);
+
+    When a player gets hit, the player suffers from momentum caused by weapon hits. That is, if a player gets hurt by splash damage, that player will shoot up into the air. While in fly mode, the player no longer suffers from momentum hits. If you want this ability while in fly mode, then open the file called combat.qc. Search for the function T_Damage. Look for the line that says "// figure momentum add". Below that line, add the following: 
+
+   if (targ.flags & FL_FLY)
+      targ.movetype = MOVETYPE_WALK;
+
+
+    The above two lines will return the player's ability to suffer from momentum. 
+
+    You are now finished with the tutorial. Compile and have fun. 

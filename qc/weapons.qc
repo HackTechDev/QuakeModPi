@@ -1266,6 +1266,24 @@ void() ImpulseCommands =
 		ServerflagsCommand ();
 	if (self.impulse == 12)
 		CycleWeaponReverseCommand ();
+
+    // Mod begin : Fly
+   if (self.impulse == 13)
+   {
+      if (self.flags & FL_FLY)
+      {
+         bprint ("Fly mode off\n");
+         self.flags = self.flags - FL_FLY;
+      }
+      else
+      {
+         bprint ("Fly mode on\n");
+         self.flags = self.flags + FL_FLY;
+      }
+   }
+
+    // Mod end
+
     // Mod begin : Chasecam
 	if (self.impulse == 15)
         	CCam ();

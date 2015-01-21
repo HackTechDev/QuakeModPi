@@ -240,7 +240,13 @@ void(float num_bubbles) DeathBubbles;
 
 void() PainSound =
 {
-local float		rs;
+    local float		rs;
+
+    // Mod begin : Fly
+     if (self.flags & FL_FLY)
+         self.waterlevel = fly_waterlevel (self);
+    // Mod end
+
 
 	if (self.health < 0)
 		return;
@@ -357,9 +363,16 @@ void() player_die_ax1;
 
 void() DeathBubblesSpawn =
 {
-local entity	bubble;
+    local entity	bubble;
+
+    // Mod begin : Fly
+    if (self.flags & FL_FLY)
+      self.waterlevel = fly_waterlevel (self);
+    // Mod end
+
 	if (self.owner.waterlevel != 3)
 		return;
+
 	bubble = spawn();
 	setmodel (bubble, "progs/s_bubble.spr");
 	setorigin (bubble, self.owner.origin + '0 0 24');
@@ -398,7 +411,12 @@ local entity	bubble_spawner;
 
 void() DeathSound =
 {
-local float		rs;
+    local float		rs;
+
+    // Mod begin : Fly
+    if (self.flags & FL_FLY)
+      self.waterlevel = fly_waterlevel (self);
+    // Mod end
 
 	// water death sounds
 	if (self.waterlevel == 3)

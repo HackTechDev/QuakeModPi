@@ -29,6 +29,61 @@ void() info_intermission =
 };
 
 
+// Mod begin : Fly
+   float (entity me) fly_waterlevel =
+   {
+      local float pc;
+
+      if (me == world)
+         return 0;
+
+      pc = pointcontents (me.origin + me.view_ofs);
+
+      if (pc == CONTENT_WATER || pc == CONTENT_SLIME || pc == CONTENT_LAVA)
+      {
+         me.watertype = pc;
+         me.waterlevel = 3;
+         return 3; // liquid is at eye/head level, above mouth/nose
+      }
+
+      // check at waist level
+      pc = pointcontents (me.origin + '0 0 6');
+
+      if (pc == CONTENT_WATER || pc == CONTENT_SLIME || pc == CONTENT_LAVA)
+      {
+         me.watertype = pc;
+         me.waterlevel = 2;
+         return 2;
+      }
+
+      // check at leg level
+      pc = pointcontents (me.origin - '0 0 20');
+
+      if (pc == CONTENT_WATER || pc == CONTENT_SLIME || pc == CONTENT_LAVA)
+      {
+         me.watertype = pc;
+         me.waterlevel = 1;
+         return 1;  // liquid covers legs
+      }
+
+
+      // check at feet
+      pc = pointcontents (me.origin - '0 0 24');
+
+      if (pc == CONTENT_WATER || pc == CONTENT_SLIME || pc == CONTENT_LAVA)
+      {
+         me.watertype = pc;
+         me.waterlevel = 1;
+         return 1;  // liquid covers legs
+      }
+
+      me.watertype = 0;
+      me.waterlevel = 0;
+      return 0;
+   };
+
+// Mod end
+
 
 void() SetChangeParms =
 {
@@ -804,6 +859,13 @@ WaterMove
 
 void() WaterMove =
 {
+
+    // Mod begin : Fly
+   if (self.flags & FL_FLY)
+      self.waterlevel = fly_waterlevel (self);
+
+    // Mod
+
 //dprint (ftos(self.waterlevel));
 	if (self.movetype == MOVETYPE_NOCLIP)
 		return;
@@ -946,9 +1008,83 @@ void() PlayerPreThink =
 
 	if (self.deadflag >= DEAD_DEAD)
 	{
+        // Mod begin : Fly
+        self.movetype = MOVETYPE_TOSS;
+        // Mod end
 		PlayerDeathThink ();
 		return;
 	}
+
+    // Mod begin : Fly
+   if (self.flags & FL_FLY)
+   {
+      self.movetype = MOVETYPE_FLY;
+
+      if ( !(self.flags & FL_ONGROUND) )
+      {
+         self.flags = self.flags + FL_ONGROUND;
+      }
+   }
+   else
+   {
+      self.movetype = MOVETYPE_WALK;
+   }
+
+   // must define variables before using them
+   local float vel1, yaw_diff, up_z;
+   local vector dir, dir2;
+
+   makevectors (self.v_angle);
+
+   if ( (self.flags & FL_FLY) && (self.velocity_x || self.velocity_y) )
+   {
+      vel1 = vlen (self.velocity); // its current speed
+      dir = self.velocity;
+      dir2 = vectoangles (dir);
+
+      // This corrects an ID mistake.  They had the pitch angle in
+      // reverse.
+      dir2_x = dir2_x * -1;
+
+      yaw_diff = dir2_y - self.v_angle_y;
+
+      if (yaw_diff > 180)
+         yaw_diff = yaw_diff - 360;
+
+      if (fabs (self.v_angle_x) > 24)
+      {
+         up_z = TRUE;  // movement in z direction (up/down)
+
+         if (fabs (fabs (yaw_diff) - 180) < 2)
+         {
+            dir = v_forward * -1;
+         }
+         else if (fabs (yaw_diff) < 2)
+         {
+            dir = v_forward;
+         }
+         else
+         {
+            up_z = FALSE;
+         }
+      }
+
+
+      self.velocity = normalize (dir) * vel1;
+
+      if (up_z)
+      {
+         if (vlen (self.velocity) > 10)
+         {
+            vel1 = cvar ("sv_maxspeed");
+            self.velocity = normalize (dir) * vel1;
+         }
+      }
+   }
+
+
+    // Mod end
+
 
 	if (self.deadflag == DEAD_DYING)
 		return;	// dying, so do nothing
@@ -1138,8 +1274,38 @@ void() PlayerPostThink =
 {
 	if (self.view_ofs == '0 0 0')
 		return;		// intermission or finale
-	if (self.deadflag)
-		return;
+
+    // Mod begin : Fly
+   if (self.deadflag)
+   {
+      self.movetype = MOVETYPE_TOSS;
+      return;
+   }
+
+   // must define variables before using them
+   local float g;
+   g = cvar ("sv_gravity") * frametime;
+
+   if (self.flags & FL_FLY)
+   {
+      if (self.velocity_z > 0)
+      {
+         self.velocity_z = self.velocity_z - g;
+      }
+
+      if (self.velocity_z < 0)
+      {
+         self.velocity_z = self.velocity_z + g;
+      }
+
+      if (fabs (self.velocity_z) < g)
+      {
+         self.velocity_z = 0;
+      }
+   }
+
+
+    // Mod end
 
     // Mod begin : Hook
     CheckGrapHook ();

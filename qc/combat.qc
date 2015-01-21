@@ -140,6 +140,10 @@ void(entity targ, entity inflictor, entity attacker, float damage) T_Damage=
 	}
 
 // figure momentum add
+    // Mod begin : Fly
+    if (targ.flags & FL_FLY)
+      targ.movetype = MOVETYPE_WALK;
+    // Mod end
 	if ( (inflictor != world) && (targ.movetype == MOVETYPE_WALK) )
 	{
 		dir = targ.origin - (inflictor.absmin + inflictor.absmax) * 0.5;
