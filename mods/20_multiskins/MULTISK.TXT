@@ -1,0 +1,304 @@
+
+                          -== M U L T I S K I N ==-  
+                                     1.1
+
+                  by Dennis Noordsij - lnoordsi@inter.NL.net
+      home of MultiSkin - http://web.inter.NL.net/users/L.J.Noordsij/qc.htm
+--------------------------------------------------------------------------------
+
+Q) [Quake lover]: Can we have our own player textures in Quake?
+A) [ID Software]: NO! That is NOT possible.
+A) [ME :)      ]: YES! That IS possible.
+
+--------------------------------------------------------------------------------
+
+I was, just like everybody else, hoping that players could have their own skin
+textures when Quake came out. But it wasn't possible. Then the QuakeC compiler
+and QuakeC code were released, and I thought, man, it HAS to be possible now! 
+So I started trying: 
+
+** Playing with the SetModel(self, "progs/player.mdl"). 
+   Problems: - it didn't work
+	     - you would *require* multiple models, waisting a lot of bytes and
+	     - Quake will crash if you don't have them.
+
+** Exploiting the fact that a model can change in eyes
+   Problems: - it didn't work
+	     - again, would *require* all models, waisting a lot of bytes and
+             - Quake will crash if you don't have them.
+
+** Using the idea that models can have different skins
+   Pros: - it WORKED!
+         - you only need one player.mdl that has all textures in it
+	 - if you don't have the 'new' player.mdl no problem, you will see
+           the normal textures instead!
+	 - As I improve the code (add teamplay, corpses with correct skins)
+           only the SERVERS need to update. All the clients (players) need
+           is the new player.mdl, which works just like the normal player.mdl,
+           but if you connect to a MultiSkin Server suddenly the models will
+           have all sorts of skins!
+   Bugs: - The skin will only apply to the body your soul is in. As soon as
+	   your soul transfers to a new body (respawns) the corpse skin will
+           change to the normal texture. But I will fix this and this is not
+           crucial, vital or important at all. 
+
+--------------------------------------------------------------------------------
+
+Great! What do I need?
+
+
+*** If you are a PLAYER, ie someone that will connect to a server:
+
+You need the PLAYER.MDL file. You can replace the old one with this one, or
+you can put it in a directory like this:
+   / [YOUR QUAKE DIR] / MULTISKIN / PROGS / PLAYER.MDL
+Then you start Quake with the "-game multiskin" paramater (or for internet
+Quake: "q95 -game multiskin". Quake will then use this model instead. If you
+replace the old PLAYER.MDL then you don't need to start with extra parameters,
+and you will never notice it is a different PLAYER.MDL until you connect to
+a MultiSkin Server and see everybody in his own skin. Of course you can always
+mail me with questions
+
+
+*** If you are a DEDICATED server:
+
+You need the PROGS.DAT file. You place it in it's own dir, example:
+   / [YOUR QUAKE DIR] / MULTISKIN / PROGS.DAT
+and you add "-game multiskin" to your startup commandline string. All clients
+that connect will than be able to change their skins, and clients that have
+the new PLAYER.MDL will see those changes, otherwise they'll see the normal
+textures. 
+THE CLIENTS DO NOT *REQUIRE* NEW FILES! EVERYBODY WILL BE ABLE TO CONNECT, AND
+THE CLIENTS WITH THE NEW PLAYER.MDL WILL SEE NEW SKINS, THE OTHER CLIENTS
+WILL JUST SEE WHAT THEY ALWAYS SEE. BY USING THIS NEW PROGS.DAT FILE YOU ARE
+NOT SACRIFICING ANYTHING, EVERYBODY CAN CONNECT. CLIENTS DO NOT *REQUIRE*
+NEW FILES, IT IS OPTIONAL
+
+
+** If you are a LISTEN server:
+
+You need both packages, you can either replace the old PROGS.DAT and PLAYER.MDL
+or you can create the following dirs:
+  / [YOUR QUAKE DIR] / MULTISKIN / PROGS.DAT
+  / [YOUR QUAKE DIR] / MULTISKIN / PROGS / PLAYER.MDL
+If you have:
+ - only the progs.dat, MultiSkin will work but you will not see the new 
+   textures because you don't have them. Players who DO have the new
+   PLAYER.MDL *WILL* see the new textures
+ - only the new PLAYER.MDL. Then you don't have the MultiSkin code, and the
+   game will be an ordinary game where only the first (normal) skin of the
+   player is used.
+
+--------------------------------------------------------------------------------
+
+Okay, I'm using the new PLAYER.MDL and I have connected to a MultiSkin server,
+now how do I change skins?
+
+Simple, you bind "IMPULSE 200" to a key, for example q 
+(type 'bind q "impulse 200" ' in the console) and whenever you press q (impulse
+200) your skin will go up one and you will see a message saying which skin
+you now have. There are 19 skins, so after skin 15 pressing q again will 
+use skin 0. Whenever you respawn you will see a message reminding you which
+skin you have. So if you start and press q, you will see 
+   "SKIN: Duke Nukem 3d (1)". This means you have now skin (1), which is Duke
+Nukem's skin. if you press q again you will see
+   "SKIN: Toad (2)". This means you now have the skin of a cool looking toad.
+After skin #18 you will get skin #0, which is the normal Quake skin. The
+skin will travel with you, if you respawn you will keep the same skin and you
+will get a message telling you what skin you 'are wearing'.
+
+--------------------------------------------------------------------------------
+
+I'm curious, which skins are there?
+
+0) The normal Quake texture. 
+   When you first connect to a normal Quake MultiSkin Server you will start 
+   with this skin. 
+
+1) Duke Nukem 3d. 
+   Heh heh, now you can have some REAL Duke vs Quake wars :)
+   BE SURE TO USE COLOR 6 TO KEEP HIS HAIR YELLOW!
+
+2) Toad.
+   A pretty cool looking green creature.
+
+3) Stormtrooper.
+   An awesome white-camo enforcer type of guy
+
+4) Max.
+   Reminds me of Spiderman, although Max is blue/yellow. Looks like a 
+   comicbook-hero. Looks pretty cool.
+
+5) the Terminator.
+   A very good version of a half-dead terminator, looks very real.
+
+6) Judge Dredd.
+   The one and only...
+
+7) Camo.
+   A camouflaged soldier. The prefect skin to camp in dark places.
+
+8) Captain Picard.
+   For the Trekkies, and until Startrek Quake comes out.
+
+9) the Wizzard.
+   This is the skin of the scrag on a player model. Looks pretty scary.
+
+10) the Predator.
+    Awesome skin of the Predator. Not for cissies :)
+
+11) Skeleton.
+    With this skin you change into a skeleton with a gun :) Pretty cool skin!
+
+12) Wan-Fu.
+    I don't know who this guy is, but he looks like a topless karate-kid :)
+
+13) Henry Rollins.
+    Don't know him either. But he would make a good target :)
+
+14) He-Man.
+    The one and only Master of the Universe.
+
+15) Boba.
+    Who? Oh Boba. Never heard of him :) 
+
+16) Superman.
+    That's right, now YOU can be Superman!
+
+17) NYPD.
+    If you always wanted to be a cop, this is your chance :)
+
+18) Eh... nameless :)                         
+    A nice looking guy with the women's sign on his suit ( O )
+                                                         ( + )
+Some things:
+
+* I don't expect you to memorize this list, so whenever you select a skin Quake
+  will tell you which one you have
+* Of course I didn't make all those skins. I got them from the Quake grinder:
+  http://www.zipnet.net/~biff/qgrinder/
+  Here you will find more stuff and the credits for the skins. I did not ask
+  permission to all skin authors, but I assume that since they released the
+  skin they expect it to be used and don't mind. 
+* Most of these skins do not yet have the axe and fire drawn on them. This
+  means that the axe will be completeley black. I asked Biff (Quake Grinder)
+  about this and he said he could quickly 'overlap' these portions of the
+  normal player texture onto the other textures. So that'll be fixed soon.
+* I was able to create this PLAYER.MDL because of the excellent QuakeME 2.3,
+  which the author Rene Post made only because I asked him. He's a great guy,
+  and his program is the best .MDL viewer/textures editor out there. 
+
+--------------------------------------------------------------------------------
+
+I have some new textures
+
+Please send them to me, so I can add them to both the code AND the model, so
+there will be some kind of standard instead of different PLAYER.MDL's that make
+someone who looks like Duke look like He-Man and things like that
+
+--------------------------------------------------------------------------------
+
+Thanks to:
+
+*** Rene Post (author of QuakeME)
+    He's really amazing! I ask him one night if could add something to QuakeME
+    2.2, and the next day I get QuakeME 2.3 which works *EXCELLENT*. Exactly
+    what I had hoped for. I recommend this program!
+
+*** Biff (don't remember last name), maintainer of the Quake Grinder:
+    http://www.zipnet.net/~biff/qgrinder/
+    For storing the textures and for the fact that he will add the axe and
+    fire to the textures
+
+*** Crisco at Stomped.com
+    for originally storing the textures (before they went to the Quake Grinder)
+
+--------------------------------------------------------------------------------
+
+Other possibilities with this technique:
+
+You could make new skins for the monsters, such as 
+- one for health > 80%         (the normal texture)
+- one for 50% < health < 80%   (some extra blood)
+- one for health < 50%         (lots of blood and gore :)
+And then set the skins according to their health.
+
+--------------------------------------------------------------------------------
+
+Misc:
+
+* Your skin will change the instant you impulse 200. 
+* Teamplay is still color oriented. A Duke can still kill a Duke.
+* Whenever a player respawns, the skin of his former corpse will change back
+  into the standard skin.
+
+--------------------------------------------------------------------------------
+
+FUTURE FIXES:
+
+* Add teamplay for skin instead of colors
+* Add the option to only allow skin changes when the player is dead to avoid
+  some teamp server problems (quickly changing skin)
+* Have corpses kep the right skins
+* Update the textures with the axe/fire drawn onto them
+* Add more textures
+
+--------------------------------------------------------------------------------
+
+OTHER THINGS I'D LIKE TO SAY :)
+
+People have been complaining about a lot of things, and they are getting fixed
+all the time! Some examples:
+
+* Weapons suck!
+  We now have heetseekers, proximity grenades, drunk missiles, gib throwers,
+  lasers and more coming up!
+
+* Grenades etc should go through teleporters!
+  Done. It wasn't a Quake limition, it just required a little editing and
+  someone has already done it. Let's fire a stream of nails through a 
+  teleporter!
+
+* Monster/player corpses should be solid
+  Not only can they be solid, but also gibbable!
+
+* Bulletholes?
+  I've been working on this one. Right now I can use the bubble sprite as a
+  bullet hole, but when I fire the supershotgun 8 times I get a Packet 
+  Overflow beacuse of the 300 bubbles on the wall. I'll figure something out.
+  The idea is pretty simple, just spawn a sprite when a bullet hits a wall.
+
+* Monster helper/spawners
+  Done/Working on those
+
+* Different skins for each player
+  Done! :)
+
+* Interconnected Quake servers.
+  Done. Only problem, if the server rejects you you end up in the console.
+  But John Carmack has said to be working on a real dedicated big stand-alone
+  server, so it's just a matter of time.
+
+* Splashing water
+  Whenever the sound of splashing water is played, create a blue particle
+  fog on that loation going up.
+
+--------------------------------------------------------------------------------
+
+HISTORY:
+
+1.1 - added impulse 201 to descend the list
+    - added 3 more skins (Superman, NYPD and some other guy :)
+    - replaced the Duke skin with a darker one that also had the axe/fire
+    - and of course add the new skins to the code
+
+1.0 - initial release containing 16 skin textures
+
+--------------------------------------------------------------------------------
+
+If you have ANYTHING to ask, just mail me! Also, tell me what features you 
+would like added to MultiSkin!
+
+Thursday 1 August 1996, 13:50 CEST
+Dennis Noordsij
+lnoordsi@inter.NL.net

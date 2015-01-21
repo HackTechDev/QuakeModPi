@@ -1244,6 +1244,42 @@ void() ImpulseCommands =
         	CCam ();
     // Mod end
 
+    // Mod begin : Multiskin
+	if ((self.impulse == 200) || (self.impulse == 201))
+	{
+		if (self.impulse == 200)
+		{
+		self.skin = self.skin + 1;
+		if (self.skin == 19) self.skin = 0;
+		} else
+		if (self.impulse == 201)
+		{
+		self.skin = self.skin - 1;
+		if (self.skin == -1) self.skin = 18;
+		}
+		if (self.skin == 0) centerprint(self, "SKIN: Quake himself (1)"); else
+		if (self.skin == 1) centerprint(self, "SKIN: Duke Nukem 3d (2)"); else
+		if (self.skin == 2) centerprint(self, "SKIN: Mr. Toad (3)"); else
+		if (self.skin == 3) centerprint(self, "SKIN: the Stormtrooper (4)"); else
+		if (self.skin == 4) centerprint(self, "SKIN: Max (5)"); else
+		if (self.skin == 5) centerprint(self, "SKIN: the Terminator (6)"); else
+		if (self.skin == 6) centerprint(self, "SKIN: Judge Dredd (7)"); else
+		if (self.skin == 7) centerprint(self, "SKIN: Camouflaged soldier (8)"); else
+		if (self.skin == 8) centerprint(self, "SKIN: Captain Picard (9)"); else
+		if (self.skin == 9) centerprint(self, "SKIN: the Wizzard (10)"); else
+		if (self.skin == 10) centerprint(self,"SKIN: the Predator (11)"); else
+		if (self.skin == 11) centerprint(self,"SKIN: Skeleton (12)"); else
+		if (self.skin == 12) centerprint(self,"SKIN: Wan-Fu (13)"); else
+		if (self.skin == 13) centerprint(self,"SKIN: Henry Rollins (14)"); else
+		if (self.skin == 14) centerprint(self,"SKIN: He-Man (15)"); else
+		if (self.skin == 15) centerprint(self,"SKIN: Boba (16)"); else
+		if (self.skin == 16) centerprint(self,"SKIN: Superman (17)"); else
+		if (self.skin == 17) centerprint(self,"SKIN: NYPD Cop (18)"); else
+		if (self.skin == 18) centerprint(self,"SKIN: Red/Yellow women dude (19)");
+	}
+// Mod end
+
+
 	if (self.impulse == 255)
 		QuadCheat ();
 

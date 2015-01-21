@@ -48,14 +48,14 @@ botai.qc:449: warning: ang_floor  no references
 botai.qc:449: warning: ang_ceil  no references
 triggers.qc:239: warning: junk  no references
 bot_ext.qc:17: warning: junk  no references
- 94716 strofs (of 1000000)
- 22877 numstatements (of 524288)
+ 96096 strofs (of 1000000)
+ 23172 numstatements (of 524288)
   2275 numfunctions (of 16384)
-  4611 numglobaldefs (of 32768)
+  4650 numglobaldefs (of 32768)
    214 numfielddefs (191 unique) (of 2048)
-  4582 numpr_globals (of 65536)
+  4621 numpr_globals (of 65536)
 Writing ../progs.dat
-416748 TOTAL SIZE
+420956 TOTAL SIZE
 Writing ../progs.lno
 225 unique precache_sounds
  95 unique precache_models
@@ -63,9 +63,9 @@ Writing ../progs.lno
 Compile Complete
 
 optres_shortenifnots 120
-optres_overlaptemps 8391
+optres_overlaptemps 8488
 optres_constantarithmatic 17
-optres_nonvec_parms 4279
+optres_nonvec_parms 4355
 optres_assignments 502
 optres_unreferenced 20
 optres_dupconstdefs 108
