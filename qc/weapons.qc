@@ -10,6 +10,10 @@ void() SuperDamageSound;
 // called by worldspawn
 void() W_Precache =
 {
+    // Mod begin : Menu shop
+    MenuPrecache();
+    // Mod end
+
 	precache_sound ("weapons/r_exp3.wav");	// new rocket explosion
 	precache_sound ("weapons/rocket1i.wav");	// spike gun
 	precache_sound ("weapons/sgun1.wav");
@@ -876,6 +880,14 @@ void()	player_rocket1;
 
 void() W_Attack =
 {
+    // Mod begin : Menu shop
+    if (self.menu)
+        {
+        ActivateOption();
+        return;
+        }
+    // Mod end
+
 	local	float	r;
 
 	if (!W_CheckNoAmmo ())
@@ -1322,7 +1334,18 @@ void() ImpulseCommands =
 		if (self.skin == 17) centerprint(self,"SKIN: NYPD Cop (18)"); else
 		if (self.skin == 18) centerprint(self,"SKIN: Red/Yellow women dude (19)");
 	}
-// Mod end
+    // Mod end
+
+
+    // Mod begin : Menu shop
+    if (self.impulse == 66) {
+        centerprint(self,"Menu");
+        MenuCommand();
+    }
+    if (self.impulse == 67) {
+        CreditCheat();
+    }
+    // Mod end
 
 
 	if (self.impulse == 255)

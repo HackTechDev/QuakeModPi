@@ -88,6 +88,10 @@ void(entity targ, entity attacker) Killed =
 	self.th_die ();
 	
 	self = oself;
+
+    // Mod begin : Menu shop
+    AllocateCredits(attacker, targ);
+    // Mod end
 };
 
 

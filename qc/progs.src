@@ -3,6 +3,13 @@
 defs.qc
 bot.h
 subs.qc
+
+menudefs.qc
+menusubs.qc
+menumods.qc
+menucore.qc
+
+
 fight.qc
 ai.qc
 combat.qc

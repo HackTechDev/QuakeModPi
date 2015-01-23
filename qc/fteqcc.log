@@ -3,6 +3,10 @@ outputfile: ../progs.dat
 compiling defs.qc
 compiling bot.h
 compiling subs.qc
+compiling menudefs.qc
+compiling menusubs.qc
+compiling menumods.qc
+compiling menucore.qc
 compiling fight.qc
 compiling ai.qc
 compiling combat.qc
@@ -84,26 +88,26 @@ magicm.qc:154: warning: rand  no references
 magicm.qc:194: warning: old  no references
 triggers.qc:239: warning: junk  no references
 bot_ext.qc:17: warning: junk  no references
- 99028 strofs (of 1000000)
- 25076 numstatements (of 524288)
-  2314 numfunctions (of 16384)
-  4884 numglobaldefs (of 32768)
-   215 numfielddefs (192 unique) (of 2048)
-  4877 numpr_globals (of 65536)
+103644 strofs (of 1000000)
+ 26109 numstatements (of 524288)
+  2346 numfunctions (of 16384)
+  5097 numglobaldefs (of 32768)
+   217 numfielddefs (194 unique) (of 2048)
+  5048 numpr_globals (of 65536)
 Writing ../progs.dat
-443428 TOTAL SIZE
+459864 TOTAL SIZE
 Writing ../progs.lno
 228 unique precache_sounds
  97 unique precache_models
 104 unique precache_files
 Compile Complete
 
-optres_shortenifnots 122
-optres_overlaptemps 9738
-optres_constantarithmatic 19
-optres_nonvec_parms 4664
-optres_assignments 596
+optres_shortenifnots 127
+optres_overlaptemps 9941
+optres_constantarithmatic 21
+optres_nonvec_parms 4945
+optres_assignments 604
 optres_unreferenced 26
-optres_dupconstdefs 123
-numtemps 166
+optres_dupconstdefs 139
+numtemps 167
 21 warnings
