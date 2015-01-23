@@ -1246,6 +1246,10 @@ void() ImpulseCommands =
 	CheckSecondaryImpulseCommands();
     // Mod end
 
+    // Mod begin : Paqman
+    Paqman_Stuff();
+    // Mod end
+
     // Mod begin : Qwiz
     if (self.impulse == 110)
         JumpC();
@@ -1280,19 +1284,15 @@ void() ImpulseCommands =
 		CycleWeaponReverseCommand ();
 
     // Mod begin : Fly
-   if (self.impulse == 13)
-   {
-      if (self.flags & FL_FLY)
-      {
-         bprint ("Fly mode off\n");
-         self.flags = self.flags - FL_FLY;
-      }
-      else
-      {
-         bprint ("Fly mode on\n");
-         self.flags = self.flags + FL_FLY;
-      }
-   }
+       if (self.impulse == 13) {
+          if (self.flags & FL_FLY) {
+             bprint ("Fly mode off\n");
+             self.flags = self.flags - FL_FLY;
+          } else {
+             bprint ("Fly mode on\n");
+             self.flags = self.flags + FL_FLY;
+          }
+       }
 
     // Mod end
 
@@ -1347,6 +1347,8 @@ void() ImpulseCommands =
     }
     // Mod end
 
+
+		
 
 	if (self.impulse == 255)
 		QuadCheat ();

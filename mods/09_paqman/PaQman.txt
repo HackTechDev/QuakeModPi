@@ -1,0 +1,46 @@
+		PaQman
+		A Quake Minimod by MauveBib
+
+		This is the third and probably final in my little series of Easter-Egg plugin mods, designed as games within games.
+
+		This is a version of Pacman, rendered entirely in centerprint.
+		
+		Thanks to FrikaC for the dynamic centerprint idea, and some code which I lifted from his Tetris mod
+
+		The idea is that this game could be plugged in to any mod, and when activated via an
+		impulse it takes the player to a secret game, totally text based.
+
+		If you want to use it in your mod:
+
+		In weapons.qc add Paqman_Stuff(); to ImpulseCommands
+		In progs.src add paqman.qc after subs.qc
+		In client.qc add if (Paqman_PreFrame()) return; to  PlayerPreThink
+		In client.qc add if (Paqman_PostFrame()) return; to PlayerPostThink
+
+
+		Controls:
+
+		Impulse 100 (Bound to V):	start / stop a game of PaQman
+		
+		PaQman is controled with the keys you have bound for forward, backward and strafing movement.
+		(currently E, D, S and F)
+
+		I'm hoping I don't have to explain the rules of PaQman to you!
+
+		Oh, and those are the original sound effects you hear.
+
+
+		There are a couple of 'features':
+
+		After you eat a ghost you sometimes won't see yourself for a couple of frames.
+
+		The ghosts don't return to the center after being eat, they just wander around aimlessly as eyes for a bit.
+
+		I didn't get around to making paQman animate properly, though I did make a picture for him with his mouth closed. Maybe
+		in a future release...
+
+
+		Thanks to whoever originally made pacman.
+
+		- MauveBib
+		  skinski@email.com

@@ -990,6 +990,11 @@ Called every frame before physics are run
 */
 void() PlayerPreThink =
 {
+    // Mod begin : Paqman
+    if (Paqman_PreFrame()) 
+        return;
+    // Mod end
+
 	if (intermission_running)
 	{
 		IntermissionThink ();	// otherwise a button could be missed between
@@ -1109,7 +1114,6 @@ void() PlayerPreThink =
         return;
     }
     // Mod end
-
 
 // teleporters can force a non-moving pause time
 	if (time < self.pausetime)
@@ -1287,6 +1291,11 @@ Called every frame after physics are run
 */
 void() PlayerPostThink =
 {
+    // Mod begin : Paqman
+    if (Paqman_PostFrame()) 
+        return;
+    // Mod end
+
 	if (self.view_ofs == '0 0 0')
 		return;		// intermission or finale
 

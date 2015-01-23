@@ -4,11 +4,12 @@ defs.qc
 bot.h
 subs.qc
 
-menudefs.qc
-menusubs.qc
-menumods.qc
-menucore.qc
+paqman.qc // Mod Paqman
 
+menudefs.qc // Mod Menu shop
+menusubs.qc // Mod Menu shop
+menumods.qc // Mod Menu shop
+menucore.qc // Mod Menu shop
 
 fight.qc
 ai.qc

@@ -3,6 +3,7 @@ outputfile: ../progs.dat
 compiling defs.qc
 compiling bot.h
 compiling subs.qc
+compiling paqman.qc
 compiling menudefs.qc
 compiling menusubs.qc
 compiling menumods.qc
@@ -74,6 +75,10 @@ compiling oldone.qc
 Recognised progs as NetQuake server gamecode
 Progs should run on any Quake executor
 at global scope,
+paqman.qc:1406: warning: tempx  no references
+paqman.qc:1406: warning: tempy  no references
+paqman.qc:1407: warning: ent  no references
+paqman.qc:1408: warning: vec  no references
 botai.qc:447: warning: delta  no references
 botai.qc:448: warning: axis  no references
 botai.qc:449: warning: direct  no references
@@ -88,26 +93,26 @@ magicm.qc:154: warning: rand  no references
 magicm.qc:194: warning: old  no references
 triggers.qc:239: warning: junk  no references
 bot_ext.qc:17: warning: junk  no references
-103644 strofs (of 1000000)
- 26109 numstatements (of 524288)
-  2346 numfunctions (of 16384)
-  5097 numglobaldefs (of 32768)
-   217 numfielddefs (194 unique) (of 2048)
-  5048 numpr_globals (of 65536)
+108356 strofs (of 1000000)
+ 31037 numstatements (of 524288)
+  2365 numfunctions (of 16384)
+  5637 numglobaldefs (of 32768)
+   257 numfielddefs (233 unique) (of 2048)
+  5586 numpr_globals (of 65536)
 Writing ../progs.dat
-459864 TOTAL SIZE
+511476 TOTAL SIZE
 Writing ../progs.lno
 228 unique precache_sounds
  97 unique precache_models
 104 unique precache_files
 Compile Complete
 
-optres_shortenifnots 127
-optres_overlaptemps 9941
+optres_shortenifnots 133
+optres_overlaptemps 11611
 optres_constantarithmatic 21
-optres_nonvec_parms 4945
-optres_assignments 604
-optres_unreferenced 26
-optres_dupconstdefs 139
-numtemps 167
-21 warnings
+optres_nonvec_parms 5500
+optres_assignments 646
+optres_unreferenced 34
+optres_dupconstdefs 155
+numtemps 169
+25 warnings
