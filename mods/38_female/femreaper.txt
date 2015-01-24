@@ -1,0 +1,30 @@
+fem_reaper-mdl.zip   
+
+fem_reaper-mdl.zip created by: Damian Scott - aka [AO] HarsH - 
+TeamFortress Software <scab@teamfortress.com> is a modification of the 
+player.mdl that turns the standard Quake player into a woman.  Damian 
+has modified the basic player.mdl to be a little more feminine (i.e hips
++ breast) which, when used in conjunction with many female skins, looks 
+extremely good.  Damian also compiled a complete list of new female 
+sounds that really add to the effect of a female persona.
+
+The modification works simply by adding the .mdl and the .wavs into the
+required directory - it works with normal Quake and Reaperbots, and most
+other patches that don't mind the player.mdl being modified.
+
+To run the mod in "normal" Quake, simply extract female.mdl into your
+Quake directory, then run a -game [female.mdl] or whatever you want to
+call it.  To get it to run with reaperbots, simply add the reaperbot
+progs.dat into the main directory (i.e Quake\female.mdl\), or simply
+replace the existing player.mdl and add the player sounds (using the
+existing directory structure).  
+
+Enclosed in the .mdl is a female skin created by Kenneth Scott of 
+SkinForge (mfarr@iccnet.ab.ca)  This skin can have top and bottom color 
+changed in Quake, and looks quite nice with the fem_reaper.mdl
+
+fem_reaper-mdl.zip is meant to be used with id Software's Quake and Quakeworld.  
+The player.mdl and sounds were created by: Damian Scott - aka [AO] HarsH - 
+TeamFortress Software <scab@teamfortress.com> , fem_reaper-mdl.zip 
+must be used in it's entirety, no part of fem_reaper-mdl.zip may be 
+copied or recreated without written permission from the designer.
