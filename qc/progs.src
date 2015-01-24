@@ -4,12 +4,14 @@ defs.qc
 bot.h
 subs.qc
 
-paqman.qc // Mod Paqman
+paqman/paqman.qc // Mod Paqman
+tetris/tetris.qc // Mod Tetris
+valley/valley.qc // Mod Valley
 
-menudefs.qc // Mod Menu shop
-menusubs.qc // Mod Menu shop
-menumods.qc // Mod Menu shop
-menucore.qc // Mod Menu shop
+menushop/menudefs.qc // Mod Menu shop
+menushop/menusubs.qc // Mod Menu shop
+menushop/menumods.qc // Mod Menu shop
+menushop/menucore.qc // Mod Menu shop
 
 fight.qc
 ai.qc
@@ -21,15 +23,15 @@ botai.qc // Mod TMBot
 botai2.qc // Mod TMBot
 bot.qc
 
-jump.qc
-wizmark.qc
-light.qc
-shocking.qc
-burning.qc
-colors.qc
-armor.qc
-pforce.qc
-magicm.qc
+qwiz/jump.qc // Mod Qwiz
+qwiz/wizmark.qc // Mod Qwiz
+qwiz/light.qc // Mod Qwiz
+qwiz/shocking.qc // Mod Qwiz
+qwiz/burning.qc // Mod Qwiz
+qwiz/colors.qc // Mod Qwiz
+qwiz/armor.qc // Mod Qwiz
+qwiz/pforce.qc  // Mod Qwiz
+qwiz/magicm.qc // Mod Qwiz
 
 hook.qc // Mod Hook
 

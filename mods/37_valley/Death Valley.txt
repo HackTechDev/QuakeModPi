@@ -1,0 +1,27 @@
+		Death Valley
+		A Quake Minimod by MauveBib
+
+		This is my attempt to come up with a new idea for quake: an Easter Egg Secret Game
+
+		The idea is that this game could be plugged in to any mod, and when activated via an
+		impulse it takes the player to a secret game, totally text based.
+
+		If you want to use it in your mod, mail me for the sourse 
+		
+
+		Controls:
+
+		Impulse 100 (Bound to Q):	Start a game of Death Valley
+		Impulse 101 (Bound to O):	Move ship left
+		Impulse 102 (Bound to P):	Move ship right
+
+		The game is viewed from an overhead perspective of a ship flying down a valley... of death!
+
+		The ship is moving constantly downwards, and it is your job to avoid the evil walls of doom!
+
+		The ship gradually accellerates as the game goes on
+		
+		That's it really. Oh, and your score is printed when you die
+
+		- MauveBib
+		  skinski@email.com

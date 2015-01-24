@@ -3,11 +3,13 @@ outputfile: ../progs.dat
 compiling defs.qc
 compiling bot.h
 compiling subs.qc
-compiling paqman.qc
-compiling menudefs.qc
-compiling menusubs.qc
-compiling menumods.qc
-compiling menucore.qc
+compiling paqman/paqman.qc
+compiling tetris/tetris.qc
+compiling valley/valley.qc
+compiling menushop/menudefs.qc
+compiling menushop/menusubs.qc
+compiling menushop/menumods.qc
+compiling menushop/menucore.qc
 compiling fight.qc
 compiling ai.qc
 compiling combat.qc
@@ -17,34 +19,34 @@ compiling impulse2.qc
 compiling botai.qc
 compiling botai2.qc
 compiling bot.qc
-compiling jump.qc
-compiling wizmark.qc
-compiling light.qc
+compiling qwiz/jump.qc
+compiling qwiz/wizmark.qc
+compiling qwiz/light.qc
 in function LightC (line 104),
-light.qc:115: warning: W_FireLight: Too few parameters
-light.qc:84:    W_FireLight  is defined here
-compiling shocking.qc
+qwiz/light.qc:115: warning: W_FireLight: Too few parameters
+qwiz/light.qc:84:    W_FireLight  is defined here
+compiling qwiz/shocking.qc
 in function PlayerTouch (line 18),
-shocking.qc:22: warning: Result of comparison is constant
+qwiz/shocking.qc:22: warning: Result of comparison is constant
 in function ShockingC (line 47),
-shocking.qc:49: warning: Assignment to constant Kick_em
-shocking.qc:12:    Kick_em  is defined here
-compiling burning.qc
+qwiz/shocking.qc:49: warning: Assignment to constant Kick_em
+qwiz/shocking.qc:12:    Kick_em  is defined here
+compiling qwiz/burning.qc
 in function BurningC (line 109),
-burning.qc:120: warning: burning_shot: Too few parameters
-burning.qc:81:    burning_shot  is defined here
-compiling colors.qc
+qwiz/burning.qc:120: warning: burning_shot: Too few parameters
+qwiz/burning.qc:81:    burning_shot  is defined here
+compiling qwiz/colors.qc
 in function ColorsC (line 86),
-colors.qc:97: warning: W_FireColors: Too few parameters
-colors.qc:65:    W_FireColors  is defined here
-compiling armor.qc
+qwiz/colors.qc:97: warning: W_FireColors: Too few parameters
+qwiz/colors.qc:65:    W_FireColors  is defined here
+compiling qwiz/armor.qc
 in function castarmor (line 15),
-armor.qc:16: warning: Local "self" defined with name of a global
-compiling pforce.qc
-compiling magicm.qc
+qwiz/armor.qc:16: warning: Local "self" defined with name of a global
+compiling qwiz/pforce.qc
+compiling qwiz/magicm.qc
 in function MagicmC (line 211),
-magicm.qc:223: warning: W_FireMagicm: Too few parameters
-magicm.qc:191:    W_FireMagicm  is defined here
+qwiz/magicm.qc:223: warning: W_FireMagicm: Too few parameters
+qwiz/magicm.qc:191:    W_FireMagicm  is defined here
 compiling hook.qc
 compiling weapons.qc
 compiling world.qc
@@ -75,44 +77,45 @@ compiling oldone.qc
 Recognised progs as NetQuake server gamecode
 Progs should run on any Quake executor
 at global scope,
-paqman.qc:1406: warning: tempx  no references
-paqman.qc:1406: warning: tempy  no references
-paqman.qc:1407: warning: ent  no references
-paqman.qc:1408: warning: vec  no references
+paqman/paqman.qc:1406: warning: tempx  no references
+paqman/paqman.qc:1406: warning: tempy  no references
+paqman/paqman.qc:1407: warning: ent  no references
+paqman/paqman.qc:1408: warning: vec  no references
+valley/valley.qc:46: warning: r  no references
 botai.qc:447: warning: delta  no references
 botai.qc:448: warning: axis  no references
 botai.qc:449: warning: direct  no references
 botai.qc:449: warning: ang_rint  no references
 botai.qc:449: warning: ang_floor  no references
 botai.qc:449: warning: ang_ceil  no references
-light.qc:8: warning: rand  no references
-light.qc:87: warning: old  no references
-burning.qc:18: warning: rand  no references
-colors.qc:68: warning: old  no references
-magicm.qc:154: warning: rand  no references
-magicm.qc:194: warning: old  no references
+qwiz/light.qc:8: warning: rand  no references
+qwiz/light.qc:87: warning: old  no references
+qwiz/burning.qc:18: warning: rand  no references
+qwiz/colors.qc:68: warning: old  no references
+qwiz/magicm.qc:154: warning: rand  no references
+qwiz/magicm.qc:194: warning: old  no references
 triggers.qc:239: warning: junk  no references
 bot_ext.qc:17: warning: junk  no references
-108356 strofs (of 1000000)
- 31037 numstatements (of 524288)
-  2365 numfunctions (of 16384)
-  5637 numglobaldefs (of 32768)
-   257 numfielddefs (233 unique) (of 2048)
-  5586 numpr_globals (of 65536)
+111260 strofs (of 1000000)
+ 32496 numstatements (of 524288)
+  2399 numfunctions (of 16384)
+  5865 numglobaldefs (of 32768)
+   300 numfielddefs (274 unique) (of 2048)
+  5813 numpr_globals (of 65536)
 Writing ../progs.dat
-511476 TOTAL SIZE
+530352 TOTAL SIZE
 Writing ../progs.lno
 228 unique precache_sounds
  97 unique precache_models
 104 unique precache_files
 Compile Complete
 
-optres_shortenifnots 133
-optres_overlaptemps 11611
-optres_constantarithmatic 21
-optres_nonvec_parms 5500
-optres_assignments 646
-optres_unreferenced 34
-optres_dupconstdefs 155
-numtemps 169
-25 warnings
+optres_shortenifnots 139
+optres_overlaptemps 12191
+optres_constantarithmatic 23
+optres_nonvec_parms 5760
+optres_assignments 723
+optres_unreferenced 35
+optres_dupconstdefs 170
+numtemps 172
+26 warnings

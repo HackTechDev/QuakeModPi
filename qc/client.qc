@@ -995,6 +995,11 @@ void() PlayerPreThink =
         return;
     // Mod end
 
+    // Mod begin : Tetris
+    if (TetrisPreFrame())
+        return;
+    // Mod end
+
 	if (intermission_running)
 	{
 		IntermissionThink ();	// otherwise a button could be missed between
@@ -1295,6 +1300,12 @@ void() PlayerPostThink =
     if (Paqman_PostFrame()) 
         return;
     // Mod end
+
+    // Mod begin : Tetris
+    if (TetrisPostFrame()) 
+        return;
+    // Mod end
+
 
 	if (self.view_ofs == '0 0 0')
 		return;		// intermission or finale

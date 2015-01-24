@@ -1250,6 +1250,14 @@ void() ImpulseCommands =
     Paqman_Stuff();
     // Mod end
 
+    // Mod begin : Valley
+    Valley_Stuff();
+    // Mod end
+
+    // Mod begin : Tetris
+    TetrisImpulses();
+    // Mod end
+
     // Mod begin : Qwiz
     if (self.impulse == 110)
         JumpC();
@@ -1346,9 +1354,6 @@ void() ImpulseCommands =
         CreditCheat();
     }
     // Mod end
-
-
-		
 
 	if (self.impulse == 255)
 		QuadCheat ();
