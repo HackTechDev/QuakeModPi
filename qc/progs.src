@@ -34,6 +34,7 @@ qwiz/pforce.qc  // Mod Qwiz
 qwiz/magicm.qc // Mod Qwiz
 
 hook.qc // Mod Hook
+menu/menu.qc // Mod Menu
 
 weapons.qc
 world.qc
@@ -65,4 +66,4 @@ shalrath.qc		// registered
 enforcer.qc		// registered
 oldone.qc		// registered
 
-compass/compass.qc
+compass/compass.qc // Mod Compass

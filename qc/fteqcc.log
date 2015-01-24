@@ -48,6 +48,7 @@ in function MagicmC (line 211),
 qwiz/magicm.qc:223: warning: W_FireMagicm: Too few parameters
 qwiz/magicm.qc:191:    W_FireMagicm  is defined here
 compiling hook.qc
+compiling menu/menu.qc
 compiling weapons.qc
 compiling world.qc
 compiling client.qc
@@ -98,14 +99,14 @@ qwiz/magicm.qc:154: warning: rand  no references
 qwiz/magicm.qc:194: warning: old  no references
 triggers.qc:239: warning: junk  no references
 bot_ext.qc:17: warning: junk  no references
-111940 strofs (of 1000000)
- 32689 numstatements (of 524288)
-  2402 numfunctions (of 16384)
-  5913 numglobaldefs (of 32768)
-   300 numfielddefs (274 unique) (of 2048)
-  5860 numpr_globals (of 65536)
+112200 strofs (of 1000000)
+ 32752 numstatements (of 524288)
+  2405 numfunctions (of 16384)
+  5926 numglobaldefs (of 32768)
+   303 numfielddefs (277 unique) (of 2048)
+  5870 numpr_globals (of 65536)
 Writing ../progs.dat
-533256 TOTAL SIZE
+534296 TOTAL SIZE
 Writing ../progs.lno
 228 unique precache_sounds
  97 unique precache_models
@@ -113,11 +114,11 @@ Writing ../progs.lno
 Compile Complete
 
 optres_shortenifnots 139
-optres_overlaptemps 12281
+optres_overlaptemps 12307
 optres_constantarithmatic 23
-optres_nonvec_parms 5782
+optres_nonvec_parms 5790
 optres_assignments 732
 optres_unreferenced 35
-optres_dupconstdefs 170
+optres_dupconstdefs 173
 numtemps 172
 26 warnings

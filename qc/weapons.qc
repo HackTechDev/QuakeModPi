@@ -1239,6 +1239,16 @@ void() QuadCheat =
 	dprint ("quad cheat\n");
 };
 
+// Mod begin : Menu
+void() SecondImpulse =
+{
+    if (self.impulse == 1)
+        ChangeClass(1); // call class change commands
+    if (self.impulse == 2)
+        ChangeClass(2); // call class change commands
+};
+// Mod end
+
 /*
 ============
 ImpulseCommands
@@ -1248,133 +1258,137 @@ ImpulseCommands
 void() ImpulseCommands =
 {
 
-    // Mod begin : TMBot
-    // Check bot impulse commands
-	CheckSecondaryImpulseCommands();
-    // Mod end
+    if (self.class != c_none) { // If they have a class go regularly 
+        // Mod begin : TMBot
+        // Check bot impulse commands
+        CheckSecondaryImpulseCommands();
+        // Mod end
 
-    // Mod begin : Paqman
-    Paqman_Stuff();
-    // Mod end
+        // Mod begin : Paqman
+        Paqman_Stuff();
+        // Mod end
 
-    // Mod begin : Valley
-    Valley_Stuff();
-    // Mod end
+        // Mod begin : Valley
+        Valley_Stuff();
+        // Mod end
 
-    // Mod begin : Tetris
-    TetrisImpulses();
-    // Mod end
+        // Mod begin : Tetris
+        TetrisImpulses();
+        // Mod end
 
-    // Mod begin : Qwiz
-    if (self.impulse == 110)
-        JumpC();
-    if (self.impulse == 111)
-        WizmarkC();
-    if (self.impulse == 112)
-        LightC();
-    if (self.impulse == 113)
-        ShockingC();
-    if (self.impulse == 114)
-        BurningC();
-    if (self.impulse == 115)
-        ColorsC();
-    if (self.impulse == 116)
-        ArmorC();
-    if (self.impulse == 117)
-        PforceC();
-    if (self.impulse == 118)
-        MagicmC();
-    // Mod end
+        // Mod begin : Qwiz
+        if (self.impulse == 110)
+            JumpC();
+        if (self.impulse == 111)
+            WizmarkC();
+        if (self.impulse == 112)
+            LightC();
+        if (self.impulse == 113)
+            ShockingC();
+        if (self.impulse == 114)
+            BurningC();
+        if (self.impulse == 115)
+            ColorsC();
+        if (self.impulse == 116)
+            ArmorC();
+        if (self.impulse == 117)
+            PforceC();
+        if (self.impulse == 118)
+            MagicmC();
+        // Mod end
 
-	if (self.impulse >= 1 && self.impulse <= 8)
-		W_ChangeWeapon ();
+        if (self.impulse >= 1 && self.impulse <= 8)
+            W_ChangeWeapon ();
 
-	if (self.impulse == 9)
-		CheatCommand ();
-	if (self.impulse == 10)
-		CycleWeaponCommand ();
-	if (self.impulse == 11)
-		ServerflagsCommand ();
-	if (self.impulse == 12)
-		CycleWeaponReverseCommand ();
+        if (self.impulse == 9)
+            CheatCommand ();
+        if (self.impulse == 10)
+            CycleWeaponCommand ();
+        if (self.impulse == 11)
+            ServerflagsCommand ();
+        if (self.impulse == 12)
+            CycleWeaponReverseCommand ();
 
-    // Mod begin : Fly
-       if (self.impulse == 13) {
-          if (self.flags & FL_FLY) {
-             bprint ("Fly mode off\n");
-             self.flags = self.flags - FL_FLY;
-          } else {
-             bprint ("Fly mode on\n");
-             self.flags = self.flags + FL_FLY;
-          }
-       }
+        // Mod begin : Fly
+           if (self.impulse == 13) {
+              if (self.flags & FL_FLY) {
+                 bprint ("Fly mode off\n");
+                 self.flags = self.flags - FL_FLY;
+              } else {
+                 bprint ("Fly mode on\n");
+                 self.flags = self.flags + FL_FLY;
+              }
+           }
 
-    // Mod end
+        // Mod end
 
-    // Mod begin : Chasecam
-	if (self.impulse == 15)
-        	CCam ();
-    // Mod end
+        // Mod begin : Chasecam
+        if (self.impulse == 15)
+                CCam ();
+        // Mod end
 
-    // Mod begin : Multiskin
-	if ((self.impulse == 200) || (self.impulse == 201))
-	{
-		if (self.impulse == 200)
-		{
-		self.skin = self.skin + 1;
-		if (self.skin == 19) self.skin = 0;
-		} else
-		if (self.impulse == 201)
-		{
-		self.skin = self.skin - 1;
-		if (self.skin == -1) self.skin = 18;
-		}
-		if (self.skin == 0) centerprint(self, "SKIN: Quake himself (1)"); else
-		if (self.skin == 1) centerprint(self, "SKIN: Duke Nukem 3d (2)"); else
-		if (self.skin == 2) centerprint(self, "SKIN: Mr. Toad (3)"); else
-		if (self.skin == 3) centerprint(self, "SKIN: the Stormtrooper (4)"); else
-		if (self.skin == 4) centerprint(self, "SKIN: Max (5)"); else
-		if (self.skin == 5) centerprint(self, "SKIN: the Terminator (6)"); else
-		if (self.skin == 6) centerprint(self, "SKIN: Judge Dredd (7)"); else
-		if (self.skin == 7) centerprint(self, "SKIN: Camouflaged soldier (8)"); else
-		if (self.skin == 8) centerprint(self, "SKIN: Captain Picard (9)"); else
-		if (self.skin == 9) centerprint(self, "SKIN: the Wizzard (10)"); else
-		if (self.skin == 10) centerprint(self,"SKIN: the Predator (11)"); else
-		if (self.skin == 11) centerprint(self,"SKIN: Skeleton (12)"); else
-		if (self.skin == 12) centerprint(self,"SKIN: Wan-Fu (13)"); else
-		if (self.skin == 13) centerprint(self,"SKIN: Henry Rollins (14)"); else
-		if (self.skin == 14) centerprint(self,"SKIN: He-Man (15)"); else
-		if (self.skin == 15) centerprint(self,"SKIN: Boba (16)"); else
-		if (self.skin == 16) centerprint(self,"SKIN: Superman (17)"); else
-		if (self.skin == 17) centerprint(self,"SKIN: NYPD Cop (18)"); else
-		if (self.skin == 18) centerprint(self,"SKIN: Red/Yellow women dude (19)");
-	}
-    // Mod end
+        // Mod begin : Multiskin
+        if ((self.impulse == 200) || (self.impulse == 201))
+        {
+            if (self.impulse == 200)
+            {
+            self.skin = self.skin + 1;
+            if (self.skin == 19) self.skin = 0;
+            } else
+            if (self.impulse == 201)
+            {
+            self.skin = self.skin - 1;
+            if (self.skin == -1) self.skin = 18;
+            }
+            if (self.skin == 0) centerprint(self, "SKIN: Quake himself (1)"); else
+            if (self.skin == 1) centerprint(self, "SKIN: Duke Nukem 3d (2)"); else
+            if (self.skin == 2) centerprint(self, "SKIN: Mr. Toad (3)"); else
+            if (self.skin == 3) centerprint(self, "SKIN: the Stormtrooper (4)"); else
+            if (self.skin == 4) centerprint(self, "SKIN: Max (5)"); else
+            if (self.skin == 5) centerprint(self, "SKIN: the Terminator (6)"); else
+            if (self.skin == 6) centerprint(self, "SKIN: Judge Dredd (7)"); else
+            if (self.skin == 7) centerprint(self, "SKIN: Camouflaged soldier (8)"); else
+            if (self.skin == 8) centerprint(self, "SKIN: Captain Picard (9)"); else
+            if (self.skin == 9) centerprint(self, "SKIN: the Wizzard (10)"); else
+            if (self.skin == 10) centerprint(self,"SKIN: the Predator (11)"); else
+            if (self.skin == 11) centerprint(self,"SKIN: Skeleton (12)"); else
+            if (self.skin == 12) centerprint(self,"SKIN: Wan-Fu (13)"); else
+            if (self.skin == 13) centerprint(self,"SKIN: Henry Rollins (14)"); else
+            if (self.skin == 14) centerprint(self,"SKIN: He-Man (15)"); else
+            if (self.skin == 15) centerprint(self,"SKIN: Boba (16)"); else
+            if (self.skin == 16) centerprint(self,"SKIN: Superman (17)"); else
+            if (self.skin == 17) centerprint(self,"SKIN: NYPD Cop (18)"); else
+            if (self.skin == 18) centerprint(self,"SKIN: Red/Yellow women dude (19)");
+        }
+        // Mod end
 
-    // Mod begin : Radar
-    if (self.impulse == 80)
-          CallRadar();
-    // Mod end
+        // Mod begin : Radar
+        if (self.impulse == 80)
+              CallRadar();
+        // Mod end
 
-    // Mod begin : Menu shop
-    if (self.impulse == 66) {
-        centerprint(self,"Menu");
-        MenuCommand();
+        // Mod begin : Menu shop
+        if (self.impulse == 66) {
+            centerprint(self,"Menu");
+            MenuCommand();
+        }
+        if (self.impulse == 67) {
+            CreditCheat();
+        }
+        // Mod end
+
+        // Mod begin : Compass
+        if (self.impulse == 160)
+            DisplayCompass();
+        // Mod end
+
+        if (self.impulse == 255)
+            QuadCheat ();
+
+        self.impulse = 0;
+    } else { // If they don't have a class do this
+        SecondImpulse(); // call special impulse commands below
     }
-    if (self.impulse == 67) {
-        CreditCheat();
-    }
-    // Mod end
-
-    // Mod begin : Compass
-    if (self.impulse == 160)
-        DisplayCompass();
-    // Mod end
-
-	if (self.impulse == 255)
-		QuadCheat ();
-
-	self.impulse = 0;
 };
 
 /*

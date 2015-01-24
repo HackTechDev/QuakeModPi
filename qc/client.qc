@@ -553,6 +553,10 @@ void() PutClientInServer =
 	self.effects = 0;
 	self.invincible_time = 0;
 
+    // Mod begin : Menu
+    self.class = c_none; //This sets your class to nothing used later
+    // Mod end
+
 	DecodeLevelParms ();
 
 	W_SetCurrentAmmo ();
@@ -1338,8 +1342,6 @@ void() PlayerPostThink =
          self.velocity_z = 0;
       }
    }
-
-
     // Mod end
 
     // Mod begin : Hook
@@ -1370,6 +1372,10 @@ void() PlayerPostThink =
 		self.jump_flag = self.velocity_z;
 
 	CheckPowerups ();
+    
+    // Mod begin : Menu
+    GetClass();
+    // Mod end
 };
 
 
