@@ -11,6 +11,8 @@ exec autoexec.cfg
 // run hook mod configuration
 exec hook.cfg
 
+exec compass.cfg
+
 //
 // stuff command line statements
 //

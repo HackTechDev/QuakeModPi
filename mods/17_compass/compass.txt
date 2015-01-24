@@ -1,0 +1,95 @@
+Title    : Display direction player is facing
+Filename : compass.zip
+Version  : 1.00
+Date     : 9/19/96
+Author(s): Alon Albert (YoGrE)
+Email    : al@merc-int.com
+
+Credits  : ID Software
+
+Type of Mod
+-----------
+Quake C  : yes
+Sound    : no
+MDL      : no
+
+Format of Quake C
+-----------------
+unified diff  : no
+context diff  : no
+.qc files     : yes
+progs.dat     : yes
+cfg file      : yes
+
+Description of the Modification
+-------------------------------
+This mod will display the direction you are facing whenever you
+hits the TAB key. (don't worry, TAB still shows scores).
+
+How to use Modification
+-------------------------------
+Just hit TAB.
+
+How to Install the Modification
+-------------------------------
+
+Put progs.dat in a directory called compass under your Quake dir.
+Put compass.cfg in the same place.
+Start Quake using the "-game compass +exec compass.cfg" options.
+
+Technical Details
+-----------------
+This is a simple little patch that gives the player a compass.
+Unfortunatly, this compass is pretty primitive and will only show
+the 8 major directions (North, Northwest, West etc...).
+
+It determines the direction by looking at the self.v_angle 
+variable. Not knowing any better, I assumed 0 means North so that 
+is what I use.
+
+Bugs:
+	1. None that I know. Please report any to
+	   al@merc-int.com
+
+Future Enhancements:
+
+	1. I would really like to have a graphical compass 
+           displayed but I have no idea on how to implement this.
+           I thought of replacing the players face display with
+           a compass but I don't think this can be done from 
+           QuakeC. Another aproach might be to display a compass
+           MDL in front of the players face but I have neither the
+           knowhow, nor the time to explore this possibility. You
+	   are welcome to give it a try yourself.
+
+Author Information
+------------------
+
+This is my first Quake C mod. I plan to do some more as time allows.
+If you use this code as a basis for another mod, or if you have some
+ideas for improvements or other mods, please let me know, I would
+be very interested.
+
+E-mail me at: al@merc-int.com
+
+Copyright and Distribution Permissions
+--------------------------------------
+
+You may distribute this Quake modification in any electronic
+format as long as this description file remains intact and unmodified
+and is retained along with all of the files in the archive.
+This mod may be included in any "collection mods", which take
+several mods and combine them, as long as this collection is
+freely distributed, the readme files are unchanged excepting
+for renaming (or added completely to the collections readme
+file), and all modified quake-c is unchanged including modification
+indicator tags, "rd mod start".
+Profits cannot be made or fees excised upon the user for this
+Quake modification without express consent of the authors. 
+All rights reserved by the authors.
+
+Availability
+------------
+
+Wherever QuakeC mods go when they are born. 
+  (probably ftp.cdrom.com/pub/quake/quakec/misc)
