@@ -45,7 +45,7 @@ buttons.qc
 triggers.qc
 plats.qc
 misc.qc
-
+radar/radar.qc // Mod Radar
 bot_ext.qc // Mod TMBot
 
 ogre.qc

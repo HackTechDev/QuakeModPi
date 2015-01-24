@@ -58,6 +58,7 @@ compiling buttons.qc
 compiling triggers.qc
 compiling plats.qc
 compiling misc.qc
+compiling radar/radar.qc
 compiling bot_ext.qc
 compiling ogre.qc
 compiling demon.qc
@@ -96,14 +97,14 @@ qwiz/magicm.qc:154: warning: rand  no references
 qwiz/magicm.qc:194: warning: old  no references
 triggers.qc:239: warning: junk  no references
 bot_ext.qc:17: warning: junk  no references
-111260 strofs (of 1000000)
- 32496 numstatements (of 524288)
-  2399 numfunctions (of 16384)
-  5865 numglobaldefs (of 32768)
+111704 strofs (of 1000000)
+ 32631 numstatements (of 524288)
+  2401 numfunctions (of 16384)
+  5898 numglobaldefs (of 32768)
    300 numfielddefs (274 unique) (of 2048)
-  5813 numpr_globals (of 65536)
+  5845 numpr_globals (of 65536)
 Writing ../progs.dat
-530352 TOTAL SIZE
+532340 TOTAL SIZE
 Writing ../progs.lno
 228 unique precache_sounds
  97 unique precache_models
@@ -111,10 +112,10 @@ Writing ../progs.lno
 Compile Complete
 
 optres_shortenifnots 139
-optres_overlaptemps 12191
+optres_overlaptemps 12257
 optres_constantarithmatic 23
-optres_nonvec_parms 5760
-optres_assignments 723
+optres_nonvec_parms 5776
+optres_assignments 731
 optres_unreferenced 35
 optres_dupconstdefs 170
 numtemps 172

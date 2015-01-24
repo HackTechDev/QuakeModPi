@@ -1,0 +1,75 @@
+Title    : Radar
+Filename : Radar0_5.zip
+Version  : 0.5
+Date     : ?
+Author   : Nick Wilson aka NiCkMaN
+Email    : nick-man@indra.com
+
+
+Type of Mod
+-----------
+Quake C  : yes
+Sound    : not yet, hope to add a cool sonar ping (anyone got it in .wav?)
+MDL      : no
+
+Source Included :  Always
+
+
+Description of the Modification
+-------------------------------
+
+The idea is simple.  Using impulse 13, the radar will search for enemies that
+you can't see.  That includes invisible players, enemies behind walls, or out
+of your line of sight.  Uses 5 cells per use.
+
+How to Install the Modification
+-------------------------------
+
+Compile the included source with all the default qcc files.
+Move the .dat file to a subdirectory of quake called radar
+or something.  Run quake with the parameter -game radar.  Remember to bind
+a key like r to impulse 13.
+
+Technical Details
+-----------------
+
+All the new code is in radar.qc, there are only slight modifications to
+weapons.qc and defs.qc.  They are marked with comments telling where the
+modifications are.
+Changes:
+Fixed finding worldspawn bug...
+Adding next version:
+Pingtime and pingowner to prevent multiple finding of same thing...
+
+Author Information
+------------------
+
+This is one of many mods I've made.  All my mods can be found at:
+http://net.indra.com/~nick-man/quake.html
+
+I'm working on a freeze ray, a wave beam, torpedos, harpoons, and a mod
+for the nailgun to add many features (including ricochet and the ability
+to pick up spent nails).  My hologram mod is coming along nicely.  Look for
+it soon.
+
+
+Copyright and Distribution Permissions
+--------------------------------------
+
+Authors MAY use these modifications as a basis for other
+publically available work.
+
+You may distribute this Quake modification in any electronic
+format as long as this description file remains intact and unmodified
+and is retained along with all of the files in the archive.
+
+
+Availability
+------------
+
+This file is available from my Quake page:
+http://net.indra.com/~nick-man/quake.html
+
+It can also be found at the big Quake-c sites:
+ftp://ftp.cdrom.com/pub/idgames2/quakec
+ftp://ftp.stomped.com/

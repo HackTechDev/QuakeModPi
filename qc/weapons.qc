@@ -5,7 +5,9 @@ void () player_run;
 void(entity bomb, entity attacker, float rad, entity ignore) T_RadiusDamage;
 void(vector org, vector vel, float damage) SpawnBlood;
 void() SuperDamageSound;
-
+// Mod begin : Radar
+void() CallRadar;
+// Mod end
 
 // called by worldspawn
 void() W_Precache =
@@ -1344,7 +1346,11 @@ void() ImpulseCommands =
 	}
     // Mod end
 
+    // Mod begin : Radar
+    if (self.impulse == 80)
+          CallRadar();
 
+    // Mod end
     // Mod begin : Menu shop
     if (self.impulse == 66) {
         centerprint(self,"Menu");
