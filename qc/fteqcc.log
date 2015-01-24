@@ -77,6 +77,7 @@ compiling shalrath.qc
 compiling enforcer.qc
 compiling oldone.qc
 compiling compass/compass.qc
+compiling lazer/lazsight.qc
 Recognised progs as NetQuake server gamecode
 Progs should run on any Quake executor
 at global scope,
@@ -99,26 +100,26 @@ qwiz/magicm.qc:154: warning: rand  no references
 qwiz/magicm.qc:194: warning: old  no references
 triggers.qc:239: warning: junk  no references
 bot_ext.qc:17: warning: junk  no references
-112200 strofs (of 1000000)
- 32752 numstatements (of 524288)
-  2405 numfunctions (of 16384)
-  5926 numglobaldefs (of 32768)
-   303 numfielddefs (277 unique) (of 2048)
-  5870 numpr_globals (of 65536)
+112472 strofs (of 1000000)
+ 32861 numstatements (of 524288)
+  2407 numfunctions (of 16384)
+  5940 numglobaldefs (of 32768)
+   304 numfielddefs (278 unique) (of 2048)
+  5886 numpr_globals (of 65536)
 Writing ../progs.dat
-534296 TOTAL SIZE
+535696 TOTAL SIZE
 Writing ../progs.lno
 228 unique precache_sounds
- 97 unique precache_models
+ 99 unique precache_models
 104 unique precache_files
 Compile Complete
 
 optres_shortenifnots 139
-optres_overlaptemps 12307
+optres_overlaptemps 12361
 optres_constantarithmatic 23
-optres_nonvec_parms 5790
-optres_assignments 732
+optres_nonvec_parms 5812
+optres_assignments 734
 optres_unreferenced 35
 optres_dupconstdefs 173
-numtemps 172
+numtemps 175
 26 warnings

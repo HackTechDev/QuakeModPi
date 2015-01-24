@@ -6,6 +6,10 @@ void(entity bomb, entity attacker, float rad, entity ignore) T_RadiusDamage;
 void(vector org, vector vel, float damage) SpawnBlood;
 void() SuperDamageSound;
 
+// Mod begin : lazer
+void () SDR_SightMake;
+// Mod end
+
 // Mod begin : Radar
 void() CallRadar;
 // Mod end
@@ -1259,6 +1263,10 @@ void() ImpulseCommands =
 {
 
     if (self.class != c_none) { // If they have a class go regularly 
+        // Mod begin : Lazer
+        local entity e;
+        // Mod end
+
         // Mod begin : TMBot
         // Check bot impulse commands
         CheckSecondaryImpulseCommands();
@@ -1326,6 +1334,35 @@ void() ImpulseCommands =
         if (self.impulse == 15)
                 CCam ();
         // Mod end
+
+        // Mod begin : Lazer
+        if (self.impulse == 45)
+        {
+            self.sight_out = 1 - self.sight_out; // toggle laser sight
+
+            if (self.sight_out)
+            {
+                sprint (self, "Laser sight activated\n");
+                SDR_SightMake();
+            }
+            else
+            {
+                // Find the sight entity and remove it
+                    e = find( world, classname, "laser_sight");
+                while (e)
+                {
+                    if (e.classname == "laser_sight" && e.owner == self)
+                    {
+                        sprint (self, "Laser sight deactivated\n");
+                        remove(e);
+                        self.impulse = 0;
+                        return;
+                    }
+                    e = nextent(e);
+                }
+            }
+        }
+        // Mod end 
 
         // Mod begin : Multiskin
         if ((self.impulse == 200) || (self.impulse == 201))

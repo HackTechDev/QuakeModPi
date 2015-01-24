@@ -477,6 +477,10 @@ float	AS_MISSILE		= 4;
 
 .float		axhitme;
 
+// Mod begin : Lazer
+.float      sight_out;  // TRUE = if Laser Sight is activated
+// Mod end
+
 .float		show_hostile;	// set to time+0.2 whenever a client fires a
 							// weapon or takes damage.  Used to alert
 							// monsters that otherwise would let the player go

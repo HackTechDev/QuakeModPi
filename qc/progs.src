@@ -67,3 +67,5 @@ enforcer.qc		// registered
 oldone.qc		// registered
 
 compass/compass.qc // Mod Compass
+
+lazer/lazsight.qc // Mod Lazer

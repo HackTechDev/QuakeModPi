@@ -1,0 +1,65 @@
+====================================================
+Laser Sight 1.0
+
+By Scott Ramsay
+
+Email:                  sramsay@smart.net
+
+Quake C Code:           Scott Ramsay
+
+Laser sight MDL's:      Me again
+
+====================================================
+
+This much needed Quake patch allows a laser sight mounted
+on all weapons.  It will paint a red cross on the intended
+firing direction.  Watch how easy it is to pluck those DeathMatch
+players from 100 yards.
+
+When the red cross is moved over a player, it will turn to a blue
+circle.  That's when you FIRE!
+
+
+Impulse 45 toggles the Laser sight on/off.
+
+To use:
+=======
+
+1) Make a sub-directory off of your Quake directory called LAZSIGHT
+
+2) Copy the PAK0.PAK file from the archive into LAZSIGHT
+
+3) Play Quake by typing:   QUAKE -GAME LAZSIGHT
+
+4) Goto to the console and type: BIND Q "impulse 45"
+   or subsitute Q with your favorite key.
+
+
+
+Notes:
+======
+
+The source and mdl files are included so you can add this patch to our
+other QC patches.  My source additions/changes are located in the
+new file LAZSIGHT.QC and are marked in other files between the commented areas:
+
+      /** PATCH_BEGIN **********
+
+      /** PATCH_END ************
+
+
+Changed files:
+    WEAPONS.QC -    Added the impulse 45 toggle
+    WORLD.QC -      precache commands to load my *.mdl files
+    DEFS.QC -       Added player variable  .float sight_out
+
+New files:
+    LAZSIGHT.QC -   Misc laser sight code
+
+
+Hidden feature. The laser not only turns blue on enemies and other
+DM'ers. It also turns blue on secret walls, switches, and exploding
+objects (Those square barrels)
+
+
+-Scott

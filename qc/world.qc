@@ -292,6 +292,12 @@ void() worldspawn =
 	precache_model ("progs/zom_gib.mdl");
 
 	precache_model ("progs/v_light.mdl");
+    
+    // Mod begin : Lazer
+    // pre-cache Laser sight models
+    precache_model ("progs/cross1.mdl");
+    precache_model ("progs/cross2.mdl");
+    // Mod end
 
     // Mod begin : TMBot
     // precaches for the bot
