@@ -59,4 +59,31 @@ void () CCam;
         W_SetCurrentAmmo ();
      }
   };
+
+void (float amount) CCamUp =
+{
+        self.camview_x = self.camview_x + amount;
+        if (self.camview_x < -16)
+                self.camview_x = -16;
+        if (self.camview_x > 16)
+                self.camview_x = 16;
+};
+void (float amount) CCamRight =
+{
+        local string aa;
+        self.camview_y = self.camview_y + amount;
+        if (self.camview_y < -8)
+                self.camview_y = -8;
+        if (self.camview_y > 8)
+                self.camview_y = 8;
+};
+void (float amount) CCamForward =
+{
+        self.camview_z = self.camview_z + amount;
+        if (self.camview_z > -48)
+                self.camview_z = -48;
+        if (self.camview_z < -72)
+                self.camview_z = -72;
+};
+
 // Mod end

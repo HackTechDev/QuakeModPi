@@ -769,6 +769,88 @@ PLAYER WEAPON USE
 ===============================================================================
 */
 
+// Mod begin : Zoom
+void() W_SetCurrentAmmo =
+{
+        player_run ();          // get out of any weapon firing states
+
+        self.items = self.items - ( self.items & (IT_SHELLS | IT_NAILS | IT_ROCKETS | IT_CELLS) );
+
+        self.weaponmodel = "";
+
+        if (self.weapon == IT_AXE)
+        {
+                self.currentammo = 0;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_axe.mdl";
+                self.weaponframe = 0;
+        }
+        else if (self.weapon == IT_SHOTGUN)
+        {
+                self.currentammo = self.ammo_shells;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_shot.mdl";
+                self.weaponframe = 0;
+                self.items = self.items | IT_SHELLS;
+        }
+        else if (self.weapon == IT_SUPER_SHOTGUN)
+        {
+                self.currentammo = self.ammo_shells;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_shot2.mdl";
+                self.weaponframe = 0;
+                self.items = self.items | IT_SHELLS;
+        }
+        else if (self.weapon == IT_NAILGUN)
+        {
+                self.currentammo = self.ammo_nails;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_nail.mdl";
+                self.weaponframe = 0;
+                self.items = self.items | IT_NAILS;
+        }
+        else if (self.weapon == IT_SUPER_NAILGUN)
+        {
+                self.currentammo = self.ammo_nails;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_nail2.mdl";
+                self.weaponframe = 0;
+                self.items = self.items | IT_NAILS;
+        }
+        else if (self.weapon == IT_GRENADE_LAUNCHER)
+        {
+                self.currentammo = self.ammo_rockets;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_rock.mdl";
+                self.weaponframe = 0;
+                self.items = self.items | IT_ROCKETS;
+        }
+        else if (self.weapon == IT_ROCKET_LAUNCHER)
+        {
+                self.currentammo = self.ammo_rockets;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_rock2.mdl";
+                self.weaponframe = 0;
+                self.items = self.items | IT_ROCKETS;
+        }
+        else if (self.weapon == IT_LIGHTNING)
+        {
+                self.currentammo = self.ammo_cells;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_light.mdl";
+                self.weaponframe = 0;
+                self.items = self.items | IT_CELLS;
+        }
+        else
+        {
+                self.currentammo = 0;
+                self.weaponmodel = "";
+                self.weaponframe = 0;
+        }
+};
+
+// Mod end
+/*
 void() W_SetCurrentAmmo =
 {
 	player_run ();		// get out of any weapon firing states
@@ -837,6 +919,8 @@ void() W_SetCurrentAmmo =
 		self.weaponframe = 0;
 	}
 };
+*/
+
 
 float() W_BestWeapon =
 {
@@ -1343,7 +1427,20 @@ void() ImpulseCommands =
         if (self.impulse == 15)
                 CCam ();
         // Mod end
-
+        // Mod begin : Zoom
+        if (self.impulse == 16)
+                CCamUp (2);
+        if (self.impulse == 17)
+                CCamRight (2);
+        if (self.impulse == 18)
+                CCamForward (2);
+        if (self.impulse == 19)
+                CCamUp (-2);
+        if (self.impulse == 20)
+                CCamRight (-2);
+        if (self.impulse == 21)
+                CCamForward (-2);
+        // Mod end
         // Mod begin : Lazer
         if (self.impulse == 45)
         {

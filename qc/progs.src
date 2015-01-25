@@ -20,7 +20,7 @@ experience/experience.qc // Mod Experience
 combat.qc
 items.qc
 flash/palfunc.qc // Mod Flash
-ccam.qc
+ccam/ccam.qc // Mod Chasecam
 impulse2.qc // Mod TMBot
 botai.qc // Mod TMBot
 botai2.qc // Mod TMBot

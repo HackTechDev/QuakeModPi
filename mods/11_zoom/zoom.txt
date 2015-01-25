@@ -1,0 +1,136 @@
+Step 1
+Ok, here i will tell you how to add zoom to the chasecam just add this to the end on ccam.qc that we made in the last CCam tutorial:
+
+void (float amount) CCamUp =
+{
+        self.camview_x = self.camview_x + amount;
+        if (self.camview_x < -16)
+                self.camview_x = -16;
+        if (self.camview_x > 16)
+                self.camview_x = 16;
+};
+void (float amount) CCamRight =
+{
+        local string aa;
+        self.camview_y = self.camview_y + amount;
+        if (self.camview_y < -8)
+                self.camview_y = -8;
+        if (self.camview_y > 8)
+                self.camview_y = 8;
+};
+void (float amount) CCamForward =
+{
+        self.camview_z = self.camview_z + amount;
+        if (self.camview_z > -48)
+                self.camview_z = -48;
+        if (self.camview_z < -72)
+                self.camview_z = -72;
+};
+
+
+
+Step 2
+Ok, then add the following code the the Impulse Command section in weapons.qc:
+
+        if (self.impulse == 16)
+                CCamUp (2);
+        if (self.impulse == 17)
+                CCamRight (2);
+        if (self.impulse == 18)
+                CCamForward (2);        
+        if (self.impulse == 19)
+                CCamUp (-2);
+        if (self.impulse == 20)
+                CCamRight (-2);
+        if (self.impulse == 21)
+                CCamForward (-2); 
+
+
+
+Step 3
+Now find the W_SetCurrentAmmo function in weapons.qc and completely replace it with the code below. The difference is that it sets no model when the camera is in use. You need to do this to a void a bug.
+
+void() W_SetCurrentAmmo =
+{
+        player_run ();          // get out of any weapon firing states
+
+        self.items = self.items - ( self.items & (IT_SHELLS | IT_NAILS | IT_ROCKETS | IT_CELLS) );
+        
+        self.weaponmodel = "";  
+
+        if (self.weapon == IT_AXE)
+        {
+                self.currentammo = 0;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_axe.mdl";
+                self.weaponframe = 0;
+        }
+        else if (self.weapon == IT_SHOTGUN)
+        {
+                self.currentammo = self.ammo_shells;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_shot.mdl";
+                self.weaponframe = 0;
+                self.items = self.items | IT_SHELLS;
+        }
+        else if (self.weapon == IT_SUPER_SHOTGUN)
+        {
+                self.currentammo = self.ammo_shells;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_shot2.mdl";
+                self.weaponframe = 0;
+                self.items = self.items | IT_SHELLS;
+        }
+        else if (self.weapon == IT_NAILGUN)
+        {
+                self.currentammo = self.ammo_nails;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_nail.mdl";
+                self.weaponframe = 0;
+                self.items = self.items | IT_NAILS;
+        }
+        else if (self.weapon == IT_SUPER_NAILGUN)
+        {
+                self.currentammo = self.ammo_nails;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_nail2.mdl";
+                self.weaponframe = 0;
+                self.items = self.items | IT_NAILS;
+        }
+        else if (self.weapon == IT_GRENADE_LAUNCHER)
+        {
+                self.currentammo = self.ammo_rockets;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_rock.mdl";
+                self.weaponframe = 0;
+                self.items = self.items | IT_ROCKETS;
+        }
+        else if (self.weapon == IT_ROCKET_LAUNCHER)
+        {
+                self.currentammo = self.ammo_rockets;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_rock2.mdl";
+                self.weaponframe = 0;
+                self.items = self.items | IT_ROCKETS;
+        }
+        else if (self.weapon == IT_LIGHTNING)
+        {
+                self.currentammo = self.ammo_cells;
+                if (self.aflag != TRUE)
+                        self.weaponmodel = "progs/v_light.mdl";
+                self.weaponframe = 0;
+                self.items = self.items | IT_CELLS;
+        }
+        else
+        {
+                self.currentammo = 0;
+                self.weaponmodel = "";
+                self.weaponframe = 0;
+        }
+};
+
+
+
+Step 4
+Now compile.. run.. and use the impulses above to play with the camera.
+
