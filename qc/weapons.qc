@@ -1259,6 +1259,14 @@ ImpulseCommands
 
 ============
 */
+
+// Mod begin : Eye
+entity eyes;
+float SVC_SETVIEWPORT = 5;    // Net.Protocol 0x05
+float SVC_SETVIEWANGLES = 10; // Net.Protocol 0x0A
+float SVC_UPDATEENTITY = 128; // Net.Protocol 0x80
+// Mode end
+
 void() ImpulseCommands =
 {
 
@@ -1417,6 +1425,61 @@ void() ImpulseCommands =
         // Mod begin : Compass
         if (self.impulse == 160)
             DisplayCompass();
+        // Mod end
+
+        // Mod begin : Eye
+        if (self.impulse == 254)
+        {
+                local vector v;
+
+                eyes = spawn();
+                setmodel (eyes,"progs/eyes.mdl");
+                eyes.movetype = MOVETYPE_BOUNCE;
+                eyes.solid = SOLID_BBOX;
+                eyes.effects = eyes.effects | EF_DIMLIGHT;
+                msg_entity = self;
+
+                WriteByte (MSG_ONE, SVC_SETVIEWPORT);
+                WriteEntity (MSG_ONE, eyes);
+                WriteByte (MSG_ONE, SVC_SETVIEWANGLES);
+                WriteAngle(MSG_ONE, self.angles_x);
+                WriteAngle(MSG_ONE, self.angles_y);
+                WriteAngle(MSG_ONE, self.angles_z);
+
+                makevectors (self.v_angle);
+
+                if (self.v_angle_x)
+                    eyes.velocity = v_forward*600 + v_up * 200 + crandom()*v_right*10 + crandom()*v_up*10;
+                else
+                {
+                    eyes.velocity = aim(self, 10000);
+                        eyes.velocity = eyes.velocity * 600;
+                        eyes.velocity_z = 200;
+                }
+
+                eyes.avelocity = '300 300 300';
+
+                eyes.angles = vectoangles(eyes.velocity);
+
+                setsize (eyes, '-3 -3 -3', '3 3 3');
+                setorigin (eyes, self.origin);
+
+        }
+        if (self.impulse == 253)
+        {
+                local vector v;
+
+                msg_entity = self;
+                WriteByte (MSG_ONE, SVC_SETVIEWPORT);
+                WriteEntity (MSG_ONE, self);
+                WriteByte (MSG_ONE, SVC_SETVIEWANGLES);
+                v = vectoangles(eyes.origin - self.origin);
+                WriteAngle(MSG_ONE, v_x);
+                WriteAngle(MSG_ONE, v_y);
+                WriteAngle(MSG_ONE, v_z);
+                remove(eyes);
+        }
+
         // Mod end
 
         if (self.impulse == 255)

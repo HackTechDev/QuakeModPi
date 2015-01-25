@@ -50,6 +50,9 @@ qwiz/magicm.qc:191:    W_FireMagicm  is defined here
 compiling hook.qc
 compiling menu/menu.qc
 compiling weapons.qc
+in function ImpulseCommands (line 1270),
+weapons.qc:1470: warning: v duplicate definition ignored
+weapons.qc:1433:    v  is defined here
 compiling world.qc
 compiling client.qc
 compiling player.qc
@@ -100,14 +103,14 @@ qwiz/magicm.qc:154: warning: rand  no references
 qwiz/magicm.qc:194: warning: old  no references
 triggers.qc:239: warning: junk  no references
 bot_ext.qc:17: warning: junk  no references
-112472 strofs (of 1000000)
- 32861 numstatements (of 524288)
+112564 strofs (of 1000000)
+ 32971 numstatements (of 524288)
   2407 numfunctions (of 16384)
-  5940 numglobaldefs (of 32768)
+  5951 numglobaldefs (of 32768)
    304 numfielddefs (278 unique) (of 2048)
-  5886 numpr_globals (of 65536)
+  5904 numpr_globals (of 65536)
 Writing ../progs.dat
-535696 TOTAL SIZE
+536828 TOTAL SIZE
 Writing ../progs.lno
 228 unique precache_sounds
  99 unique precache_models
@@ -115,11 +118,11 @@ Writing ../progs.lno
 Compile Complete
 
 optres_shortenifnots 139
-optres_overlaptemps 12361
+optres_overlaptemps 12441
 optres_constantarithmatic 23
-optres_nonvec_parms 5812
-optres_assignments 734
-optres_unreferenced 35
-optres_dupconstdefs 173
-numtemps 175
-26 warnings
+optres_nonvec_parms 5843
+optres_assignments 737
+optres_unreferenced 36
+optres_dupconstdefs 176
+numtemps 181
+27 warnings
