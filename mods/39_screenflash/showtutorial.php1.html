@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="description" content="Dedicated to helping you learn how to modify your favorite games!"> 
+<meta name="keywords" content="inside3d, inside 3d, knowledge is power, 3d gaming, quake, games, modifications, mods, map, quakec, editing, news, information, reviews, articles, tutorials, modify">
+<title>Inside3D - Quake Modding - We are Quake, er, the modders, not</title>
+<link href="showtutorial.php1_fichiers/inside3d.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/png" href="http://www.inside3d.com/favicon.png">
+
+<!--[if IE]>
+  <style type="text/css">
+   body {behavior: url(csshover.htc);}
+  </style>
+<![endif]-->
+ 
+<script language="javascript">
+
+	function ToggleVisibility (id)
+	{
+		target = document.getElementById(id);
+
+		if(target.className == 'invisible')
+			target.className = 'visible';
+		else
+			target.className = 'invisible';
+	}
+
+	function ToggleTree(id, subid)
+	{
+		ToggleVisibility(subid);
+
+		if (document.getElementById(subid).className == "visible")
+			document.getElementById(id).className = "expanded";
+		else
+			document.getElementById(id).className = "closed";	
+	}
+	
+</script>
+
+</head><body>
+
+<div align="center">
+  <!-- OH NOES! -->
+  <iframe border="0" marginwidth="0" marginheight="0" bordercolor="#000000" src="showtutorial.php1_fichiers/defaultnopop.html" frameborder="0" height="90" scrolling="no" width="728">
+	</iframe>
+</div>
+
+
+<div id="top"><img src="showtutorial.php1_fichiers/logo2.jpg" alt="Inside3D!" height="130" width="450"><div id="top_right"></div></div>
+<div id="left">
+<div class="menuheading">Inside3D</div>
+<ul>
+<li><a href="http://www.inside3d.com/index.php">Front Page</a></li>
+<li><a href="http://www.inside3d.com/articles.php">Articles</a></li>
+<!-- <li><a href="downloads.php">Downloads</a></li> -->
+<li><a href="http://forums.inside3d.com/">Forums</a></li>
+<li><a href="http://www.inside3d.com/irc.php">IRC Chat</a></li>
+<li><a href="http://www.inside3d.com/newsarchive.php">News Archive</a></li>
+<!-- <li><a href="helpwanted.php">Help Wanted</a></li> -->
+<!-- <li><a href="interviews.php">Interviews</a></li> -->
+<!-- <li><a href="reviews.php">Reviews</a></li> -->
+<li><a href="http://www.inside3d.com/staff.php">Staff</a></li>
+<!-- <li><a href="viewstats.php">Web Stats</a></li> -->
+<li><a href="http://www.inside3d.com/submitnews.php">Submit News</a></li>
+<li><a href="http://www.inside3d.com/submittutorial.php">Submit Tutorial</a></li>
+<li><a href="http://www.inside3d.com/login.php">Log In</a></li>	
+</ul>
+<br>
+
+
+<div class="menuheading">Quake</div>
+<ul>
+<li><a href="http://www.inside3d.com/gettingstarted.php">Getting Started</a></li>
+<li><a href="http://www.inside3d.com/qcspecs/qc-menu.htm">QuakeC Specs v1.0</a></li>
+<li><a href="http://www.inside3d.com/tutorials.php">QuakeC Tutorials</a></li>
+<li><a href="http://www.inside3d.com/pastebin.php">QuakeC PasteBin</a></li>
+<li><a href="http://www.inside3d.com/browse.php">Browse Progs 1.06</a></li>
+<!-- <li><a href="">Quake Mod Index</a></li> -->
+</ul>
+<br>
+
+<div class="menuheading">Allied Sites</div>
+<ul>
+<li><a href="http://minion.planetquake.gamespy.com/index3.html">AI Cafe</a></li>
+<li><a href="http://icculus.org/twilight/darkplaces/">DarkPlaces</a></li>
+<li><a href="http://dpwiki.slipgateconstruct.com/">DarkPlaces Wiki</a></li>
+<li><a href="http://www.inside3d.com/frikbot/">FrikBot</a></li>
+<li><a href="http://www.celephais.net/board/news.php">Func_Msgboard</a></li>
+<li><a href="http://leileilol.mancubus.net/leiware">Leiware</a></li>
+<li><a href="http://www.mpqarchive.com/">MPQ Archive</a></li>
+<li><a href="http://www.quaddicted.com/">Quaddicted</a></li>
+<li><a href="http://www.inside3d.com/qip/">Quake Info Pool</a></li>
+<li><a href="http://www.quaketerminus.com/">Quake Terminus</a></li>
+<li><a href="http://www.inside3d.com/sitelist.php">More...</a></li>
+</ul>
+<br>
+</div>
+
+<div id="right">
+	<div class="menuheading">Pic of the "Day"</div>
+	<div align="center">
+		<div id="POTD">
+			<a href="http://www.inside3d.com/image.php?show=potd/transloquake000063.jpg"><img src="showtutorial.php1_fichiers/transloquake000063.jpg" alt="Pic of the 'Day'" border="0"></a>
+		</div>
+	</div>
+	<br>
+	<div class="menuheading">Recent News</div>
+	<div class="smalltext">
+	<br>
+	<ul><li><a href="http://www.inside3d.com/index.php?show=338">Quake Expo 2011</a></li><li><a href="http://www.inside3d.com/index.php?show=337">Store Your SteelStorm Stylings</a></li><li><a href="http://www.inside3d.com/index.php?show=336">It Burns the Second Time Around</a></li><li><a href="http://www.inside3d.com/index.php?show=335">QuakeDev.com Is Down</a></li><li><a href="http://www.inside3d.com/index.php?show=334">Post Mortem Post Mortem</a></li></ul>	</div>
+    <br>
+	<div class="menuheading">RSS Feeds</div>
+	<ul>
+	<li><a href="http://www.inside3d.com/news_feed.php">News Feed</a></li>
+	<li><a href="http://www.inside3d.com/tutorial_feed.php">Tutorial Feed</a></li>
+	</ul>
+    <br>
+    
+    <div align="center">
+    <iframe border="0" marginwidth="0" marginheight="0" bordercolor="#000000" src="showtutorial.php1_fichiers/default600.html" frameborder="0" height="600" scrolling="no" width="120">
+	</iframe>
+	</div>
+	
+</div>
+<div id="center">
+			<div align="center">
+			<table style="border: 1px dashed rgb(141, 207, 244); background-color: rgb(17, 17, 17); margin: 10px; padding: 3px;" border="0" cellpadding="0" cellspacing="3">
+			  <tbody><tr>
+				<td style="color: yellow;" width="150">Submitted by</td>
+				<td width="150"><a href="http://www.inside3d.com/tutorials.php?user=Dr_Shadowborg">Dr_Shadowborg</a></td>
+			  </tr>
+			  <tr>
+				<td style="color: yellow;">Category</td>
+				<td><a href="http://www.inside3d.com/tutorials.php?cat=Misc">Misc</a></td>
+			  </tr>
+			  <tr>
+				<td style="color: yellow;">Difficuilty</td>
+				<td><a href="http://www.inside3d.com/tutorials.php?diff=2">
+<img src="showtutorial.php1_fichiers/quad_on.gif" alt="Quad" border="0"><img src="showtutorial.php1_fichiers/quad_on.gif" alt="Quad" border="0"><img src="showtutorial.php1_fichiers/quad_off.gif" alt="Quad" border="0"><img src="showtutorial.php1_fichiers/quad_off.gif" alt="Quad" border="0"><img src="showtutorial.php1_fichiers/quad_off.gif" alt="Quad" border="0">		
+				</a></td>
+			  </tr>
+			  <tr>
+				<td style="color: yellow;">Date</td>
+				<td><a href="http://www.inside3d.com/tutorials.php?date=2006-04-16">2006-04-16</a></td>
+			  </tr>
+			</tbody></table>
+			</div>
+Okay, this tutorial will teach you how to make your own Duke Nukem Style
+ screenflash effects. (i.e. like that flash when you pick up an 
+item/weapon/backpack in quake)  This function will prove quite useful 
+for all sorts of effects such as flash bombs, nuclear blasts, toxin 
+poisoning, or even the mighty RAVE gun from Battlezone. &gt;=D  
+<br>
+<br>As with any tutorial, this one probably has room for improvement and
+ addition, but then if I had made this perfect, you wouldn't have to 
+learn anything now would you?  ;)
+<br>
+<br><h3>Step 1.</h3>
+<br>
+<br>Make a new file called <b>CUSTDEFS.QC</b> and put the below code into it.
+<br>
+<br><div class="code"><pre>// PALFROM Project defs.  Place immediatly after defs.qc in progs.src.
+
+.float palfintensity;
+.float redlev;
+.float greenlev;
+.float bluelev;
+.float recamount;
+</pre></div>
+<br>
+<br>A quick word about the above code for newbies: These are definitions
+ of variables that are entity specific and will be used later in the 
+main code.
+<br>
+<br>Save and close.
+<br>
+<br>Now, make a new file called <b>PALFUNC.QC</b> and put the below code into it.
+<br>
+<br><div class="code"><pre>/*
+UpdatePalfrom
+
+Updates the screenflash effect.  Place at the bottom of CheckPowerups(); in
+CLIENT.QC
+*/
+
+void() UpdatePalfrom =
+{
+    if(self.palfintensity &gt; 0)
+     {
+      stuffcmd(self, "v_cshift ");
+      stuffcmd(self, ftos(self.redlev));
+      stuffcmd(self, " ");
+      stuffcmd(self, ftos(self.greenlev));
+      stuffcmd(self, " ");
+      stuffcmd(self, ftos(self.bluelev));
+      stuffcmd(self, " ");
+      stuffcmd(self, ftos(self.palfintensity));
+      stuffcmd(self, "\n");
+      self.palfintensity = self.palfintensity - self.recamount;
+     }
+    else
+     {
+      stuffcmd(self, "v_cshift 0 0 0 0\n");
+     }
+};
+
+/*
+Palfrom set function.  Call from whatever you want to do a screenflash effect.
+Syntax:
+1. dist = radial distance from specified origin defined by org.
+2. amount = intensity level of palfrom.
+3. org = central point of radial effect.
+4. ignore = sets an entity to exclude from recieving effect.
+5. rlev = amount of red to use.
+6. glev = see 5.  This  is green.
+7. blev = see 5.  This is blue.
+8. ramt = reduction amount. Is always reduced by this amount every playerthink.
+9. nostack = if set TRUE then function will not allow a new effect until the current one is finished.
+*/
+
+void(float dist, float amount, vector org, entity ignore, float rlev, float glev, float blev, float ramt, float nostack) Palfrom =
+{
+ local entity head;
+
+ head = findradius(org, dist);
+        
+        while (head)
+        {
+                if (head != ignore)
+                {
+                 if(nostack &amp;&amp; head.palfintensity)
+                  {
+                   //Developer only
+                   dprint("Effect not applied\n");
+                  }
+                 else
+                  {
+                        if (head.takedamage &amp;&amp; head.classname == "player")
+                        {
+                         if (CanDamage (head, self))
+                          {
+                           head.palfintensity = amount;
+                           head.redlev = rlev;
+                           head.greenlev = glev;
+                           head.bluelev = blev;
+                           head.recamount = ramt;
+                          }
+                        }
+                  }
+                }
+                head = head.chain;
+        }
+};
+</pre></div>
+<br>
+<br>Save and close.
+<br>
+<br>Now most everything you need to know for learning purposes is 
+contained within the above code, not to mention what you need to know to
+ use it.
+<br>
+<br><h3>Step 2.</h3>
+<br>
+<br>Next, I want you to open the <b>CLIENT.QC</b> file, and at the very bottom of the function CheckPowerups(); add:
+<br>
+<br><div class="code"><pre>UpdatePalfrom();
+</pre></div>
+<br>
+<br>Save and close.
+<br>
+<br>Open <b>PROGS.SRC</b> and put <b>CUSTDEFS.QC</b> right after <b>DEFS.QC</b>.  Then also put <b>PALFUNC.QC</b> right after <b>ITEMS.QC</b> but before <b>WEAPONS.QC</b>
+<br>
+<br>Save and close.
+<br>
+<br>Now, you should be able to compile this into a working progs.dat 
+file, however, nothing will happen because we haven't got anything that 
+uses this, so...
+<br>
+<br><h3>Step 3.</h3>
+<br>
+<br>Open up the <b>WEAPONS.QC</b> file, then go down to the W_Attack(); Function and add the below just before W_FireShotgun();
+<br>
+<br><div class="code"><pre>        Palfrom(10, 200, self.origin, world, 200, 200, 200, 4, FALSE);
+</pre></div>
+<br>
+<br>Save and close.  Compile.  Then try it.  This will cause you to have
+ a blinding white screenflash every time you fire the shotgun.  Have fun
+ experimenting with different values and intensities to get the effect 
+you want.	<br>
+	<br>
+	<div style="font-size: 10px; color: rgb(153, 153, 153);" align="center">
+		Generated in 0.00441s		<br>
+		Copyright 1996-2005 Inside3D.com
+	</div>
+</div>
+
+</body></html>

@@ -924,6 +924,7 @@ void() W_Attack =
 	else if (self.weapon == IT_SHOTGUN)
 	{
 		player_shot1 ();
+        Palfrom(10, 200, self.origin, world, 200, 200, 200, 4, FALSE);
 		W_FireShotgun ();
 		self.attack_finished = time + 0.5;
 	}

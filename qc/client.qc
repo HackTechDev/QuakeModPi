@@ -1288,6 +1288,10 @@ void() CheckPowerups =
 		}
 	}
 
+    // Mod begin : flash
+    UpdatePalfrom();
+    // Mod end
+
 };
 
 

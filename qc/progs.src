@@ -1,6 +1,7 @@
 ../progs.dat
 
 defs.qc
+flash/custdefs.qc // Mod Flash
 bot.h
 subs.qc
 
@@ -17,6 +18,7 @@ fight.qc
 ai.qc
 combat.qc
 items.qc
+flash/palfunc.qc // Mod Flash
 ccam.qc
 impulse2.qc // Mod TMBot
 botai.qc // Mod TMBot
