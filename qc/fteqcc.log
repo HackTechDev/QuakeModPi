@@ -13,6 +13,7 @@ compiling menushop/menumods.qc
 compiling menushop/menucore.qc
 compiling fight.qc
 compiling ai.qc
+compiling experience/experience.qc
 compiling combat.qc
 compiling items.qc
 compiling flash/palfunc.qc
@@ -53,8 +54,10 @@ compiling hook.qc
 compiling menu/menu.qc
 compiling weapons.qc
 in function ImpulseCommands (line 1271),
-weapons.qc:1471: warning: v duplicate definition ignored
-weapons.qc:1434:    v  is defined here
+weapons.qc:1433: warning: PrintExp: Too few parameters
+experience/experience.qc:28:    PrintExp  is defined here
+weapons.qc:1476: warning: v duplicate definition ignored
+weapons.qc:1439:    v  is defined here
 compiling world.qc
 compiling client.qc
 compiling player.qc
@@ -105,14 +108,14 @@ qwiz/magicm.qc:154: warning: rand  no references
 qwiz/magicm.qc:194: warning: old  no references
 triggers.qc:239: warning: junk  no references
 bot_ext.qc:17: warning: junk  no references
-112892 strofs (of 1000000)
- 33067 numstatements (of 524288)
-  2409 numfunctions (of 16384)
-  5974 numglobaldefs (of 32768)
-   309 numfielddefs (283 unique) (of 2048)
-  5929 numpr_globals (of 65536)
+113084 strofs (of 1000000)
+ 33195 numstatements (of 524288)
+  2411 numfunctions (of 16384)
+  5985 numglobaldefs (of 32768)
+   310 numfielddefs (284 unique) (of 2048)
+  5940 numpr_globals (of 65536)
 Writing ../progs.dat
-538320 TOTAL SIZE
+539748 TOTAL SIZE
 Writing ../progs.lno
 228 unique precache_sounds
  99 unique precache_models
@@ -120,11 +123,11 @@ Writing ../progs.lno
 Compile Complete
 
 optres_shortenifnots 139
-optres_overlaptemps 12467
+optres_overlaptemps 12508
 optres_constantarithmatic 23
-optres_nonvec_parms 5879
-optres_assignments 742
+optres_nonvec_parms 5921
+optres_assignments 744
 optres_unreferenced 36
 optres_dupconstdefs 176
 numtemps 181
-27 warnings
+28 warnings

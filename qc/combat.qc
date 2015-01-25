@@ -73,11 +73,27 @@ void(entity targ, entity attacker) Killed =
 	self.enemy = attacker;
 
 // bump the monster counter
-	if (self.flags & FL_MONSTER)
-	{
-		killed_monsters = killed_monsters + 1;
-		WriteByte (MSG_ALL, SVC_KILLEDMONSTER);
-	}
+    // Mod begin : Experience
+    if (self.flags & FL_MONSTER)
+    {
+        killed_monsters = killed_monsters + 1;
+        if (self.classname == "monster_dog") AddExp (attacker, 30);
+        if (self.classname == "monster_knight") AddExp (attacker, 50);
+        if (self.classname == "monster_zombie") AddExp (attacker, 55);
+        if (self.classname == "monster_demon1") AddExp (attacker, 70);
+        if (self.classname == "monster_fish") AddExp (attacker, 20);
+        if (self.classname == "monster_enforcer") AddExp (attacker, 40);
+        if (self.classname == "monster_hell_knight") AddExp (attacker, 75);
+        if (self.classname == "monster_ogre") AddExp (attacker, 65);
+        if (self.classname == "monster_ogre_marksman") AddExp (attacker, 65);
+        if (self.classname == "monster_shalrath") AddExp (attacker, 60);
+        if (self.classname == "monster_shambler") AddExp (attacker, 80);
+        if (self.classname == "monster_army") AddExp (attacker, 35);
+        if (self.classname == "monster_tarbaby") AddExp (attacker, 25);
+        if (self.classname == "monster_wizard") AddExp (attacker, 45);
+        WriteByte (MSG_ALL, SVC_KILLEDMONSTER);
+    }
+    // Mod end    
 
 	ClientObituary(self, attacker);
 	

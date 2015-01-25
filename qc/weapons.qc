@@ -1428,6 +1428,11 @@ void() ImpulseCommands =
             DisplayCompass();
         // Mod end
 
+        // Mod begin : Experience
+        if (self.impulse == 161) 
+            PrintExp ();
+        // Mod end
+
         // Mod begin : Eye
         if (self.impulse == 254)
         {

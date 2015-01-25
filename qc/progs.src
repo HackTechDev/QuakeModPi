@@ -16,6 +16,7 @@ menushop/menucore.qc // Mod Menu shop
 
 fight.qc
 ai.qc
+experience/experience.qc // Mod Experience
 combat.qc
 items.qc
 flash/palfunc.qc // Mod Flash

@@ -690,3 +690,8 @@ float(entity targ, entity inflictor) CanDamage;
 // Mod begin : Chasecam
 .vector camview;
 // Mod end
+
+// Mod begin : Experience
+//Variable for Exp Total
+.float has_exp; 
+// Mod end
