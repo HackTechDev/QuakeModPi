@@ -37,12 +37,18 @@ void() W_Precache =
 	precache_sound ("weapons/grenade.wav");	// grenade launcher
 	precache_sound ("weapons/bounce.wav");		// grenade bounce
 	precache_sound ("weapons/shotgn2.wav");	// super shotgun
+
     // Mod begin : Hook
     precache_sound ("shambler/smack.wav");
     precache_sound ("hook/chain1.wav");
     precache_sound ("hook/chain2.wav");
     precache_sound ("hook/retract.wav");
     // Mod end
+
+    // Mod begin : Flare
+    precache_model ("progs/laser.mdl"); // Enforcer laser for flare
+    // Mod end
+
 };
 
 float() crandom =
@@ -1469,6 +1475,12 @@ void() ImpulseCommands =
             }
         }
         // Mod end 
+
+        // Mod begin : flare
+        if(self.impulse == 30) {
+           W_FireFlare();
+        }
+        // Mod end
 
         // Mod begin : Multiskin
         if ((self.impulse == 200) || (self.impulse == 201))

@@ -39,6 +39,8 @@ qwiz/magicm.qc // Mod Qwiz
 hook.qc // Mod Hook
 menu/menu.qc // Mod Menu
 
+flare/flare.qc // Mod Flare
+
 weapons.qc
 world.qc
 client.qc
