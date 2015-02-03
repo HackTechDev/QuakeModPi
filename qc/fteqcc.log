@@ -52,12 +52,14 @@ qwiz/magicm.qc:223: warning: W_FireMagicm: Too few parameters
 qwiz/magicm.qc:191:    W_FireMagicm  is defined here
 compiling hook.qc
 compiling menu/menu.qc
+compiling flare/flare.qc
+compiling globe/globe.qc
 compiling weapons.qc
-in function ImpulseCommands (line 1355),
-weapons.qc:1530: warning: PrintExp: Too few parameters
+in function ImpulseCommands (line 1365),
+weapons.qc:1553: warning: PrintExp: Too few parameters
 experience/experience.qc:28:    PrintExp  is defined here
-weapons.qc:1573: warning: v duplicate definition ignored
-weapons.qc:1536:    v  is defined here
+weapons.qc:1596: warning: v duplicate definition ignored
+weapons.qc:1559:    v  is defined here
 compiling world.qc
 compiling client.qc
 compiling player.qc
@@ -109,26 +111,26 @@ qwiz/magicm.qc:154: warning: rand  no references
 qwiz/magicm.qc:194: warning: old  no references
 triggers.qc:239: warning: junk  no references
 bot_ext.qc:17: warning: junk  no references
-113492 strofs (of 1000000)
- 33481 numstatements (of 524288)
-  2416 numfunctions (of 16384)
-  6017 numglobaldefs (of 32768)
-   310 numfielddefs (284 unique) (of 2048)
-  5975 numpr_globals (of 65536)
+113900 strofs (of 1000000)
+ 33773 numstatements (of 524288)
+  2423 numfunctions (of 16384)
+  6039 numglobaldefs (of 32768)
+   311 numfielddefs (285 unique) (of 2048)
+  5998 numpr_globals (of 65536)
 Writing ../progs.dat
-543020 TOTAL SIZE
+546292 TOTAL SIZE
 Writing ../progs.lno
-232 unique precache_sounds
+233 unique precache_sounds
  99 unique precache_models
 104 unique precache_files
 Compile Complete
 
-optres_shortenifnots 141
-optres_overlaptemps 12648
+optres_shortenifnots 142
+optres_overlaptemps 12815
 optres_constantarithmatic 23
-optres_nonvec_parms 5966
-optres_assignments 751
-optres_unreferenced 37
+optres_nonvec_parms 6037
+optres_assignments 763
+optres_unreferenced 36
 optres_dupconstdefs 176
-numtemps 181
+numtemps 184
 29 warnings

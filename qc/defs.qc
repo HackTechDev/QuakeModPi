@@ -459,6 +459,11 @@ float	AS_MISSILE		= 4;
 //
 // player only fields
 //
+
+// Mod begin : Globe
+.float globe_power;
+// Mod end
+
 .float		walkframe;
 
 .float 		attack_finished;

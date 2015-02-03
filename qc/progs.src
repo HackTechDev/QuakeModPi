@@ -40,6 +40,7 @@ hook.qc // Mod Hook
 menu/menu.qc // Mod Menu
 
 flare/flare.qc // Mod Flare
+globe/globe.qc // Mod Globe
 
 weapons.qc
 world.qc

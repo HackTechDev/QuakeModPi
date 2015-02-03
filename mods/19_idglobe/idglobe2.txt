@@ -1,0 +1,35 @@
+IDGlobe.qc 1.2
+Stan Smith   (mailto:StoshSmith@worldnet.att.net)
+
+	This Quake-C mod adds an IFF-style feature.  Usable in both
+single-player and net games, when toggled on, it will ID both monsters
+and other players.
+
+In Netgames, an ID of another player looks like this:
+FRIEND: BOOGYMAN- GRENADE LAUNCHER                   or,
+FOE: HOSER- SHOTGUN
+
+An ID of a monster looks like this:
+ID: OGRE (CHAINSAW/GRENADE)
+
+	You can also remove the comments from the source and recompile
+it to act as a flashlight which will anger monsters it's aimed at.
+
+						-O-
+
+	Also included in this archive is Globe.qc- my flashlight-style
+routine, and a progs.dat and config.cfg which enable both.
+
+	To use the progs.dat, just put it and the config.cfg in a
+directory inside \quake (I'd recommend \mygame) and run Quake like
+this:
+		QUAKE -game mygame
+
+	This archive also contains my Flare and Light Globe routines,
+both of which have been compiled into the progs.dat.  Flare is on 'f',
+IDGlobe on 'i', and Light Globe is on the 'l' key.  This version (1.2)
+contains minor bug fixes (incorrectly ID'ed monsters) only...
+
+	Please write back with any questions, comments, or suggestions!
+
+		Stan Smith (StoshSmith@worldnet.att.net)

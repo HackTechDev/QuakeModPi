@@ -49,6 +49,10 @@ void() W_Precache =
     precache_model ("progs/laser.mdl"); // Enforcer laser for flare
     // Mod end
 
+    // Mod begin : Globe
+    precache_sound("buttons/Switch21.wav");
+    // Mod end
+
 };
 
 float() crandom =
@@ -1476,11 +1480,18 @@ void() ImpulseCommands =
         }
         // Mod end 
 
-        // Mod begin : flare
+        // Mod begin : Flare
         if(self.impulse == 30) {
            W_FireFlare();
         }
         // Mod end
+
+        // Mod begin : Globe
+        if(self.impulse == 31) {
+            Globe_toggle();
+        }
+        // Mod end
+
 
         // Mod begin : Multiskin
         if ((self.impulse == 200) || (self.impulse == 201))
