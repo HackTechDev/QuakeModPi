@@ -109,25 +109,25 @@ qwiz/magicm.qc:154: warning: rand  no references
 qwiz/magicm.qc:194: warning: old  no references
 triggers.qc:239: warning: junk  no references
 bot_ext.qc:17: warning: junk  no references
-113328 strofs (of 1000000)
- 33354 numstatements (of 524288)
-  2414 numfunctions (of 16384)
-  6001 numglobaldefs (of 32768)
+113492 strofs (of 1000000)
+ 33481 numstatements (of 524288)
+  2416 numfunctions (of 16384)
+  6017 numglobaldefs (of 32768)
    310 numfielddefs (284 unique) (of 2048)
-  5957 numpr_globals (of 65536)
+  5975 numpr_globals (of 65536)
 Writing ../progs.dat
-541568 TOTAL SIZE
+543020 TOTAL SIZE
 Writing ../progs.lno
 232 unique precache_sounds
  99 unique precache_models
 104 unique precache_files
 Compile Complete
 
-optres_shortenifnots 139
-optres_overlaptemps 12576
+optres_shortenifnots 141
+optres_overlaptemps 12648
 optres_constantarithmatic 23
-optres_nonvec_parms 5953
-optres_assignments 745
+optres_nonvec_parms 5966
+optres_assignments 751
 optres_unreferenced 37
 optres_dupconstdefs 176
 numtemps 181

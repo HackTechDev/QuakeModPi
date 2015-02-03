@@ -519,6 +519,10 @@ entity() SelectSpawnPoint =
 	return spot;
 };
 
+// Mod begin :
+void () func_radar;
+// Mod end
+
 /*
 ===========
 PutClientInServer
@@ -598,6 +602,19 @@ void() PutClientInServer =
 		makevectors(self.angles);
 		spawn_tfog (self.origin + v_forward*20);
 	}
+
+    // Mod begin :
+    if (!find (world, classname, "func_radar"))
+    {
+        local entity radar;
+
+        radar = spawn ();
+        radar.classname = "func_radar";
+        setorigin (radar, self.origin);
+        radar.think = func_radar;
+        radar.nextthink = time;
+    }
+    // Mod end
 
 	spawn_tdeath (self.origin, self);
 
