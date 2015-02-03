@@ -254,6 +254,13 @@ void() worldspawn =
 	precache_sound ("misc/water1.wav");			// swimming
 	precache_sound ("misc/water2.wav");			// swimming
 
+    // Mod begin : Footstep
+    precache_sound ("player/foot1.wav");
+    precache_sound ("player/foot2.wav");
+    precache_sound ("player/foot3.wav");
+    precache_sound ("player/foot4.wav");
+    // Mod end
+
 	precache_model ("progs/player.mdl");
 	precache_model ("progs/eyes.mdl");
 	precache_model ("progs/h_player.mdl");

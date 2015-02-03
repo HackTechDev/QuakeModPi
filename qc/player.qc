@@ -115,6 +115,28 @@ void()	player_stand1 =[	$axstnd1,	player_stand1	]
 
 void()	player_run =[	$rockrun1,	player_run	]
 {
+    // Mod begin : Footstep
+        if (self.walkframe == 1 || self.walkframe == 4 )
+        {
+                if (checkbottom(self) == TRUE)
+                {
+                        if (self.waterlevel == 0)
+                {
+                      local float r;
+                    r = rint(random() * 3);
+                    if (r == 1)
+                         sound (self, CHAN_AUTO, "player/foot1.wav", 0.5, ATTN_NORM);
+                    else if (r == 2)
+                         sound (self, CHAN_AUTO, "player/foot2.wav", 0.5, ATTN_NORM);
+                    else if (r == 0)
+                         sound (self, CHAN_AUTO, "player/foot3.wav", 0.5, ATTN_NORM);
+                    else
+                     sound (self, CHAN_AUTO, "player/foot4.wav", 0.5, ATTN_NORM);
+                }
+                }
+        }
+    // Mod end
+
 	self.weaponframe=0;
 	if (!self.velocity_x && !self.velocity_y)
 	{

@@ -1,0 +1,49 @@
+Greetings, I'm Ze0, fellow QuakeC coder and Bot Epidemic webmaster. Today I am going to show y'all how to add footsteps to your Quake modification.
+
+Firstly, you have to download this small (38k) zip file that contains the footstep sounds which you must extract into your modification's directory. Once you've gotten that done your set to go.
+
+Open up world.qc and scroll down to this line:
+
+
+precache_sound ("misc/water2.wav");			// swimming
+
+Right after that, insert this code:
+
+
+      precache_sound ("player/foot1.wav");      
+      precache_sound ("player/foot2.wav");      
+      precache_sound ("player/foot3.wav");      
+      precache_sound ("player/foot4.wav");
+
+This simply lets Quake know that we have some new .wav files that we are going to make use of. Now we must insert the actual code into player.qc that tells Quake to play the footstep sounds when we are walking.
+
+Find this in player.qc:
+
+
+void()	player_run =[	$rockrun1,	player_run	]
+{
+
+Now, directly after that insert the following code:
+
+
+        if (self.walkframe == 1 || self.walkframe == 4 )
+        {
+                if (checkbottom(self) == TRUE)
+                {
+                        if (self.waterlevel == 0)
+				{
+				      local float r;
+					r = rint(random() * 3);			
+					if (r == 1)
+				         sound (self, CHAN_AUTO, "player/foot1.wav", 0.5, ATTN_NORM);
+					else if (r == 2)
+				         sound (self, CHAN_AUTO, "player/foot2.wav", 0.5, ATTN_NORM);
+					else if (r == 0)
+				         sound (self, CHAN_AUTO, "player/foot3.wav", 0.5, ATTN_NORM);
+					else
+			         sound (self, CHAN_AUTO, "player/foot4.wav", 0.5, ATTN_NORM);
+				}
+                }
+        }
+
+And that's it! Now, you must compile your project using your favorite compiler, I use FrikQCC (by Frika C). Then after you have Quake up and running your modification, whenever you walk you will make footsteps..
