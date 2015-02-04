@@ -1,0 +1,98 @@
+    SECURITY MOTION-DETECTORS
+    Author: KTGOW
+
+    Started 08/10/96
+    Version 1 ready : 08/11/96
+    Version 1 released: 08/12/96
+    Version 1.06 ready : 03/16/97
+    Version 1.06 releaed: 03/16/97
+
+Description:
+    Impulse 15 places a motion detector.
+
+    Motion detectors are small objects placed by the player.  They drop to
+    the floor, then go into "Security Mode."
+    While in a security mode, the motion detector will fire a stream of
+    shots at any monsters or players that are a)moving, and b)within a
+    2000-unit radius.  The motion detectors do a fairly good job of
+    anticipating the movement of a target.
+
+    Motion detectors can be destroyed.  When they are destroyed, they
+    explode like a grenade.
+
+    If 2 or more motion detectors within a 750-unit radius of each other can
+    see each other, each will destroy itself upon activation.
+
+    Once the motion detector is attached to a surface, there is a 10-second
+    delay for you to run away before it kills you;
+
+    A motion detector requires 50 nails, 95 health, and 1 rocket to create.
+    This is nonrefundable.
+    You may be wondering why the requirements are so great.  Play around
+    with the detectors for a while.  Then let me know if I'm asking too
+    much.
+
+    Motion detectors originally start with 50 shots.  Once they are out
+    of ammo, their rate of fire slows to 1 shot every 2 seconds.
+    Impulse 16 reloads a Detector in 25-nail increments (taken from
+    your own ammo supply).  Detectors can store a maximum of 200 shots.
+
+    Motion detectors kill people indiscriminantly.  A motion detector will
+    kill its owner.  Nobody gets credit for a kill done by a motion detector.
+
+To use this patch:
+    1) Create a subdirectory off of your Quake directory.  I use MOTION,
+       for example.
+    2) Create the subdirectory PROGS off of the MOTION subdirectory.
+    3) Copy all the QuakeC source files (*.QC) from Quake into this
+       directory.
+    4) Copy the modified QuakeC files from MOTION.ZIP into the PROGS
+       directory (overwrite any files that already exist).
+    5) Copy PROGS.SRC from MOTION.ZIP into the PROGS directory.
+    6) Run the QuakeC compiler from the PROGS directory.  The file 
+       PROGS.DAT should be created in the MOTION directory.
+    7) Start Quake with "quake -game motion".
+
+Impulses added:
+  15  -- Drop a Motion Detector.
+  16  -- Give nails to a Motion Detector.
+
+Files modified:
+ PROGS.SRC  --  Placed MOTION.QC right before WEAPONS.QC.
+ DEFS.QC    --  Added the necessary variables to the end of the file.
+                1 float used for detecting monster movement.
+ WEAPONS.QC --  Precached a sound and a model.  Added impulses 15 and 16.
+ AI.QC      --  Modified all the monster movement functions so that
+                detectors could determine whether or not monsters were
+                moving.
+ CLIENT.QC  --  Modified the Client Obituary to add Motion Detector deaths.
+ MOTION.QC  --  This contains all the new Motion Detector functions.
+
+Functions added:
+MOTION.QC: All of them.
+
+Functions modified:
+WEAPONS.QC: void() W_Precache;
+    -- Precached a sound and a model.
+WEAPONS.QC: void() ImpulseCommands;
+    -- Added the necessary impulses.
+CLIENT.QC : void(entity targ, entity attacker) ClientObituary;
+    -- Added messages for Motion Detector kills.
+AI.QC     : void(float dist) ai_forward; void(float dist) ai_back;
+            void(float dist) ai_pain; void(float dist) ai_painforward;
+            void(float dist) ai_walk; void() ai_stand; void() ai_turn;
+            void() ai_run_melee; void() ai_run_missile;
+            void() ai_run_slide; void(float dist) ai_run;
+    -- Set or unset the new variable "moving_now" so that motion
+       detectors could determine whether or not a monster is moving.
+
+
+
+MANY thanks go out to:
+id, of course.
+All the people giving me feedback about my patches.  Thanks!
+
+
+
+-KTGOW
+ktgow@po.eecs.berkeley.edu

@@ -700,3 +700,7 @@ float(entity targ, entity inflictor) CanDamage;
 //Variable for Exp Total
 .float has_exp; 
 // Mod end
+
+// Mod begin : Motion
+.float moving_now;
+// Mod end

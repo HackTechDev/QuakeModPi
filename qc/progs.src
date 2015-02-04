@@ -42,6 +42,8 @@ menu/menu.qc // Mod Menu
 flare/flare.qc // Mod Flare
 globe/globe.qc // Mod Globe
 
+motion/motion.qc // Mod Motion
+
 weapons.qc
 world.qc
 client.qc

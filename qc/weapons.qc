@@ -53,6 +53,9 @@ void() W_Precache =
     precache_sound("buttons/Switch21.wav");
     // Mod end
 
+    // Mod begin : Motion
+    precache_model ("progs/v_spike.mdl");
+    // End end
 };
 
 float() crandom =
@@ -1492,6 +1495,14 @@ void() ImpulseCommands =
         }
         // Mod end
 
+        // Mod begin : Motion
+        if (self.impulse == 32) {
+            W_FireMotion();
+        }
+        if (self.impulse == 33) {
+            GiveMotionNails();
+        }
+        // Mod end
 
         // Mod begin : Multiskin
         if ((self.impulse == 200) || (self.impulse == 201))

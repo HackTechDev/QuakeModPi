@@ -54,12 +54,13 @@ compiling hook.qc
 compiling menu/menu.qc
 compiling flare/flare.qc
 compiling globe/globe.qc
+compiling motion/motion.qc
 compiling weapons.qc
-in function ImpulseCommands (line 1365),
-weapons.qc:1553: warning: PrintExp: Too few parameters
+in function ImpulseCommands (line 1368),
+weapons.qc:1564: warning: PrintExp: Too few parameters
 experience/experience.qc:28:    PrintExp  is defined here
-weapons.qc:1596: warning: v duplicate definition ignored
-weapons.qc:1559:    v  is defined here
+weapons.qc:1607: warning: v duplicate definition ignored
+weapons.qc:1570:    v  is defined here
 compiling world.qc
 compiling client.qc
 compiling player.qc
@@ -96,6 +97,14 @@ paqman/paqman.qc:1406: warning: tempy  no references
 paqman/paqman.qc:1407: warning: ent  no references
 paqman/paqman.qc:1408: warning: vec  no references
 valley/valley.qc:46: warning: r  no references
+ai.qc:37: warning: current_yaw  no references
+ai.qc:480: warning: mtemp  no references
+ai.qc:689: warning: delta  no references
+ai.qc:690: warning: axis  no references
+ai.qc:691: warning: direct  no references
+ai.qc:691: warning: ang_rint  no references
+ai.qc:691: warning: ang_floor  no references
+ai.qc:691: warning: ang_ceil  no references
 ccam/ccam.qc:73: warning: aa  no references
 botai.qc:447: warning: delta  no references
 botai.qc:448: warning: axis  no references
@@ -111,26 +120,26 @@ qwiz/magicm.qc:154: warning: rand  no references
 qwiz/magicm.qc:194: warning: old  no references
 triggers.qc:239: warning: junk  no references
 bot_ext.qc:17: warning: junk  no references
-113900 strofs (of 1000000)
- 33773 numstatements (of 524288)
-  2423 numfunctions (of 16384)
-  6039 numglobaldefs (of 32768)
-   311 numfielddefs (285 unique) (of 2048)
-  5998 numpr_globals (of 65536)
+115324 strofs (of 1000000)
+ 34273 numstatements (of 524288)
+  2432 numfunctions (of 16384)
+  6098 numglobaldefs (of 32768)
+   312 numfielddefs (286 unique) (of 2048)
+  6069 numpr_globals (of 65536)
 Writing ../progs.dat
-546292 TOTAL SIZE
+552804 TOTAL SIZE
 Writing ../progs.lno
 233 unique precache_sounds
  99 unique precache_models
 104 unique precache_files
 Compile Complete
 
-optres_shortenifnots 142
-optres_overlaptemps 12815
-optres_constantarithmatic 23
-optres_nonvec_parms 6037
-optres_assignments 763
-optres_unreferenced 36
+optres_shortenifnots 143
+optres_overlaptemps 13076
+optres_constantarithmatic 25
+optres_nonvec_parms 6129
+optres_assignments 789
+optres_unreferenced 44
 optres_dupconstdefs 176
-numtemps 184
-29 warnings
+numtemps 188
+37 warnings
